@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/18 22:19:54 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/18 22:44:33 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*path_check(char *command, char **env, int end[])
 	return (NULL);
 }
 
-void	middle_commands(int end[], char *line, char **env, int i, int input)
+void	middle_commands(int end[], char *line, char **env, int input)
 {
 	char	*path;
 	char	**commands;
@@ -65,7 +65,6 @@ void	middle_commands(int end[], char *line, char **env, int i, int input)
 
 void	last_cmd(int end[], char *line, char **env)
 {
-	int		fd;
 	char	*path;
 	char	**commands;
 
@@ -84,7 +83,6 @@ void	last_cmd(int end[], char *line, char **env)
 
 void	first_cmd(int end[], char *line, char **env, int lines)
 {
-	int		fd;
 	char	*path;
 	char	**commands;
 
@@ -111,7 +109,7 @@ void	more_commands(t_pex pex, char **env)
 		{
 			if (pipe(pex.end) == -1)
 				(write(2, "pipe failed", 11), exit(1));
-			(middle_commands(pex.end, pex.split_line[pex.i], env, pex.i, pex.input), close(pex.end[1]));
+			(middle_commands(pex.end, pex.split_line[pex.i], env, pex.input), close(pex.end[1]));
 			pex.input = pex.end[0]; //end[1] == 3 --> input == 3
 			pex.i++;
 		}
