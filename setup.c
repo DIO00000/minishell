@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/18 17:18:00 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/18 22:10:22 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,3 +152,4 @@ void	read_command(char **env)
 		single_command(line, env);
 	}
 }
+
