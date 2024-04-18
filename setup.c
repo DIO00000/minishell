@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/18 22:10:22 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/18 22:19:54 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 char	*path_check(char *command, char **env, int end[])
 {
-
-	
 	int		i;
 	char	*cmnd;
 	char	*path;
@@ -148,7 +146,7 @@ void	read_command(char **env)
 	while (1)
 	{
 		line = readline(">> ");
-		if (!line)
+		if (!line || !ft_strncmp(line, "exit", 5))
 			return (free(line));
 		add_history(line);
 		single_command(line, env);
