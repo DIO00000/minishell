@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/18 17:05:52 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/18 17:18:00 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,20 +102,8 @@ void	first_cmd(int end[], char *line, char **env, int lines)
 	}
 }
 
-void	command_handler(char *line, char **env)
+void	more_commands(t_pex pex, char **env)
 {
-	t_pex	pex;
-
-	pex.i = 1;
-	pex.split_line = ft_split(line, '|');
-	// special_cases(pex.split_line, env);
-	pex.lines = count_words(line, '|');
-		if (pipe(pex.end) == -1)
-			(write(2, "Error\n", 7), exit(1));
-		(first_cmd(pex.end, pex.split_line[0], env, pex.lines), close(pex.end[1]));
-	// if (!ft_strncmp(line, "<<", 2))
-	// 	(ft_here_doc(pex.end), close(pex.end[1]), pex.i++);
-	// else
 	if (pex.lines > 1)
 	{
 		pex.input = pex.end[0];
@@ -134,6 +122,23 @@ void	command_handler(char *line, char **env)
 		;
 }
 
+void	single_command(char *line, char **env)
+{
+	t_pex	pex;
+
+	pex.i = 1;
+	pex.split_line = ft_split(line, '|');
+	// special_cases(pex.split_line, env);
+	pex.lines = count_words(line, '|');
+		if (pipe(pex.end) == -1)
+			(write(2, "Error\n", 7), exit(1));
+		(first_cmd(pex.end, pex.split_line[0], env, pex.lines), close(pex.end[1]));
+	// if (!ft_strncmp(line, "<<", 2))
+	// 	(ft_here_doc(pex.end), close(pex.end[1]), pex.i++);
+	// else
+	more_commands(pex, env);
+}
+
 void	read_command(char **env)
 {
 	char	*line;
@@ -144,6 +149,6 @@ void	read_command(char **env)
 		if (!line)
 			return (free(line));
 		add_history(line);
-		command_handler(line, env);
+		single_command(line, env);
 	}
 }
