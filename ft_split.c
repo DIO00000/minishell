@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:35:58 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/18 16:58:43 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/18 17:06:45 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ char	**ft_split(char *s, char c)
 			index = -1;
 		}
 	}
+	split[j] = 0;
 	return (split);
 }
