@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:35:58 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/03 02:06:52 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/18 16:58:43 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	**ft_split(char *s, char c)
 	char	**split;
 
 	split = malloc((count_words(s, c) + 1) * sizeof(char *));
-	if (!s[0] || !split)
+	if (!split)
 		(write(2, "Error\n", 6), exit(1));
 	i = -1;
 	j = 0;
@@ -85,8 +85,5 @@ char	**ft_split(char *s, char c)
 			index = -1;
 		}
 	}
-	split[j] = 0;
-	if (!split[0])
-		(write(2, "Error\n", 6), exit(1));
 	return (split);
 }

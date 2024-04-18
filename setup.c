@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/18 10:33:33 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/18 16:52:38 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*path_check(char *command, char **env, int end[])
 	free_handler(paths);
 	free(cmnd);
 	fds_closer(end);
-	write(2, "command not found", 18);
+	write(2, "command not found\n", 19);
 	return (NULL);
 }
 
@@ -117,7 +117,8 @@ void	command_handler(char *line, char **env)
 	// 	(ft_here_doc(pex.end), close(pex.end[1]), pex.i++);
 	// else
 	if (pex.lines > 1)
-	{		pex.input = pex.end[0];
+	{
+		pex.input = pex.end[0];
 		while (pex.split_line[pex.i + 1])
 		{
 			if (pipe(pex.end) == -1)
