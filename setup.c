@@ -14,6 +14,8 @@
 
 char	*path_check(char *command, char **env, int end[])
 {
+
+	
 	int		i;
 	char	*cmnd;
 	char	*path;
