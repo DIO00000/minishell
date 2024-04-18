@@ -16,7 +16,7 @@ void handle_signals(int sig)
 {
 	(void)sig;
 
-    printf("\n>> ");
+    printf("\n\033[1;33m♛ ➜ \033[1;34m minishell : \033[0;m");
 } 
 
 int	main(int ac, char **av, char **env)

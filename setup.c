@@ -143,7 +143,7 @@ void	read_command(char **env)
 
 	while (1)
 	{
-		line = readline(">> ");
+		line = readline("\033[1;33m♛ ➜ \033[1;34m minishell : \033[0;m");
 		if (!line || !ft_strncmp(line, "exit", 5))
 			return (free(line));
 		add_history(line);
