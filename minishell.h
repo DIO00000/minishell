@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/18 07:50:09 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/19 15:37:28 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,27 @@
 # include <string.h>
 # include <sys/stat.h>
 
+
+// typedef enum s_tnum
+// {
+// 	COMMAND,
+// 	PYPE,
+// 	VARIABLE,
+// 	SPACE,
+// 	REDIRECTION_IN,
+// 	REDIRECTION_OUT,
+// 	SINGLE_QUOTE,
+// 	DOUBLE_QUOTE,
+// 	HERDOC,
+// }	t_tnum;
+
+typedef struct s_type
+{
+	char	*string;
+	int		type;
+	struct s_type	*next;
+}	t_type;
+
 typedef struct s_pex
 {
 	int		i;
@@ -40,6 +61,27 @@ typedef struct s_pex
 	char	**split_line;
 	int		lines;
 }	t_pex;
+
+typedef struct s_minishell
+{
+	t_type	*type;
+	char	*cmd_line;
+	char	**env;
+	char	*input;
+	int		signal;
+	int		*pids;
+	int		table_size;
+	int		env_status;
+	int		syntax;
+}	t_minishell;
+
+// Parsing 
+
+void    ft_error(char *str, char *msg);
+
+
+
+// Excuting
 
 char	**ft_split(char *s, char c);
 void	read_command(char **env);
@@ -57,5 +99,11 @@ void	special_cases(char **lines, char **env);
 void    handler(void);
 void    sig_quit(int    signum);
 void    sig_init(int    signum);
+
+
+// Utilities
+
+void	ft_putnbr_fd(int n, int fd);
+void	ft_putchar_fd(char c, int fd);
 
 #endif

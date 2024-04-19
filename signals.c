@@ -18,7 +18,7 @@ void    sig_init(int    signum)
 // void    sig_quit(int    signum)
 // {
 //     write(2, "Quit: ", 6);
-//     ("%d", signum);
+//     ft_putnbr_fd(signum, 2);
 // 	write(2, "\n", 1);
 // }
 
@@ -26,5 +26,4 @@ void    handler(void)
 {
     signal(SIGINT, sig_init);
     signal(SIGQUIT, SIG_IGN);
-    signal(SIGQUIT, sig_quit);
 }

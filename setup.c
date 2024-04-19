@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/18 22:44:33 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/19 17:44:26 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void	read_command(char **env)
 	{
 		line = readline("\033[1;33m➜ \033[1;34m minishell\033[1;32m × \033[0;m");
 		if (!line || !ft_strncmp(line, "exit", 5))
-			return (free(line));
+			(free(line), exit(1));
 		add_history(line);
 		single_command(line, env);
 	}

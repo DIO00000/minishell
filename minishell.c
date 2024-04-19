@@ -3,28 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:39:52 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/18 22:44:54 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/19 17:43:49 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void handle_signals(int sig) 
+void	minishell_init(t_minishell *minishell, char **env)
 {
-	(void)sig;
+	minishell->type = NULL;
+	minishell->cmd_line = NULL;
+	minishell->env = NULL;
+	minishell->input = NULL;
+	minishell->pids = NULL;
+	minishell->env_status = 0;
+	minishell->syntax = 0;
+	(void)env;
+}
 
-    printf("\n\033[1;33m➜ \033[1;34m minishell ♛ \033[0;m");
-} 
+// void handle_signals(int sig) 
+// {
+// 	(void)sig;
+
+//     printf("\n\033[1;33m➜ \033[1;34m minishell ♛ \033[0;m");
+// } 
 
 int	main(int ac, char **av, char **env)
 {
+	t_minishell	minishell;
+
 	(void)ac;
 	(void)av;
 
-	handler();
+	if (!isatty(0))
+		return (ft_error(NULL, "minishell: this input is not a tty"), 1);
+	minishell_init(&minishell, env);
+	while (1)
+	{
+		handler();
+		read_command(env);
+		// ft_lexer(&minishell);
+		// ft_parser(&minishell);
+		// ft_exit(&minishell);
+	}
 	// signal(SIGINT, handle_signals);
-	read_command(env);
 }

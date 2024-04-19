@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilities.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:28:33 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/02 18:35:22 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/19 15:38:00 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,4 +113,25 @@ char	*ft_strjoin(char *s1, char *s2)
 		all[j++] = s2[i++];
 	all[j] = 0;
 	return (all);
+}
+
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	long	s;
+
+	s = (long)n;
+	if (s < 0)
+	{
+		ft_putchar_fd('-', fd);
+		s *= -1;
+	}
+	if (s / 10)
+		ft_putnbr_fd((s / 10), fd);
+	ft_putchar_fd((s % 10) + 48, fd);
+}
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write (fd, &c, 1);
 }
