@@ -12,10 +12,11 @@
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -lreadline
-SRC = ft_split.c minishell.c utilities.c setup.c here_doc.c
+CFLAGS = -Wall -Wextra -Werror
+READLINEDIR		=		$(shell brew --prefix readline)
+SRC = ft_split.c minishell.c utilities.c setup.c here_doc.c signals.c
 
 all: $(NAME)
 
 $(NAME): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME) -L$(READLINEDIR)/lib -lreadline

@@ -13,12 +13,24 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+// # include <stdio.h>
+// # include <unistd.h>
+// # include <stdlib.h>
+// # include <fcntl.h>
+// # include <readline/readline.h>
+// # include <readline/history.h>
+
 # include <stdio.h>
-# include <unistd.h>
 # include <stdlib.h>
-# include <fcntl.h>
+# include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <fcntl.h>
+# include <signal.h>
+# include <errno.h>
+# include <limits.h>
+# include <string.h>
+# include <sys/stat.h>
 
 typedef struct s_pex
 {
@@ -42,5 +54,8 @@ int		ft_strncmp(char *s1, char *s2, size_t n);
 void	ft_here_doc(int end[], int ac, char **av);
 int		count_words(char *str, char c);
 void	special_cases(char **lines, char **env);
+void    handler(void);
+void    sig_quit(int    signum);
+void    sig_init(int    signum);
 
 #endif

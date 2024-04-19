@@ -16,7 +16,7 @@ void handle_signals(int sig)
 {
 	(void)sig;
 
-    printf("\n\033[1;33m♛ ➜ \033[1;34m minishell : \033[0;m");
+    printf("\n\033[1;33m➜ \033[1;34m minishell ♛ \033[0;m");
 } 
 
 int	main(int ac, char **av, char **env)
@@ -24,6 +24,7 @@ int	main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 
-	signal(SIGINT, handle_signals);
+	handler();
+	// signal(SIGINT, handle_signals);
 	read_command(env);
 }
