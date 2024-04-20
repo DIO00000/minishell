@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:39:52 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/19 17:43:49 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:46:37 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int ac, char **av, char **env)
 	minishell_init(&minishell, env);
 	while (1)
 	{
-		handler();
+		signals(&minishell.term);
 		read_command(env);
 		// ft_lexer(&minishell);
 		// ft_parser(&minishell);

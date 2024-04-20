@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/19 15:37:28 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:46:28 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 # include <limits.h>
 # include <string.h>
 # include <sys/stat.h>
+# include <termios.h>
+
+int		is_cntl_c;
 
 
 // typedef enum s_tnum
@@ -73,7 +76,17 @@ typedef struct s_minishell
 	int		table_size;
 	int		env_status;
 	int		syntax;
+	struct termios	term;
 }	t_minishell;
+
+//signals
+void	signals(struct termios *term);
+void	remove_c(struct termios *term);
+void	ctrl_c(void);
+void    sig_init(int    signum);
+void	ctrl_backslash(void);
+
+
 
 // Parsing 
 
