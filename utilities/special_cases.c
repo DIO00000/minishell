@@ -6,11 +6,11 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 07:49:31 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/20 15:44:06 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/20 21:50:41 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 char	*ft_strrchr(const char *s, int c)
 {

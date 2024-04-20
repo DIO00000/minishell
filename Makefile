@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+         #
+#    By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 22:20:54 by hbettal           #+#    #+#              #
-#    Updated: 2024/04/20 21:24:24 by oelharbi         ###   ########.fr        #
+#    Updated: 2024/04/20 21:52:16 by hbettal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 READLINE_INC = -I$(shell brew --prefix readline)/include
 READLINE_LIB = -L$(shell brew --prefix readline)/lib -lreadline
-SRC = ft_split.c minishell.c utilities.c setup.c here_doc.c signals.c parsing/exit.c special_cases.c redirection.c builtins/build_check.c builtins/cd/cd.c prompt/*.c
+SRC =  utilities/ft_split.c minishell.c utilities/utilities.c excution/setup.c redirect/here_doc.c signals/signals.c parsing/exit.c utilities/special_cases.c redirect/redirection.c builtins/build_check.c builtins/cd.c prompt/prompt.c
 
 all: $(NAME)
 

@@ -6,11 +6,11 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 10:41:37 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/20 15:56:51 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/20 21:50:19 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	first_red(char **token) 
 {
