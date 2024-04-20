@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/20 20:45:59 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/04/20 20:51:17 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@
 // 	HERDOC,
 // }	t_tnum;
 
-#define GREEN_ARROW "\001\e[1m\e[32m\002\001\u279c\002  \001\e[1m\e[34m\002"
-#define RED_ARROW "\001\e[1m\e[31m\002\001\u279c\002  \001\e[1m\e[34m\002"
-#define SPACE_SIGN "\001\033[1;96m\002 "
-#define X "\001\e[1m\e[33m\002 \001\u2718\002 \001\e[0m\002"
+#define GREEN_ARROW "\001\e[1m\e[32m➜  \001\e[1m\e[34m\002"
+#define RED_ARROW "\001\e[1m\e[31m➜  \001\e[1m\e[34m\002"
+#define SPC "\001\e[1m\e[33m\002 "
+#define X "\001\e[1m\e[33m\002 ✘ \001\e[0m\002"
 
 typedef struct s_type
 {
