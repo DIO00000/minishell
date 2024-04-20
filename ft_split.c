@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:35:58 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/18 17:06:45 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/20 21:21:27 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	count_words(char *str, char c)
 	int	i;
 	int	trigger;
 
+	if (!str)
+		return (0);
 	i = 0;
 	trigger = 0;
 	while (*str)
@@ -69,6 +71,8 @@ char	**ft_split(char *s, char c)
 	int		index;
 	char	**split;
 
+	if (!s)
+		return (NULL);
 	split = malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (!split)
 		(write(2, "Error\n", 6), exit(1));

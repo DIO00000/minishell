@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 02:08:56 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/03 02:10:33 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/20 21:18:18 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	ft_strncmp(char *s1, char *s2, size_t n)
 {
 	size_t	i;
 
+	if (s1 == NULL || s2 == NULL)
+		return (0);
 	i = 0;
 	if (n == 0)
 		return (0);

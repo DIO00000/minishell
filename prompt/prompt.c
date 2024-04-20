@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:37:21 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/04/20 21:08:41 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/04/20 21:26:51 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,14 @@ char    *get_dir(void)
 
     i = 0;
     pwd = getcwd(NULL, 0);
-    printf("cur_dir: %s\n", pwd);
-    if (ft_strncmp(pwd, "/", ft_strlen(pwd)) == 1)
+    if (ft_strncmp(pwd, "/", ft_strlen(pwd)) == 0)
         dir = ft_strdup("/");
     else
     {
         split = ft_split(pwd, '/');
         while (split[i])
             i++;
-        dir = ft_strdup(split[i - 1]);
+        dir = ft_strdup(split[--i]);
         free_handler(split);
     }
     return (dir);
