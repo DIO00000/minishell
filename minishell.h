@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/20 16:20:26 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/04/20 19:58:37 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@
 # include <string.h>
 # include <sys/stat.h>
 # include <termios.h>
-
+#include <sys/types.h>
+#include <dirent.h>
 
 
 // typedef enum s_tnum
@@ -89,7 +90,10 @@ void    sig_init(int    signum);
 
 void    ft_error(char *str, char *msg);
 
+// buildtins
 
+int		build_check(char *cmd);
+void	cd_build(char *dir);
 
 // Excuting
 

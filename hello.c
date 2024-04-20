@@ -1,10 +1,14 @@
 #include "minishell.h"
 int main()
 {
-    char **sp;
-
-    sp = split_token("cat");
-    printf("%s\n", sp[0]);
-    printf("%s\n", sp[1]);
-    printf("%s\n", sp[2]);
+    // opendir("/Users/hbettal/Desktop/mini/parsing");
+    // chdir("/Users/hbettal/Desktop/mini/parsing");
+    char *pwd;
+    
+    pwd = getcwd(NULL, 0);
+    printf("pwd before chdir: %s\n", pwd);
+    chdir("/Users/hbettal/Desktop/mini/parsing");
+    pwd = getcwd(NULL, 0);
+    printf("pwd after chdir: %s\n", pwd);
+    return (0);
 }

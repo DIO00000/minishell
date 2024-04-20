@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/20 15:57:02 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/20 19:58:10 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ void	single_command(char *line, char **env)
 
 	pex.i = 1;
 	pex.split_line = ft_split(line, '|');
+	if (build_check(pex.split_line[0]))
+			return ;
 	// special_cases(pex.split_line, env);
 	pex.lines = count_words(line, '|');
 	if (pipe(pex.end) == -1)
