@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/20 20:40:39 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/04/20 21:09:16 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ void	read_command(t_minishell *mini, char **env)
 
 	while (1)
 	{
+		prompt_custom(mini);
 		line = readline(mini->trm_prompt);
 		if (!line || !ft_strncmp(line, "exit", 5))
 			(free(line), exit(1));
