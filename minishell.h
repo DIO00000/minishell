@@ -37,7 +37,6 @@
 # include <sys/stat.h>
 # include <termios.h>
 
-int		is_cntl_c;
 
 
 // typedef enum s_tnum
