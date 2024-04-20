@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/19 17:44:26 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:57:02 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ void	last_cmd(int end[], char *line, char **env)
 
 	if (fork() == 0)
 	{
-		dup2(end[0], 0);
 		commands = ft_split(line, ' ');
+		if (ft_strrchr(line, '>'))
+			commands = last_red(line);
+		dup2(end[0], 0);
 		path = path_check(commands[0], env, end);
 		if (!commands || !path)
 			exit(1);
@@ -81,18 +83,20 @@ void	last_cmd(int end[], char *line, char **env)
 	}
 }
 
-void	first_cmd(int end[], char *line, char **env, int lines)
+void	first_cmd(int end[], char **s_line, char **env, int lines, t_pex *pex)
 {
 	char	*path;
 	char	**commands;
 
 	if (fork() == 0)
 	{
-		commands = ft_split(line, ' ');
-		path = path_check(commands[0], env, end);
+		commands = ft_split(s_line[0], ' ');
+		if (!ft_strncmp(commands[0], "<", 2))
+			(first_red(commands), pex->i = 2);
+		path = path_check(commands[pex->i - 1], env, end);
 		if (!commands || !path)
 			(fds_closer(end), exit(1));
-		if (lines > 1)
+		if ((lines > 1 && pex->i == 1 ) || (lines == 1 && pex->i == 2))
 			if (dup2(end[1], 1) == -1)
 				return (fds_closer(end), exit(1));
 		fds_closer(end);
@@ -128,9 +132,9 @@ void	single_command(char *line, char **env)
 	pex.split_line = ft_split(line, '|');
 	// special_cases(pex.split_line, env);
 	pex.lines = count_words(line, '|');
-		if (pipe(pex.end) == -1)
-			(write(2, "Error\n", 7), exit(1));
-		(first_cmd(pex.end, pex.split_line[0], env, pex.lines), close(pex.end[1]));
+	if (pipe(pex.end) == -1)
+		(write(2, "Error\n", 7), exit(1));
+	(first_cmd(pex.end, pex.split_line, env, pex.lines, &pex), close(pex.end[1]));
 	// if (!ft_strncmp(line, "<<", 2))
 	// 	(ft_here_doc(pex.end), close(pex.end[1]), pex.i++);
 	// else

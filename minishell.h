@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/04/20 15:46:28 by oelharbi         ###   ########.fr       */
+=======
+/*   Updated: 2024/04/20 15:56:58 by hbettal          ###   ########.fr       */
+>>>>>>> d4e6e7bbd4750dc821bcfa7a695128bd62fd394a
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +100,7 @@ void    ft_error(char *str, char *msg);
 
 // Excuting
 
+char	**split_token(char *line); 
 char	**ft_split(char *s, char c);
 void	read_command(char **env);
 char	*ft_strjoin(char *s1, char *s2);
@@ -112,11 +117,13 @@ void	special_cases(char **lines, char **env);
 void    handler(void);
 void    sig_quit(int    signum);
 void    sig_init(int    signum);
-
+void	first_red(char **token);
+char	**last_red(char *line);
 
 // Utilities
 
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putchar_fd(char c, int fd);
+char	*ft_strrchr(const char *s, int c);
 
 #endif
