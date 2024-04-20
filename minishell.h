@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/04/20 15:46:28 by oelharbi         ###   ########.fr       */
-=======
-/*   Updated: 2024/04/20 15:56:58 by hbettal          ###   ########.fr       */
->>>>>>> d4e6e7bbd4750dc821bcfa7a695128bd62fd394a
+/*   Updated: 2024/04/20 16:20:26 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +81,7 @@ typedef struct s_minishell
 //signals
 void	signals(struct termios *term);
 void	remove_c(struct termios *term);
-void	ctrl_c(void);
 void    sig_init(int    signum);
-void	ctrl_backslash(void);
 
 
 
