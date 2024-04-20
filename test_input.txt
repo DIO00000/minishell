@@ -1,0 +1,1 @@
+"                            <Makefile      | cat | ls     >    out.txt" --> "< Makefile | cat | ls > out.txt" 
