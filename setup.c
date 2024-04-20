@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/20 19:58:10 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/20 20:40:39 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,13 +143,13 @@ void	single_command(char *line, char **env)
 	more_commands(pex, env);
 }
 
-void	read_command(char **env)
+void	read_command(t_minishell *mini, char **env)
 {
 	char	*line;
 
 	while (1)
 	{
-		line = readline("\033[1;33m➜ \033[1;34m minishell\033[1;32m × \033[0;m");
+		line = readline(mini->trm_prompt);
 		if (!line || !ft_strncmp(line, "exit", 5))
 			(free(line), exit(1));
 		add_history(line);

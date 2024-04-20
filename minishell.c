@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:39:52 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/20 16:20:55 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/04/20 20:44:00 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ void	minishell_init(t_minishell *minishell, char **env)
 	minishell->pids = NULL;
 	minishell->env_status = 0;
 	minishell->syntax = 0;
+	minishell->cmd_excuted = 1;
+	minishell->trm_prompt = NULL;
+	minishell->username = getenv("USER");
 	(void)env;
 }
 
@@ -44,7 +47,8 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		signals(&minishell.term);
-		read_command(env);
+		prompt_custom(&minishell);
+		read_command(&minishell, env);
 		// ft_lexer(&minishell);
 		// ft_parser(&minishell);
 		// ft_exit(&minishell);

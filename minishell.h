@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/20 19:58:37 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/20 20:45:59 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@
 // 	HERDOC,
 // }	t_tnum;
 
+#define GREEN_ARROW "\001\e[1m\e[32m\002\001\u279c\002  \001\e[1m\e[34m\002"
+#define RED_ARROW "\001\e[1m\e[31m\002\001\u279c\002  \001\e[1m\e[34m\002"
+#define SPACE_SIGN "\001\033[1;96m\002 "
+#define X "\001\e[1m\e[33m\002 \001\u2718\002 \001\e[0m\002"
+
 typedef struct s_type
 {
 	char	*string;
@@ -77,12 +82,19 @@ typedef struct s_minishell
 	int		env_status;
 	int		syntax;
 	struct termios	term;
+	char	*username;
+	int		cmd_excuted;
+	char	*trm_prompt;
+	
 }	t_minishell;
 
 //signals
 void	signals(struct termios *term);
 void	remove_c(struct termios *term);
 void    sig_init(int    signum);
+
+char    *get_dir(void);
+void    prompt_custom(t_minishell *minishell);
 
 
 
@@ -99,7 +111,7 @@ void	cd_build(char *dir);
 
 char	**split_token(char *line); 
 char	**ft_split(char *s, char c);
-void	read_command(char **env);
+void	read_command(t_minishell *mini, char **env);
 char	*ft_strjoin(char *s1, char *s2);
 void	fds_closer(int end[]);
 char	*ft_substr(char *s, unsigned int start, size_t len);
