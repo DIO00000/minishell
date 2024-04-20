@@ -32,7 +32,6 @@
 
 void	signals(struct termios *term)
 {
-	is_cntl_c = 0;
 	remove_c(term);
 	signal(SIGINT, sig_init);
 	signal(SIGQUIT, SIG_IGN);
@@ -52,7 +51,6 @@ void    sig_init(int    signum)
 {
     if (signum == SIGINT)
 	{
-		is_cntl_c = 1;
 		write(1, "\n", 2);
 		rl_on_new_line();
 		rl_replace_line("", 0);
