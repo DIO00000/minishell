@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 16:14:13 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/21 16:10:29 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/21 18:09:30 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	cd_dir(char *dir, t_minishell *mini)
 			write(2, "cd: No such file or directory\n", 30);
 		else
             (free(mini->last_dir), mini->last_dir = curr_dir);
-		printf("%s\n", mini->last_dir);
+		printf("%s\n", getcwd(NULL, 0));
 		return (0);
 	}
 	else if (dir[0] == '~' && !dir[1])
