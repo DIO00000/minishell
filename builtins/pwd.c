@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_check.c                                      :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/20 18:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/21 10:39:58 by hbettal          ###   ########.fr       */
+/*   Created: 2024/04/21 00:05:10 by hbettal           #+#    #+#             */
+/*   Updated: 2024/04/21 10:04:45 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int    build_check(char *cmd, t_minishell *mini)
+void	pwd_build(char *pwd)
 {
-	int	q;
-
-	q = 0;
-	if (!ft_strncmp(cmd, "cd", 2))
-		(cd_build(cmd, mini), q = 1);
-	else if (!ft_strncmp(cmd, "pwd", 3))
-		(pwd_build(cmd), q = 1);
-	return (q);
+	int	i;
+	
+	i = 3;
+	while (pwd[i] == ' ')
+		i++;
+	if (pwd[i])
+	{
+		write(2, "pwd: too many arguments\n", 24);
+		return ;
+	}
+	printf("%s\n", getcwd(NULL, 0));
 }

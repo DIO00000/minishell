@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:39:52 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/20 21:09:03 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/04/21 10:38:56 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	minishell_init(t_minishell *minishell, char **env)
 {
+	(void)env;
 	minishell->type = NULL;
 	minishell->cmd_line = NULL;
+	minishell->last_dir = NULL;
 	minishell->env = NULL;
 	minishell->input = NULL;
 	minishell->pids = NULL;
@@ -24,7 +26,6 @@ void	minishell_init(t_minishell *minishell, char **env)
 	minishell->cmd_excuted = 1;
 	minishell->trm_prompt = NULL;
 	minishell->username = getenv("USER");
-	(void)env;
 }
 
 // void handle_signals(int sig) 

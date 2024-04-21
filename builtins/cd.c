@@ -6,13 +6,41 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 16:14:13 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/20 21:51:34 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/21 16:10:29 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void    cd_build(char *cmd)
+int	cd_dir(char *dir, t_minishell *mini)
+{
+	char	*curr_dir;
+	if (access(dir, F_OK) && !access(dir, R_OK))
+	{
+		printf("cd: permission denied: %s\n", dir);
+		return (0);
+	}
+	if (dir[0] == '-' && !dir[1])
+	{
+		curr_dir = getcwd(NULL, 0);
+		if (chdir(mini->last_dir) == -1)
+			write(2, "cd: No such file or directory\n", 30);
+		else
+            (free(mini->last_dir), mini->last_dir = curr_dir);
+		printf("%s\n", mini->last_dir);
+		return (0);
+	}
+	else if (dir[0] == '~' && !dir[1])
+	{
+		mini->last_dir = getcwd(NULL, 0);
+		if (chdir(getenv("HOME")) == -1)
+			write(2, "cd: No such file or directory\n", 30);
+		return (0);
+	}
+	return (1);
+}
+
+void    cd_build(char *cmd, t_minishell *mini)
 {
 	char    **dir;
 
@@ -21,10 +49,19 @@ void    cd_build(char *cmd)
 		return ;
 	if (dir[1] == NULL)
 	{
+		mini->last_dir = getcwd(NULL, 0);
 		if (chdir(getenv("HOME")) == -1)
-			write(2, "No such file or directory", 25);
+			write(2, "cd: No such file or directory\n", 30);
 		return ;
 	}
-	if (chdir(dir[1]) == -1)
-		write(2, "No such file or directory", 25);
+	
+	if (!cd_dir(dir[1], mini))
+		return ;
+	else 
+	{
+		mini->last_dir = getcwd(NULL, 0);
+		if (chdir(dir[1]) == -1)
+			write(2, "cd: No such file or directory\n", 30);
+		return ;
+	}
 }

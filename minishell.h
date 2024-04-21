@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/20 20:51:17 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/04/21 10:40:39 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ typedef struct s_minishell
 	char	*username;
 	int		cmd_excuted;
 	char	*trm_prompt;
-	
+	char	*last_dir;
 }	t_minishell;
 
 //signals
@@ -104,8 +104,9 @@ void    ft_error(char *str, char *msg);
 
 // buildtins
 
-int		build_check(char *cmd);
-void	cd_build(char *dir);
+int		build_check(char *cmd, t_minishell *mini);
+void    cd_build(char *cmd, t_minishell *mini);
+void	pwd_build(char *pwd);
 
 // Excuting
 
