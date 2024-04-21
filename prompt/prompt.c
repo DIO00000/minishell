@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:37:21 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/04/20 21:29:16 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/21 19:41:07 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void    prompt_custom(t_minishell *minishell)
 	
 	if (minishell->trm_prompt != NULL)
 		free(minishell->trm_prompt);
-	cur_dir = get_dir();
+	cur_dir = get_dir(minishell);
 	if (minishell->cmd_excuted == 1)
 		username = ft_strjoin(GREEN_ARROW, minishell->username);
 	else
@@ -38,7 +38,7 @@ void    prompt_custom(t_minishell *minishell)
 	minishell->cmd_excuted = 1;
 }
 
-char    *get_dir(void)
+char    *get_dir(t_minishell *minishell)
 {
 	int i;
 	char *pwd;
@@ -49,6 +49,8 @@ char    *get_dir(void)
 	pwd = getcwd(NULL, 0);
 	if (ft_strncmp(pwd, "/", ft_strlen(pwd)) == 0)
 		dir = ft_strdup("/");
+	if (ft_strncmp(pwd + 7, minishell->username, ft_strlen(pwd + 7)) == 0)
+		dir = ft_strdup("~");
 	else
 	{
 		split = ft_split(pwd, '/');
@@ -59,3 +61,4 @@ char    *get_dir(void)
 	}
 	return (dir);
 }
+
