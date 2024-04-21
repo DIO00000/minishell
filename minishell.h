@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/21 10:40:39 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/21 17:12:34 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void    ft_error(char *str, char *msg);
 int		build_check(char *cmd, t_minishell *mini);
 void    cd_build(char *cmd, t_minishell *mini);
 void	pwd_build(char *pwd);
+void	echo_build(char	*cmd);
 
 // Excuting
 

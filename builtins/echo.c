@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_check.c                                      :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/20 18:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/21 17:12:27 by hbettal          ###   ########.fr       */
+/*   Created: 2024/04/21 17:06:12 by hbettal           #+#    #+#             */
+/*   Updated: 2024/04/21 17:12:30 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
-int    build_check(char *cmd, t_minishell *mini)
+void	echo_build(char	*cmd)
 {
-	int	q;
-
-	q = 0;
-	if (!ft_strncmp(cmd, "cd ", 3))
-		(cd_build(cmd, mini), q = 1);
-	else if (!ft_strncmp(cmd, "pwd", 3))
-		(pwd_build(cmd), q = 1);
-	else if (!ft_strncmp(cmd, "echo ", 5))
-		(echo_build(cmd), q = 1);
-	return (q);
+	
 }
