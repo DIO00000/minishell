@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/21 10:39:39 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/21 23:30:29 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	more_commands(t_pex pex, char **env)
 		;
 }
 
-void	single_command(char *line, char **env, t_minishell *mini)
+void	single_command(char *line, t_minishell *mini)
 {
 	t_pex	pex;
 
@@ -136,14 +136,14 @@ void	single_command(char *line, char **env, t_minishell *mini)
 	pex.lines = count_words(line, '|');
 	if (pipe(pex.end) == -1)
 		(write(2, "Error\n", 7), exit(1));
-	(first_cmd(pex.end, pex.split_line, env, pex.lines, &pex), close(pex.end[1]));
+	(first_cmd(pex.end, pex.split_line, mini->env, pex.lines, &pex), close(pex.end[1]));
 	// if (!ft_strncmp(line, "<<", 2))
 	// 	(ft_here_doc(pex.end), close(pex.end[1]), pex.i++);
 	// else
-	more_commands(pex, env);
+	more_commands(pex, mini->env);
 }
 
-void	read_command(t_minishell *mini, char **env)
+void	read_command(t_minishell *mini)
 {
 	char	*line;
 
@@ -152,9 +152,9 @@ void	read_command(t_minishell *mini, char **env)
 		prompt_custom(mini);
 		line = readline(mini->trm_prompt);
 		if (!line || !ft_strncmp(line, "exit", 5))
-			(free(line), exit(1));
+			(printf("exit\n"), free(line), exit(1));
 		add_history(line);
-		single_command(line, env, mini);
+		single_command(line, mini);
 	}
 }
 

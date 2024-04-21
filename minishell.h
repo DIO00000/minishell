@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/21 17:12:34 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/21 23:25:57 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_minishell
 	t_type	*type;
 	char	*cmd_line;
 	char	**env;
+	char	*defult_path;
 	char	*input;
 	int		signal;
 	int		*pids;
@@ -113,7 +114,7 @@ void	echo_build(char	*cmd);
 
 char	**split_token(char *line); 
 char	**ft_split(char *s, char c);
-void	read_command(t_minishell *mini, char **env);
+void	read_command(t_minishell *mini);
 char	*ft_strjoin(char *s1, char *s2);
 void	fds_closer(int end[]);
 char	*ft_substr(char *s, unsigned int start, size_t len);

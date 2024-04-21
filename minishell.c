@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:39:52 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/21 10:38:56 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/21 23:25:45 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void	minishell_init(t_minishell *minishell, char **env)
 	minishell->type = NULL;
 	minishell->cmd_line = NULL;
 	minishell->last_dir = NULL;
-	minishell->env = NULL;
+	minishell->env = env;
+	minishell->defult_path = "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:\
+							/usr/local/munki:/Library/Apple/usr/bin";
 	minishell->input = NULL;
 	minishell->pids = NULL;
 	minishell->env_status = 0;
@@ -48,7 +50,7 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		signals(&minishell.term);
-		read_command(&minishell, env);
+		read_command(&minishell);
 		// ft_lexer(&minishell);
 		// ft_parser(&minishell);
 		// ft_exit(&minishell);
