@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/21 17:12:27 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/21 21:26:43 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 int    build_check(char *cmd, t_minishell *mini)
 {
-	int	q;
+	int		q;
+	char	**flags;
 
 	q = 0;
-	if (!ft_strncmp(cmd, "cd ", 3))
+	flags = ft_split(cmd, ' ');
+	if (!ft_strncmp(flags[0], "cd", 3))
 		(cd_build(cmd, mini), q = 1);
-	else if (!ft_strncmp(cmd, "pwd", 3))
+	else if (!ft_strncmp(flags[0], "pwd", 4))
 		(pwd_build(cmd), q = 1);
-	else if (!ft_strncmp(cmd, "echo ", 5))
+	else if (!ft_strncmp(flags[0], "echo", 5))
 		(echo_build(cmd), q = 1);
 	return (q);
 }
