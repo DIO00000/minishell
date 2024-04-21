@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:37:21 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/04/22 00:16:55 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/04/22 00:22:49 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char    *get_dir(t_minishell *minishell)
 	i = 0;
 	pwd = getcwd(NULL, 0);
 	if (pwd == NULL)
-		return (NULL);
+		dir = ft_strdup("This Folder Does Not Exist");
 	if (ft_strncmp(pwd, "/", ft_strlen(pwd)) == 0)
 		dir = ft_strdup("/");
 	if (ft_strncmp(pwd + 7, minishell->username, ft_strlen(pwd + 7)) == 0) 
