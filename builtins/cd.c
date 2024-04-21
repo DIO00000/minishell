@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 16:14:13 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/21 18:09:30 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/22 00:34:27 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void    cd_build(char *cmd, t_minishell *mini)
 			write(2, "cd: No such file or directory\n", 30);
 		return ;
 	}
-	
 	if (!cd_dir(dir[1], mini))
 		return ;
 	else 
@@ -62,6 +61,7 @@ void    cd_build(char *cmd, t_minishell *mini)
 		mini->last_dir = getcwd(NULL, 0);
 		if (chdir(dir[1]) == -1)
 			write(2, "cd: No such file or directory\n", 30);
+		mini->curr_dir = getcwd(NULL, 0);
 		return ;
 	}
 }

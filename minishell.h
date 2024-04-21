@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/21 23:35:23 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/22 00:29:26 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct s_minishell
 	int		cmd_excuted;
 	char	*trm_prompt;
 	char	*last_dir;
+	char	*curr_dir;
 }	t_minishell;
 
 //signals
@@ -107,7 +108,7 @@ void    ft_error(char *str, char *msg);
 
 int		build_check(char *cmd, t_minishell *mini);
 void    cd_build(char *cmd, t_minishell *mini);
-void	pwd_build(char *pwd);
+void	pwd_build(char *pwd, t_minishell *mini);
 void	echo_build(char	*cmd);
 
 // Excuting

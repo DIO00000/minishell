@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:39:52 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/21 23:25:45 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/22 00:29:50 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	minishell_init(t_minishell *minishell, char **env)
 	minishell->type = NULL;
 	minishell->cmd_line = NULL;
 	minishell->last_dir = NULL;
+	minishell->curr_dir = getcwd(NULL, 0);
 	minishell->env = env;
 	minishell->defult_path = "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:\
 							/usr/local/munki:/Library/Apple/usr/bin";

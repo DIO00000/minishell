@@ -6,13 +6,13 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 00:05:10 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/21 23:13:21 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/22 00:32:06 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	pwd_build(char *pwd)
+void	pwd_build(char *pwd, t_minishell *mini)
 {
 	int	i;
 	
@@ -24,5 +24,5 @@ void	pwd_build(char *pwd)
 		write(2, "pwd: too many arguments\n", 24);
 		return ;
 	}
-	printf("%s\n", getcwd(NULL, 0));
+	printf("%s\n", mini->curr_dir);
 }
