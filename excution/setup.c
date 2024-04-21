@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/21 23:30:29 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/21 23:54:37 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,4 +157,3 @@ void	read_command(t_minishell *mini)
 		single_command(line, mini);
 	}
 }
-

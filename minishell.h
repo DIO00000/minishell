@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/21 23:25:57 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/21 23:35:23 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	signals(struct termios *term);
 void	remove_c(struct termios *term);
 void    sig_init(int    signum);
 
-char    *get_dir(void);
+char    *get_dir(t_minishell *minishell);
 void    prompt_custom(t_minishell *minishell);
 
 
