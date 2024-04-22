@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 16:14:13 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/22 00:34:27 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/22 10:45:49 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void    cd_build(char *cmd, t_minishell *mini)
 	dir = ft_split(cmd, ' ');
 	if (!dir)
 		return ;
-	if (dir[1] == NULL)
+	if (!dir[1])
 	{
 		mini->last_dir = getcwd(NULL, 0);
 		if (chdir(getenv("HOME")) == -1)

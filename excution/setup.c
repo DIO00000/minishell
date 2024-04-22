@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/21 23:54:37 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/22 13:08:38 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,12 +119,12 @@ void	more_commands(t_pex pex, char **env)
 		}
 		last_cmd(pex.end, pex.split_line[pex.i],env);
 	}
-	fds_closer(pex.end);
+	(free_handler(pex.split_line), fds_closer(pex.end));
 	while (wait(NULL) == 0)
 		;
 }
 
-void	single_command(char *line, t_minishell *mini)
+void	single_command(char *line, t_minishell *mini, t_list **data)
 {
 	t_pex	pex;
 
@@ -136,14 +136,14 @@ void	single_command(char *line, t_minishell *mini)
 	pex.lines = count_words(line, '|');
 	if (pipe(pex.end) == -1)
 		(write(2, "Error\n", 7), exit(1));
-	(first_cmd(pex.end, pex.split_line, mini->env, pex.lines, &pex), close(pex.end[1]));
+	(first_cmd(pex.end, pex.split_line, &(*data)->env, pex.lines, &pex), close(pex.end[1]));
 	// if (!ft_strncmp(line, "<<", 2))
 	// 	(ft_here_doc(pex.end), close(pex.end[1]), pex.i++);
 	// else
-	more_commands(pex, mini->env);
+	more_commands(pex, &(*data)->env);
 }
 
-void	read_command(t_minishell *mini)
+void	read_command(t_minishell *mini, t_list **data)
 {
 	char	*line;
 
@@ -154,6 +154,6 @@ void	read_command(t_minishell *mini)
 		if (!line || !ft_strncmp(line, "exit", 5))
 			(printf("exit\n"), free(line), exit(1));
 		add_history(line);
-		single_command(line, mini);
+		single_command(line, mini, data);
 	}
 }

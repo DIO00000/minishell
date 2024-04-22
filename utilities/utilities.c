@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:28:33 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/20 21:42:24 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/22 13:05:31 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	*where_path(char **env)
 	i = 0;
 	while (env[i])
 	{
+		puts("hi");
 		j = 0;
 		while (env[i][j] && env[i][j] == name[j])
 		{

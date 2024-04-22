@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/22 00:29:26 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/22 12:51:47 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,15 @@
 #define SPC "\001\e[1m\e[33m\002 "
 #define X "\001\e[1m\e[33m\002 ✘ \001\e[0m\002"
 
-typedef struct s_type
+// struct
+
+typedef struct s_list
 {
+	char	*env;
 	char	*string;
 	int		type;
-	struct s_type	*next;
-}	t_type;
+	struct s_list *next;
+}	t_list;
 
 typedef struct s_pex
 {
@@ -72,9 +75,8 @@ typedef struct s_pex
 
 typedef struct s_minishell
 {
-	t_type	*type;
 	char	*cmd_line;
-	char	**env;
+	t_list	**data;
 	char	*defult_path;
 	char	*input;
 	int		signal;
@@ -91,14 +93,13 @@ typedef struct s_minishell
 }	t_minishell;
 
 //signals
+
 void	signals(struct termios *term);
 void	remove_c(struct termios *term);
 void    sig_init(int    signum);
 
 char    *get_dir(t_minishell *minishell);
 void    prompt_custom(t_minishell *minishell);
-
-
 
 // Parsing 
 
@@ -110,12 +111,13 @@ int		build_check(char *cmd, t_minishell *mini);
 void    cd_build(char *cmd, t_minishell *mini);
 void	pwd_build(char *pwd, t_minishell *mini);
 void	echo_build(char	*cmd);
+t_list	*fill_env(char **origin_env, t_list *data);
 
 // Excuting
 
 char	**split_token(char *line); 
 char	**ft_split(char *s, char c);
-void	read_command(t_minishell *mini);
+void	read_command(t_minishell *mini, t_list **data);
 char	*ft_strjoin(char *s1, char *s2);
 void	fds_closer(int end[]);
 char	*ft_substr(char *s, unsigned int start, size_t len);
@@ -138,5 +140,10 @@ char	**last_red(char *line);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putchar_fd(char c, int fd);
 char	*ft_strrchr(const char *s, int c);
+void	ft_lstdelone(t_list *lst);
+void	ft_lstclear(t_list **lst);
+t_list	*ft_lstnew(char *content);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+int		ft_lstsize(t_list *lst);
 
 #endif
