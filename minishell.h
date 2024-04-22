@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/22 12:51:47 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:21:56 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,12 @@ void    ft_error(char *str, char *msg);
 
 // buildtins
 
-int		build_check(char *cmd, t_minishell *mini);
+int		build_check(char *cmd, t_minishell *mini, t_list **data);
 void    cd_build(char *cmd, t_minishell *mini);
 void	pwd_build(char *pwd, t_minishell *mini);
 void	echo_build(char	*cmd);
 t_list	*fill_env(char **origin_env, t_list *data);
+void	env_build(t_list *data);
 
 // Excuting
 
@@ -122,7 +123,7 @@ char	*ft_strjoin(char *s1, char *s2);
 void	fds_closer(int end[]);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 char	*ft_strdup(char *s1);
-char	*where_path(char **env);
+char	*where_path(t_list *data);
 size_t	ft_strlen(const char *s);
 void	free_handler(char **str);
 int		ft_strncmp(char *s1, char *s2, size_t n);

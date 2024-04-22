@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:28:33 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/22 13:05:31 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/22 13:16:40 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,22 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*where_path(char **env)
+char	*where_path(t_list *data)
 {
-	int		i;
 	int		j;
 	char	*name;
 
 	name = "PATH=";
-	i = 0;
-	while (env[i])
+	while (data->env)
 	{
-		puts("hi");
 		j = 0;
-		while (env[i][j] && env[i][j] == name[j])
+		while (data->env[j] && data->env[j] == name[j])
 		{
 			if (!name[j + 1])
-				return (env[i] + 5);
+				return (data->env + 5);
 			j++;
 		}
-		i++;
+		data = data->next;
 	}
 	return (NULL);
 }

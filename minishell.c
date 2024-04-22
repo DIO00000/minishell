@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:39:52 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/22 13:03:07 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:28:22 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	main(int ac, char **av, char **env)
 {
 	t_minishell	minishell;
 	t_list		*data;
-	// t_list		**tmp;
 	
 	data = NULL;
 	(void)ac;
@@ -50,12 +49,6 @@ int	main(int ac, char **av, char **env)
 	if (!isatty(0))
 		return (ft_error(NULL, "minishell: this input is not a tty"), 1);
 	data = minishell_init(&minishell, data, env);
-	// tmp = &data;
-	// while (*tmp)
-	// {
-	// 	printf("%s\n", (*tmp)->env);
-	// 	(*tmp) = (*tmp)->next;
-	// }
 	while (1)
 	{
 		signals(&minishell.term);

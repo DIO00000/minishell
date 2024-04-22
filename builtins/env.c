@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 10:47:15 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/22 13:00:47 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:23:33 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ t_list	*fill_env(char **origin_env, t_list *data)
 	return (data);
 }
 
-// void	env_build(t_minishell *mini)
-// {
-	
-// }
+void	env_build(t_list *data)
+{
+	while (data)
+	{
+		printf("%s\n", data->env);
+		data = data->next;
+	}
+}
