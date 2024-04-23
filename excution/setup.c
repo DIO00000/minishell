@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/23 02:23:20 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/23 04:32:30 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void	read_command(t_minishell *mini, t_list **data)
 	{
 		prompt_custom(mini);
 		line = readline(mini->trm_prompt);
-		if (!line || !ft_strncmp(line, "exit", 5))
+		if (!line || !ft_strncmp(*ft_split(line, ' '), "exit", 5))
 			(printf("exit\n"), free(line), exit(1));
 		add_history(line);
 		single_command(line, mini, data);

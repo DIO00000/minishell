@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/23 02:16:59 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/23 04:14:58 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_minishell
 	struct termios	term;
 	char	*username;
 	int		cmd_excuted;
+	int		shlvl;
 	char	*trm_prompt;
 	char	*last_dir;
 	char	*curr_dir;

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 10:47:15 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/23 02:24:42 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/23 04:18:37 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	env_build(t_list *data, t_minishell *mini)
 	else
 	{
 		if (mini->last_dir)
-			printf("OLDPWD=%s", mini->last_dir);
-		printf("PWD=%s", mini->curr_dir);
-		printf("SHLVL=%d", 1);
+			printf("OLDPWD=%s\n", mini->last_dir);
+		printf("PWD=%s\n", mini->curr_dir);
+		printf("SHLVL=%d\n", mini->shlvl);
 		// printf("_=%s", );
 	}
 }

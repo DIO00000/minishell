@@ -5,12 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/02 14:39:52 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/23 02:17:50 by hbettal          ###   ########.fr       */
+/*   Created: 2024/04/23 04:28:13 by hbettal           #+#    #+#             */
+/*   Updated: 2024/04/23 04:35:02 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	shlvl = 0;
 
 t_list	*minishell_init(t_minishell *minishell, t_list *data, char **env)
 {
@@ -28,6 +30,7 @@ t_list	*minishell_init(t_minishell *minishell, t_list *data, char **env)
 	minishell->trm_prompt = NULL;
 	minishell->username = getenv("USER");
 	minishell->last_cmd_path = minishell->curr_dir;
+	minishell->shlvl = shlvl;
 	return (data);
 }
 
@@ -49,6 +52,7 @@ int	main(int ac, char **av, char **env)
 
 	if (!isatty(0))
 		return (ft_error(NULL, "minishell: this input is not a tty"), 1);
+	shlvl++;
 	if (!(data = minishell_init(&minishell, data, env)))
 		ft_lstadd_back(&data, ft_lstnew(minishell.defult_path));
 	while (1)
