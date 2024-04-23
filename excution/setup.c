@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/22 16:33:06 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/23 02:23:20 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,23 +83,23 @@ void	last_cmd(int end[], char *line, t_list **data)
 	}
 }
 
-void	first_cmd(int end[], char **s_line, t_list **data, int lines, t_pex *pex)
+void	first_cmd(t_list **data, t_pex *pex)
 {
 	char	*path;
 	char	**commands;
 
 	if (fork() == 0)
 	{
-		commands = ft_split(s_line[0], ' ');
+		commands = ft_split(pex->split_line[0], ' ');
 		if (!ft_strncmp(commands[0], "<", 2))
 			(first_red(commands), pex->i = 2);
-		path = path_check(commands[pex->i - 1], *data, end);
+		path = path_check(commands[pex->i - 1], *data, pex->end);
 		if (!commands || !path)
-			(fds_closer(end), exit(1));
-		if ((lines > 1 && pex->i == 1 ) || (lines == 1 && pex->i == 2))
-			if (dup2(end[1], 1) == -1)
-				return (fds_closer(end), exit(1));
-		fds_closer(end);
+			(fds_closer(pex->end), exit(1));
+		if ((pex->lines > 1 && pex->i == 1 ) || (pex->lines == 1 && pex->i == 2))
+			if (dup2(pex->end[1], 1) == -1)
+				return (fds_closer(pex->end), exit(1));
+		fds_closer(pex->end);
 		(execve(path, commands, NULL), exit(1));
 	}
 }
@@ -136,7 +136,7 @@ void	single_command(char *line, t_minishell *mini, t_list **data)
 	pex.lines = count_words(line, '|');
 	if (pipe(pex.end) == -1)
 		(write(2, "Error\n", 7), exit(1));
-	(first_cmd(pex.end, pex.split_line, data, pex.lines, &pex), close(pex.end[1]));
+	(first_cmd(data, &pex), close(pex.end[1]));
 	// if (!ft_strncmp(line, "<<", 2))
 	// 	(ft_here_doc(pex.end), close(pex.end[1]), pex.i++);
 	// else

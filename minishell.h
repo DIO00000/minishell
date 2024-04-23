@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/22 16:21:56 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/23 02:16:59 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_pex
 typedef struct s_minishell
 {
 	char	*cmd_line;
+	char	*last_cmd_path;
 	t_list	**data;
 	char	*defult_path;
 	char	*input;
@@ -112,7 +113,7 @@ void    cd_build(char *cmd, t_minishell *mini);
 void	pwd_build(char *pwd, t_minishell *mini);
 void	echo_build(char	*cmd);
 t_list	*fill_env(char **origin_env, t_list *data);
-void	env_build(t_list *data);
+void	env_build(t_list *data, t_minishell *mini);
 
 // Excuting
 
