@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/23 04:14:58 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/23 17:08:41 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_pex
 typedef struct s_minishell
 {
 	char	*cmd_line;
+	char	**new_env;
 	char	*last_cmd_path;
 	t_list	**data;
 	char	*defult_path;
@@ -113,7 +114,7 @@ int		build_check(char *cmd, t_minishell *mini, t_list **data);
 void    cd_build(char *cmd, t_minishell *mini);
 void	pwd_build(char *pwd, t_minishell *mini);
 void	echo_build(char	*cmd);
-t_list	*fill_env(char **origin_env, t_list *data);
+t_list	*fill_env(char **origin_env, t_list *data, t_minishell *mini);
 void	env_build(t_list *data, t_minishell *mini);
 
 // Excuting
@@ -122,6 +123,7 @@ char	**split_token(char *line);
 char	**ft_split(char *s, char c);
 void	read_command(t_minishell *mini, t_list **data);
 char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin_sp(char *s1, char *s2);
 void	fds_closer(int end[]);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 char	*ft_strdup(char *s1);

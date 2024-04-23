@@ -6,20 +6,19 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 04:28:13 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/23 04:35:02 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/23 16:54:32 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	shlvl = 0;
+static int	shlvl;
 
 t_list	*minishell_init(t_minishell *minishell, t_list *data, char **env)
 {
 	minishell->cmd_line = NULL;
 	minishell->last_dir = NULL;
 	minishell->curr_dir = getcwd(NULL, 0);
-	data = fill_env(env, data);
 	minishell->defult_path = "PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:\
 /usr/local/munki:/Library/Apple/usr/bin";
 	minishell->input = NULL;
@@ -31,6 +30,7 @@ t_list	*minishell_init(t_minishell *minishell, t_list *data, char **env)
 	minishell->username = getenv("USER");
 	minishell->last_cmd_path = minishell->curr_dir;
 	minishell->shlvl = shlvl;
+	data = fill_env(env, data, minishell);
 	return (data);
 }
 
