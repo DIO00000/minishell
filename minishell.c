@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static int	shlvl;
+static int	g_shlvl;
 
 t_list	*minishell_init(t_minishell *minishell, t_list *data, char **env)
 {
@@ -29,7 +29,7 @@ t_list	*minishell_init(t_minishell *minishell, t_list *data, char **env)
 	minishell->trm_prompt = NULL;
 	minishell->username = getenv("USER");
 	minishell->last_cmd_path = minishell->curr_dir;
-	minishell->shlvl = shlvl;
+	minishell->shlvl = g_shlvl;
 	data = fill_env(env, data, minishell);
 	return (data);
 }
@@ -52,7 +52,7 @@ int	main(int ac, char **av, char **env)
 
 	if (!isatty(0))
 		return (ft_error(NULL, "minishell: this input is not a tty"), 1);
-	shlvl++;
+	g_shlvl++;
 	if (!(data = minishell_init(&minishell, data, env)))
 		ft_lstadd_back(&data, ft_lstnew(minishell.defult_path));
 	while (1)
