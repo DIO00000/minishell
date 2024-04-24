@@ -45,7 +45,7 @@ int	main(int ac, char **av, char **env)
 {
 	t_minishell	minishell;
 	t_list		*data;
-	
+
 	data = NULL;
 	(void)ac;
 	(void)av;
