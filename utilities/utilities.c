@@ -6,17 +6,17 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:28:33 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/24 18:48:36 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/24 19:47:07 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(char *s)
 {
 	size_t	i;
 
-	if (!s)
+	if (!s || !s[0])
 		return (0);
 	i = 0;
 	while (s[i] != 0)

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/24 15:37:20 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/24 19:47:30 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	fds_closer(int end[]);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 char	*ft_strdup(char *s1);
 char	*where_path(t_list *data);
-size_t	ft_strlen(const char *s);
+size_t	ft_strlen(char *s);
 void	free_handler(char **str);
 int		ft_strncmp(char *s1, char *s2, size_t n);
 void	ft_here_doc(int end[], int ac, char **av);
