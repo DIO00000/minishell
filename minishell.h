@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/23 17:08:41 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/24 15:37:20 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,11 +111,12 @@ void    ft_error(char *str, char *msg);
 // buildtins
 
 int		build_check(char *cmd, t_minishell *mini, t_list **data);
-void    cd_build(char *cmd, t_minishell *mini);
+void    cd_build(char **cmd, t_minishell *mini);
 void	pwd_build(char *pwd, t_minishell *mini);
 void	echo_build(char	*cmd);
 t_list	*fill_env(char **origin_env, t_list *data, t_minishell *mini);
-void	env_build(t_list *data, t_minishell *mini);
+void	env_build(t_list *data, t_minishell *mini, char *cmd);
+void	export_build(char **var, t_list **data);
 
 // Excuting
 

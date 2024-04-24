@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 10:47:15 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/23 17:20:05 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/24 19:07:48 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_list	*fill_env(char **origin_env, t_list *data, t_minishell *mini)
 	char	*ctmp;
 
 	i = -1;
+	if (!origin_env[0])
+		return (ft_lstadd_back(&data, ft_lstnew(mini->defult_path)), data);
 	while (origin_env[++i])
 		ft_lstadd_back(&data, ft_lstnew(origin_env[i]));
 	tmp = data;
@@ -27,14 +29,19 @@ t_list	*fill_env(char **origin_env, t_list *data, t_minishell *mini)
 	{
 		ctmp = ft_strjoin_sp(ctmp, tmp->next->env);
 		tmp = tmp->next;
-		free(ctmp);
 	}
 	mini->new_env = ft_split(ctmp, ' ');
+	free(ctmp);
 	return (data);
 }
 
-void	env_build(t_list *data, t_minishell *mini)
+void	env_build(t_list *data, t_minishell *mini, char *cmd)
 {
+	if (cmd)
+	{
+		printf("env: %s: No such file or directory\n", cmd);
+		return ;
+	}
 	if (ft_strncmp(data->env, "SECURITYSESSIONID", 17))
 		data = data->next;
 	if (data)

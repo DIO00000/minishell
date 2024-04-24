@@ -6,12 +6,11 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:28:33 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/22 13:16:40 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/24 18:48:36 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
 
 size_t	ft_strlen(const char *s)
 {

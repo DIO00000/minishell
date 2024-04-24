@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/23 17:19:09 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/24 19:24:27 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*path_check(char *command, t_list *data, int end[])
 	{
 		path = ft_strjoin(paths[i], cmnd);
 		if (access(path, F_OK) != -1)
-			return (free_handler(paths), free(cmnd), path);
+			return (printf("%s\n",path), free_handler(paths), free(cmnd), path);
 		free(path);
 		i++;
 	}
