@@ -6,13 +6,13 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/24 20:35:55 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/26 02:13:36 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*path_check(char *command, t_list *data, int end[])
+char	*path_check(char *command, t_list *data, int end[], t_minishell *mini)
 {
 	int		i;
 	char	*cmnd;
@@ -21,22 +21,19 @@ char	*path_check(char *command, t_list *data, int end[])
 
 	if (access(command, F_OK) != -1)
 		return (command);
-	i = 0;
+	i = -1;
 	paths = ft_split(where_path(data), ':');
 	if (!paths)
 		exit(1);
 	cmnd = ft_strjoin("/", command);
-	while (paths[i])
+	while (paths[++i])
 	{
 		path = ft_strjoin(paths[i], cmnd);
 		if (access(path, F_OK) != -1)
 			return (free_handler(paths), free(cmnd), path);
 		free(path);
-		i++;
 	}
-	free_handler(paths);
-	free(cmnd);
-	fds_closer(end);
+	(free_handler(paths), free(cmnd), fds_closer(end));
 	write(2, "command not found\n", 19);
 	return (NULL);
 }
@@ -52,7 +49,7 @@ void	middle_commands(t_pex *pex, char *line, t_list **data, t_minishell *mini)
 		if (dup2(pex->input, 0) < 0)
 			(write (2, "dup2 failed", 11), exit(1));
 		close(pex->input);
-		path = path_check(commands[0], *data, pex->end);
+		path = path_check(commands[0], *data, pex->end, mini);
 		if (!commands || !path)
 			(fds_closer(pex->end), exit(1));
 		if (dup2(pex->end[1], 1) == -1)
@@ -74,7 +71,7 @@ void	last_cmd(int end[], char *line, t_list **data, t_minishell *mini)
 		if (ft_strrchr(line, '>'))
 			commands = last_red(line);
 		dup2(end[0], 0);
-		path = path_check(commands[0], *data, end);
+		path = path_check(commands[0], *data, end, mini);
 		if (!commands || !path)
 			exit(1);
 		fds_closer(end);
@@ -93,7 +90,7 @@ void	first_cmd(t_list **data, t_pex *pex, t_minishell *mini)
 		commands = ft_split(pex->split_line[0], ' ');
 		if (!ft_strncmp(commands[0], "<", 2))
 			(first_red(commands), pex->i = 2);
-		path = path_check(commands[pex->i - 1], *data, pex->end);
+		path = path_check(commands[pex->i - 1], *data, pex->end, mini);
 		if (!commands || !path)
 			(fds_closer(pex->end), exit(1));
 		if ((pex->lines > 1 && pex->i == 1 ) || (pex->lines == 1 && pex->i == 2))

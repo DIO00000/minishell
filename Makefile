@@ -6,7 +6,7 @@
 #    By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 22:20:54 by hbettal           #+#    #+#              #
-#    Updated: 2024/04/24 20:30:28 by hbettal          ###   ########.fr        #
+#    Updated: 2024/04/26 01:14:01 by hbettal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ READLINE_LIB = -L$(shell brew --prefix readline)/lib -lreadline
 SRC =  utilities/ft_split.c minishell.c utilities/utilities.c excution/setup.c redirect/here_doc.c \
 		signals/signals.c parsing/exit.c utilities/special_cases.c builtins/pwd.c builtins/echo.c \
 		redirect/redirection.c builtins/build_check.c builtins/cd.c prompt/prompt.c builtins/env.c \
-		utilities/list.c
+		utilities/list.c builtins/export.c
 
 all: $(NAME)
 

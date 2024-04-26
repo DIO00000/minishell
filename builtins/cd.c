@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 16:14:13 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/24 14:51:32 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/25 22:58:38 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	cd_dir(char *dir, t_minishell *mini)
 {
 	char	*curr_dir;
-	if (access(dir, F_OK) && !access(dir, R_OK))
+	if (!access(dir, F_OK) && access(dir, R_OK))
 	{
 		printf("cd: permission denied: %s\n", dir);
 		return (0);

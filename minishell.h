@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/24 19:47:30 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/26 02:03:00 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@
 typedef struct s_list
 {
 	char	*env;
-	char	*string;
-	int		type;
+	int		index;
 	struct s_list *next;
 }	t_list;
 
@@ -77,7 +76,7 @@ typedef struct s_minishell
 {
 	char	*cmd_line;
 	char	**new_env;
-	char	*last_cmd_path;
+	char	*cmd_path;
 	t_list	**data;
 	char	*defult_path;
 	char	*input;
@@ -93,6 +92,7 @@ typedef struct s_minishell
 	char	*trm_prompt;
 	char	*last_dir;
 	char	*curr_dir;
+	char	*buffer;
 }	t_minishell;
 
 //signals
@@ -117,6 +117,7 @@ void	echo_build(char	*cmd);
 t_list	*fill_env(char **origin_env, t_list *data, t_minishell *mini);
 void	env_build(t_list *data, t_minishell *mini, char *cmd);
 void	export_build(char **var, t_list **data);
+void	indexer(t_list **data);
 
 // Excuting
 

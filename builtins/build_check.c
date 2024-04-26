@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/24 18:44:48 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/26 01:40:49 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int    build_check(char *cmd, t_minishell *mini, t_list **data)
 		(echo_build(cmd), q = 1);
 	else if (!ft_strncmp(flags[0], "env", 4))
 		(env_build(*data, mini, flags[1]), q = 1);
-	// else if (!ft_strncmp(flags[0], "export", 7))
-	// 	(export_build(flags, data), q = 1);
+	else if (!ft_strncmp(flags[0], "export", 7))
+		(export_build(flags, data), q = 1);
 	return (q);
 }

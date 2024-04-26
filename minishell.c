@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 04:28:13 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/24 20:36:29 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/26 02:04:59 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_list	*minishell_init(t_minishell *minishell, t_list *data, char **env)
 	minishell->cmd_excuted = 1;
 	minishell->trm_prompt = NULL;
 	minishell->username = getenv("USER");
-	minishell->last_cmd_path = minishell->curr_dir;
+	minishell->cmd_path = "./minishell";
 	minishell->shlvl = g_shlvl;
 	data = fill_env(env, data, minishell);
 	return (data);
