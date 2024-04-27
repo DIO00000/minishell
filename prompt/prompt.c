@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:37:21 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/04/25 22:50:50 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/27 00:34:02 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void    prompt_custom(t_minishell *minishell)
 
 char    *get_dir(t_minishell *minishell)
 {
+	(void)minishell;
 	int i;
 	char *pwd;
 	char **split;
@@ -51,8 +52,8 @@ char    *get_dir(t_minishell *minishell)
 		return (NULL);
 	if (ft_strncmp(pwd, "/", ft_strlen(pwd)) == 0)
 		dir = ft_strdup("/");
-	if (ft_strncmp(pwd + 7, minishell->username, ft_strlen(pwd + 7)) == 0) 
-		dir = ft_strdup("~");
+	// if (ft_strncmp(pwd + 7, minishell->username, ft_strlen(pwd + 7)) == 0) 
+	// 	dir = ft_strdup("~");
 	else
 	{
 		split = ft_split(pwd, '/');
@@ -63,4 +64,3 @@ char    *get_dir(t_minishell *minishell)
 	}
 	return (dir);
 }
-

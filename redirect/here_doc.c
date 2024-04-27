@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 02:08:56 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/20 21:50:14 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/27 20:45:37 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_strncmp(char *s1, char *s2, size_t n)
 	size_t	i;
 
 	if (s1 == NULL || s2 == NULL)
-		return (0);
+		return (1);
 	i = 0;
 	if (n == 0)
 		return (0);

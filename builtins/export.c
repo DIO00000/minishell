@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:45:00 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/26 01:52:55 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/26 22:50:27 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,35 @@ void	indexer(t_list **data)
 	}
 }
 
+void	add_variable(char **var, t_list **data, char **sps, int i)
+{
+	t_list	*tmp;
+	char	*n_var;
+
+	tmp = *data;
+	n_var = NULL;
+	// if (!unvalid_var(var))
+	// 	;
+	while(sps[0][i])
+		i++;
+	if (!sps[1])
+	{
+		n_var = ft_strjoin(var[1], "=''");
+		(ft_lstadd_back(data, ft_lstnew(n_var)), indexer(data));
+	}
+	else if (sps[0][i - 1] != '+')
+		(ft_lstadd_back(data, ft_lstnew(var[1])), indexer(data));
+}
+
 void	export_build(char **var, t_list **data)
 {
 	int		i;
 	int		size;
+	char	**sps;
 	t_list	*tmp;
 
 	tmp = *data;
+	sps = ft_split(var[1], '=');
 	i = -1;
 	size = ft_lstsize(*data);
 	if (!var[1])
@@ -51,12 +73,11 @@ void	export_build(char **var, t_list **data)
 			tmp = *data;
 			while (tmp)
 			{
-				if (tmp->index == i)
-					printf("declare -x %s\n", tmp->env);
+				(tmp->index == i) && (printf("declare -x %s\n", tmp->env));
 				tmp = tmp->next;
 			}
 		}
 	}
-	else if (ft_strrchr(var[1], '='))
-		(ft_lstadd_back(data, ft_lstnew(var[1])), indexer(data));
+	else
+	(i = 0, add_variable(var, data, sps, i));
 }
