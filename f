@@ -1,0 +1,22 @@
+total 344
+drwxr-xr-x  21 hbettal  candidate     714 Apr 29 21:17 .
+drwxr-xr-x   6 hbettal  candidate     204 Apr 28 18:46 ..
+drwxr-xr-x  15 hbettal  candidate     510 Apr 29 15:45 .git
+drwxr-xr-x   3 hbettal  candidate     102 Apr 26 01:13 .vscode
+-rw-r--r--   1 hbettal  candidate    1541 Apr 29 16:20 Makefile
+drwxr-xr-x   2 hbettal  candidate      68 Apr 29 21:06 a
+-rwxr-xr-x   1 hbettal  candidate   49472 Apr 24 11:02 a.out
+drwxr-xr-x   8 hbettal  candidate     272 Apr 24 14:44 builtins
+drwxr-xr-x   3 hbettal  candidate     102 Apr 24 11:02 excution
+-rw-r--r--   1 hbettal  candidate       0 Apr 29 21:17 f
+-rw-r--r--   1 hbettal  candidate     392 Apr 24 11:27 hello.c
+-rwxr-xr-x   1 hbettal  candidate  104152 Apr 29 21:12 minishell
+-rw-r--r--   1 hbettal  candidate    2204 Apr 26 02:04 minishell.c
+drwxr-xr-x   3 hbettal  candidate     102 Apr 29 16:12 minishell.dSYM
+-rw-r--r--   1 hbettal  candidate    4078 Apr 26 02:03 minishell.h
+drwxr-xr-x   5 hbettal  candidate     170 Apr 24 11:02 parsing
+drwxr-xr-x   3 hbettal  candidate     102 Apr 24 11:02 prompt
+drwxr-xr-x   4 hbettal  candidate     136 Apr 24 11:02 redirect
+drwxr-xr-x   3 hbettal  candidate     102 Apr 24 11:02 signals
+d---------   2 hbettal  candidate      68 Apr 26 02:14 test
+drwxr-xr-x   6 hbettal  candidate     204 Apr 24 11:02 utilities
