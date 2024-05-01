@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/26 02:03:00 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/01 12:15:46 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@
 #define RED_ARROW "\001\e[1m\e[31m➜  \001\e[1m\e[34m\002"
 #define SPC "\001\e[1m\e[33m\002 "
 #define X "\001\e[1m\e[33m\002 ✘ \001\e[0m\002"
+# define SPACES " \t\n\v\r\f"
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 100
+# endif
 
 // struct
 
@@ -93,6 +98,7 @@ typedef struct s_minishell
 	char	*last_dir;
 	char	*curr_dir;
 	char	*buffer;
+	char	*trimed_cmd;
 }	t_minishell;
 
 //signals
@@ -124,7 +130,7 @@ void	indexer(t_list **data);
 char	**split_token(char *line); 
 char	**ft_split(char *s, char c);
 void	read_command(t_minishell *mini, t_list **data);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin_h(char *s1, char *s2);
 char	*ft_strjoin_sp(char *s1, char *s2);
 void	fds_closer(int end[]);
 char	*ft_substr(char *s, unsigned int start, size_t len);
@@ -142,6 +148,10 @@ void    sig_init(int    signum);
 void	first_red(char **token);
 char	**last_red(char *line);
 
+//readline
+
+int	*read_line(t_minishell *minishell);
+
 // Utilities
 
 void	ft_putnbr_fd(int n, int fd);
@@ -152,5 +162,19 @@ void	ft_lstclear(t_list **lst);
 t_list	*ft_lstnew(char *content);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
+char	*ft_strtrim(char *s1, char *set);
+
+
+//get_next_line
+
+size_t	ft_strlcpy(char *dest, char *src, size_t dstsize);
+size_t	ft_strlcat(char *dst, char *src, size_t dstsize);
+char	*ft_strchr(char *s, char c);
+char	*ft_strjoin(char *s1, char *buff);
+char	*print_the_line(char *line);
+char	*rest_line(char *line);
+char	*get_the_line(char	*str, int fd);
+char	*get_next_line(int fd);
+char	*ft_strdup(char *str);
 
 #endif

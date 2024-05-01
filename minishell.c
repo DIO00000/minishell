@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 04:28:13 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/26 02:04:59 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/01 12:45:11 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_list	*minishell_init(t_minishell *minishell, t_list *data, char **env)
 	minishell->defult_path = malloc(90 * sizeof(char));
 	minishell->defult_path = "PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:\
 /usr/local/munki:/Library/Apple/usr/bin";
-	minishell->input = NULL;
 	minishell->pids = NULL;
 	minishell->env_status = 0;
 	minishell->syntax = 0;
@@ -31,6 +30,7 @@ t_list	*minishell_init(t_minishell *minishell, t_list *data, char **env)
 	minishell->username = getenv("USER");
 	minishell->cmd_path = "./minishell";
 	minishell->shlvl = g_shlvl;
+	minishell->trimed_cmd = NULL;
 	data = fill_env(env, data, minishell);
 	return (data);
 }
@@ -57,7 +57,6 @@ int	main(int ac, char **av, char **env)
 	data = minishell_init(&minishell, data, env);
 	while (1)
 	{
-		signals(&minishell.term);
 		read_command(&minishell, &data);
 		// ft_lexer(&minishell);
 		// ft_parser(&minishell);
