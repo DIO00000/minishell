@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/27 00:37:08 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/01 12:51:19 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ char	*path_check(char *command, t_list *data, int end[])
 	paths = ft_split(where_path(data), ':');
 	if (!paths)
 		exit(1);
-	cmnd = ft_strjoin("/", command);
+	cmnd = ft_strjoin_h("/", command);
 	while (paths[++i])
 	{
-		path = ft_strjoin(paths[i], cmnd);
+		path = ft_strjoin_h(paths[i], cmnd);
 		if (access(path, F_OK) != -1)
 			return (free_handler(paths), free(cmnd), path);
 		free(path);
@@ -143,15 +143,14 @@ void	single_command(char *line, t_minishell *mini, t_list **data)
 
 void	read_command(t_minishell *mini, t_list **data)
 {
-	char	*line;
 
 	while (1)
 	{
+		signals(&mini->term);
 		prompt_custom(mini);
-		line = readline(mini->trm_prompt);
-		if (!line || !ft_strncmp(*ft_split(line, ' '), "exit", 5))
-			(printf("exit\n"), free(line), exit(1));
-		add_history(line);
-		single_command(line, mini, data);
+		if (read_line(mini) == NULL)
+			break ;
+		add_history(mini->input);
+		single_command(mini->input, mini, data);
 	}
 }
