@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 10:47:15 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/26 16:12:40 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/04/30 23:40:35 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,11 @@ void	env_build(t_list *data, t_minishell *mini, char *cmd)
 	if (data && ft_strncmp(data->env, "PATH=", 5))
 	{
 		while (data)
-			(printf("%s\n", data->env), data = data->next);
+		{
+			if (ft_strrchr(data->env, '='))
+				printf("%s\n", data->env);
+			data = data->next;
+		}
 	}
 	else
 	{
