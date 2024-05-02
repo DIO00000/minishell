@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 07:49:31 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/01 22:01:53 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/02 12:26:09 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,34 +75,6 @@ char	**split_token(char *line)
 		split[2][1] = 0;
 	}
 	return (split);
-}
-
-char	*ft_strjoin_sp(char *s1, char *s2)
-{
-	char	*all;
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	if (!s1 && !s2)
-		return (NULL);
-	if (!s1)
-		return (ft_strdup(s2));
-	if (!s2)
-		return (ft_strdup(s1));
-	all = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 2);
-	if (!all)
-		return (NULL);
-	while (s1[i])
-		all[j++] = s1[i++];
-	all[j] = ' ';
-	j++;
-	i = 0;
-	while (s2[i])
-		all[j++] = s2[i++];
-	all[j] = 0;
-	return (all);
 }
 
 char	*ft_strjoin_three(char *s1, char *buff, char *s2)

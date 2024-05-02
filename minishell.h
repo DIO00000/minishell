@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/01 22:02:28 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/02 12:27:17 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,6 @@ char	**split_token(char *line);
 char	**ft_split(char *s, char c);
 void	read_command(t_minishell *mini, t_list **data);
 char	*ft_strjoin_h(char *s1, char *s2);
-char	*ft_strjoin_sp(char *s1, char *s2);
 void	fds_closer(int end[]);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 char	*ft_strdup(char *s1);
@@ -164,13 +163,13 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 char	*ft_strtrim(char *s1, char *set);
 char	*ft_strjoin_three(char *s1, char *buff, char *s2);
+char	*ft_strjoin(char *s1, char *buff);
 
 //get_next_line
 
 size_t	ft_strlcpy(char *dest, char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, char *src, size_t dstsize);
 char	*ft_strchr(char *s, char c);
-char	*ft_strjoin(char *s1, char *buff);
 char	*print_the_line(char *line);
 char	*rest_line(char *line);
 char	*get_the_line(char	*str, int fd);

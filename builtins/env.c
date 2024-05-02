@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 10:47:15 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/30 23:40:35 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/02 12:29:35 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ t_list	*fill_env(char **origin_env, t_list *data, t_minishell *mini)
 	ctmp = tmp->env;
 	while (tmp->next)
 	{
-		ctmp = ft_strjoin_sp(ctmp, tmp->next->env);
+		ctmp = ft_strjoin_three(ctmp, " ",tmp->next->env);
 		tmp = tmp->next;
 	}
 	mini->new_env = ft_split(ctmp, ' ');
+	free(ctmp);
 	indexer(&data);
 	return (data);
 }
