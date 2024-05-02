@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:45:00 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/01 00:06:29 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/01 22:08:53 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ t_list	*var_finder(char *var, t_list **data)
 		if (!ft_strncmp(tmp->env, ft_strjoin(var, "="), ft_strlen(var) + 1))
 			return (tmp);
 		else if (!ft_strncmp(tmp->env, var, ft_strlen(tmp->env)))
+		{
+			tmp->env = ft_strjoin(tmp->env, "=");
 			return (tmp);
+		}
 		tmp = tmp->next;
 	}
 	return (NULL);
@@ -71,7 +74,7 @@ void	add_variable(char **var, t_list **data, char **sps, int i)
 	}
 	else if (sps[0][i - 1] == '+' && sps[1])
 	{
-		tmp = var_finder(sps[0], data);
+		tmp = var_finder(*ft_split(sps[0], '+'), data);
 		tmp->env = ft_strjoin(tmp->env, sps[1]);
 	}
 }

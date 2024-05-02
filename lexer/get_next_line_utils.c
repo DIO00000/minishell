@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 22:23:27 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/01 12:14:05 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/01 21:36:56 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,27 +61,28 @@ size_t	ft_strlcat(char *dst, char *src, size_t dstsize)
 
 char	*ft_strjoin(char *s1, char *buff)
 {
-	char	*str;
-	int		i;
-	int		x;
+	char	*all;
+	size_t	i;
+	size_t	j;
 
+	i = 0;
+	j = 0;
+	if (!s1 && !buff)
+		return (NULL);
 	if (!s1)
-	{
-		s1 = malloc(1);
-		if (!s1)
-			return (NULL);
-		s1[0] = '\0';
-	}
+		return (ft_strdup(buff));
 	if (!buff)
-		return (free(s1), NULL);
-	i = ft_strlen(s1);
-	x = ft_strlen(buff) + ft_strlen(s1) + 1;
-	str = malloc(x);
-	if (!str)
-		return (free(s1), s1 = NULL, NULL);
-	ft_strlcpy(str, s1, i + 1);
-	ft_strlcat(str, buff, x);
-	return (free(s1), s1 = NULL, str);
+		return (ft_strdup(s1));
+	all = (char *)malloc(ft_strlen(s1) + ft_strlen(buff) + 1);
+	if (!all)
+		return (NULL);
+	while (s1[i])
+		all[j++] = s1[i++];
+	i = 0;
+	while (buff[i])
+		all[j++] = buff[i++];
+	all[j] = 0;
+	return (all);
 }
 
 // char	*ft_strdup(char *str)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/01 12:15:46 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/01 22:02:28 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ t_list	*ft_lstnew(char *content);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 char	*ft_strtrim(char *s1, char *set);
-
+char	*ft_strjoin_three(char *s1, char *buff, char *s2);
 
 //get_next_line
 
