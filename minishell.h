@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/02 12:27:17 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/03 18:59:52 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,9 @@ void	echo_build(char	*cmd);
 t_list	*fill_env(char **origin_env, t_list *data, t_minishell *mini);
 void	env_build(t_list *data, t_minishell *mini, char *cmd);
 void	export_build(char **var, t_list **data);
+void	unset_build(char **var, t_list **data);
 void	indexer(t_list **data);
+t_list	*var_finder(char *var, t_list **data);
 
 // Excuting
 
@@ -157,6 +159,7 @@ void	ft_putnbr_fd(int n, int fd);
 void	ft_putchar_fd(char c, int fd);
 char	*ft_strrchr(const char *s, int c);
 void	ft_lstdelone(t_list *lst);
+void	ft_lstdel_mid(t_list **data, t_list *rm);
 void	ft_lstclear(t_list **lst);
 t_list	*ft_lstnew(char *content);
 void	ft_lstadd_back(t_list **lst, t_list *new);

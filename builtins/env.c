@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 10:47:15 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/02 12:29:35 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/04 18:25:49 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	env_build(t_list *data, t_minishell *mini, char *cmd)
 	{
 		while (data)
 		{
-			if (ft_strrchr(data->env, '='))
+			if (ft_strchr(data->env, '='))
 				printf("%s\n", data->env);
 			data = data->next;
 		}
