@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 13:00:49 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/01 19:04:56 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/07 22:51:33 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,3 +15,5 @@
 hello
 
 hi, how are you
+
+i'm fine thwank you, and you?
