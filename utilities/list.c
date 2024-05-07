@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:12:49 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/24 19:03:05 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/04 18:24:12 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	ft_lstdelone(t_list *lst)
 {
 	if (!lst)
 		return ;
+	free(lst->env);
 	free(lst);
+	lst = NULL;
 }
 
 void	ft_lstclear(t_list **lst)
@@ -74,4 +76,20 @@ int	ft_lstsize(t_list *lst)
 		i++;
 	}
 	return (i);
+}
+
+void	ft_lstdel_mid(t_list **data, t_list *rm)
+{
+	t_list *first = *data;
+	if (rm && rm->next)
+	{
+		while (first->next)
+		{
+			if (first->next == rm)
+				break ;
+			first = first->next;
+		}
+		first->next = rm->next;
+	}
+	ft_lstdelone(rm);
 }
