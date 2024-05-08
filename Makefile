@@ -6,7 +6,7 @@
 #    By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 22:20:54 by hbettal           #+#    #+#              #
-#    Updated: 2024/05/02 23:46:00 by hbettal          ###   ########.fr        #
+#    Updated: 2024/05/05 21:43:23 by hbettal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRC =  utilities/ft_split.c minishell.c utilities/utilities.c excution/setup.c r
 		signals/signals.c parsing/exit.c utilities/special_cases.c builtins/pwd.c builtins/echo.c \
 		redirect/redirection.c builtins/build_check.c builtins/cd.c prompt/prompt.c builtins/env.c \
 		utilities/list.c utilities/ft_strtrim.c builtins/export.c lexer/readline.c \
-		builtins/unset.c lexer/get_next_line.c lexer/get_next_line_utils.c \
+		builtins/unset.c lexer/get_next_line.c lexer/get_next_line_utils.c utilities/numbers_utlis.c \
 
 all: $(NAME)
 

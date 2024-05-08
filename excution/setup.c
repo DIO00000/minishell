@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/01 12:51:19 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:19:36 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	*path_check(char *command, t_list *data, int end[])
 	}
 	(free_handler(paths), free(cmnd), fds_closer(end));
 	write(2, "command not found\n", 19);
+	exit(127);
 	return (NULL);
 }
 
@@ -89,8 +90,11 @@ void	first_cmd(t_list **data, t_pex *pex, t_minishell *mini)
 	{
 		if (!(commands = ft_split(pex->split_line[0], ' ')))
 			(fds_closer(pex->end), exit(1));
-		if (!ft_strncmp(commands[0], "<", 2))
-			(first_red(commands), pex->i = 2);
+		if (!ft_strncmp(commands[0], "<", 2) && commands[2])
+		{
+			path_check(commands[2], *data, pex->end);
+			commands = first_red(commands);
+		}
 		path = path_check(commands[pex->i - 1], *data, pex->end);
 		if (!path)
 			(fds_closer(pex->end), exit(1));
@@ -112,7 +116,7 @@ void	more_commands(t_pex pex, t_list **data, t_minishell *mini)
 			if (pipe(pex.end) == -1)
 				(write(2, "pipe failed", 11), exit(1));
 			(middle_commands(&pex, pex.split_line[pex.i], data, mini), close(pex.end[1]));
-			pex.input = pex.end[0]; //end[1] == 3 --> input == 3
+			pex.input = pex.end[0];
 			pex.i++;
 		}
 		last_cmd(pex.end, pex.split_line[pex.i], data, mini);

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:45:00 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/04 18:19:46 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/04 19:37:16 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ t_list	*var_finder(char *var, t_list **data)
 		if (!ft_strncmp(tmp->env, ft_strjoin(var, "="), ft_strlen(var) + 1))
 			return (tmp);
 		else if (!ft_strncmp(tmp->env, var, ft_strlen(tmp->env)))
-		{
-			tmp->env = ft_strjoin(tmp->env, "=");
 			return (tmp);
-		}
 		tmp = tmp->next;
 	}
 	return (NULL);

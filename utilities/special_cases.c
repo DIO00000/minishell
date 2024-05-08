@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 07:49:31 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/03 15:10:35 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/05 21:42:43 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,30 +54,6 @@ char	*ft_strrchr(const char *s, int c)
 // 			return (echo_handler(lines[i]));
 // 	}
 // }
-
-char	**split_token(char *line)
-{
-	char	**split;
-	char	*sp;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	split = ft_split(line, '>');
-	sp = ft_strjoin(split[0], split[1]);
-	sp = ft_strjoin(sp, split[2]);
-	split = ft_split(sp, ' ');
-	split[2] = malloc(sizeof(char) * 2);
-	while (line[i] != '>' && line[i])
-		i++;
-	if (line[i] == '>')
-	{
-		split[2][0] = '>';
-		split[2][1] = 0;
-	}
-	return (split);
-}
 
 char	*ft_strjoin_three(char *s1, char *buff, char *s2)
 {

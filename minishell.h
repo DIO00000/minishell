@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/03 18:59:52 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/06 12:39:29 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_minishell
 	char	**new_env;
 	char	*cmd_path;
 	t_list	**data;
+	int		exit_status;
 	char	*defult_path;
 	char	*input;
 	int		signal;
@@ -129,7 +130,7 @@ t_list	*var_finder(char *var, t_list **data);
 
 // Excuting
 
-char	**split_token(char *line); 
+char	*path_check(char *command, t_list *data, int end[]);
 char	**ft_split(char *s, char c);
 void	read_command(t_minishell *mini, t_list **data);
 char	*ft_strjoin_h(char *s1, char *s2);
@@ -146,7 +147,7 @@ void	special_cases(char **lines, char **env);
 void    handler(void);
 void    sig_quit(int    signum);
 void    sig_init(int    signum);
-void	first_red(char **token);
+char	**first_red(char **token);
 char	**last_red(char *line);
 
 //readline
@@ -167,6 +168,7 @@ int		ft_lstsize(t_list *lst);
 char	*ft_strtrim(char *s1, char *set);
 char	*ft_strjoin_three(char *s1, char *buff, char *s2);
 char	*ft_strjoin(char *s1, char *buff);
+int		ft_atoi(const char *str);
 
 //get_next_line
 

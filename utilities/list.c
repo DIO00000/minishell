@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:12:49 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/04 18:24:12 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/04 19:08:45 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	ft_lstsize(t_list *lst)
 void	ft_lstdel_mid(t_list **data, t_list *rm)
 {
 	t_list *first = *data;
-	if (rm && rm->next)
+	if (rm)
 	{
 		while (first->next)
 		{
@@ -89,7 +89,10 @@ void	ft_lstdel_mid(t_list **data, t_list *rm)
 				break ;
 			first = first->next;
 		}
-		first->next = rm->next;
+		if (rm->next)
+			first->next = rm->next;
+		else
+			first->next = NULL;
 	}
 	ft_lstdelone(rm);
 }

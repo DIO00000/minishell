@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 04:28:13 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/01 12:45:11 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/05 21:49:01 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	g_shlvl;
 
 t_list	*minishell_init(t_minishell *minishell, t_list *data, char **env)
 {
@@ -29,18 +27,11 @@ t_list	*minishell_init(t_minishell *minishell, t_list *data, char **env)
 	minishell->trm_prompt = NULL;
 	minishell->username = getenv("USER");
 	minishell->cmd_path = "./minishell";
-	minishell->shlvl = g_shlvl;
 	minishell->trimed_cmd = NULL;
+	minishell->exit_status = 0;
 	data = fill_env(env, data, minishell);
 	return (data);
 }
-
-// void handle_signals(int sig) 
-// {
-// 	(void)sig;
-
-//     printf("\n\033[1;33m➜ \033[1;34m minishell ♛ \033[0;m");
-// } 
 
 int	main(int ac, char **av, char **env)
 {
@@ -53,14 +44,7 @@ int	main(int ac, char **av, char **env)
 
 	if (!isatty(0))
 		return (ft_error(NULL, "minishell: this input is not a tty"), 1);
-	g_shlvl++;
 	data = minishell_init(&minishell, data, env);
 	while (1)
-	{
 		read_command(&minishell, &data);
-		// ft_lexer(&minishell);
-		// ft_parser(&minishell);
-		// ft_exit(&minishell);
-	}
-	// signal(SIGINT, handle_signals);
 }
