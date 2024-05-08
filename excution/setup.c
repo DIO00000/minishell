@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/08 15:51:01 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:07:17 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ char	*path_check(char *command, t_list *data, int end[])
 	paths = ft_split(where_path(data), ':');
 	if (!paths)
 		exit(1);
-	cmnd = ft_strjoin_h("/", command);
+	cmnd = ft_strjoin("/", command);
 	while (paths[++i])
 	{
-		path = ft_strjoin_h(paths[i], cmnd);
+		path = ft_strjoin(paths[i], cmnd);
 		if (access(path, F_OK) != -1)
 			return (free_handler(paths), free(cmnd), path);
 		free(path);

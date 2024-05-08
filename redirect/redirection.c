@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 10:41:37 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/06 18:11:51 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/08 16:07:56 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ char	*valid_cmd(char *command, t_list *data, int end[])
 	paths = ft_split(where_path(data), ':');
 	if (!paths)
 		exit(1);
-	cmnd = ft_strjoin_h("/", command);
+	cmnd = ft_strjoin("/", command);
 	while (paths[++i])
 	{
-		path = ft_strjoin_h(paths[i], cmnd);
+		path = ft_strjoin(paths[i], cmnd);
 		if (access(path, F_OK) != -1)
 			return (free_handler(paths), free(cmnd), path);
 		free(path);

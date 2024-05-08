@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 22:23:18 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/01 11:49:38 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:08:57 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	*get_the_line(char	*str, int fd)
 		if (i == -1)
 			return (free(str), str = NULL, free(s), s = NULL, NULL);
 		s[i] = '\0';
-		str = ft_strjoin(str, s);
+		str = ft_join(str, s);
 		if (!str)
 			break ;
 	}
