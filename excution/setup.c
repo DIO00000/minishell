@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/06 14:19:36 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/08 15:51:01 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,8 @@ void	read_command(t_minishell *mini, t_list **data)
 		prompt_custom(mini);
 		if (read_line(mini) == NULL)
 			break ;
+		if (lexer(mini) == 1)
+			single_command(mini->input, mini, data);
 		add_history(mini->input);
-		single_command(mini->input, mini, data);
 	}
 }
