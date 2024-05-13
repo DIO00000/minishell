@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 04:28:13 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/13 18:20:39 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/13 20:05:35 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 t_list	*minishell_init(t_minishell *m, t_list *data, char **env)
 {
 	data = fill_env(env, data, m);
-	m->cmd_line = NULL;
 	m->last_dir = NULL;
 	m->curr_dir = getcwd(NULL, 0);
 	m->defult_path = malloc(90 * sizeof(char));

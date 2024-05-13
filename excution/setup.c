@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/13 18:18:09 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/13 20:03:09 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,8 +152,8 @@ void	read_command(t_minishell *mini, t_list **data)
 		prompt_custom(mini);
 		if (read_line(mini) == NULL)
 			break ;
-		if (lexer(mini) == 1)
-			single_command(mini->input, mini, data);
+		lexer(mini);
+		single_command(mini->input, mini, data);
 		add_history(mini->input);
 	}
 }
