@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/08 16:12:53 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/13 01:08:10 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_pex
 
 typedef struct s_minishell
 {
-	char	*cmd_line;
+	char	**cmd;
 	char	**new_env;
 	char	*cmd_path;
 	t_list	**data;
@@ -185,8 +185,18 @@ char	*ft_join(char *s1, char *buff);
 
 
 //lexer
-int	isempty_line(t_minishell *minishell);
-int	lexer(t_minishell *minishell);
+// int	isempty_line(t_minishell *minishell);
+int	ft_count_spaces(char *str);
+void	lexer(t_minishell *minishell);
+
+//lexer_utils
+int		ft_iswhitespace(char c);
+int		ft_isoperator(char c);
+int		ft_isqoute(char c);
+int		get_qoute_index(char *str, int i);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+void	*ft_memmove(void *dst, void *src, size_t len);
+
 
 
 #endif

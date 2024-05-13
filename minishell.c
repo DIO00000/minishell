@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 04:28:13 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/05 21:49:01 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/13 00:49:47 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_list	*minishell_init(t_minishell *minishell, t_list *data, char **env)
 {
-	minishell->cmd_line = NULL;
+	minishell->cmd = NULL;
 	minishell->last_dir = NULL;
 	minishell->curr_dir = getcwd(NULL, 0);
 	minishell->defult_path = malloc(90 * sizeof(char));
