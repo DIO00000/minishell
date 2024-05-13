@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/08 16:12:53 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:12:04 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ typedef struct s_minishell
 	struct termios	term;
 	char	*username;
 	int		cmd_excuted;
-	int		shlvl;
 	char	*trm_prompt;
 	char	*last_dir;
 	char	*curr_dir;
@@ -128,6 +127,7 @@ void	export_build(char **var, t_list **data);
 void	unset_build(char **var, t_list **data);
 void	indexer(t_list **data);
 t_list	*var_finder(char *var, t_list **data);
+void	ft_shlvl(t_list **data);
 
 // Excuting
 
@@ -170,6 +170,7 @@ char	*ft_strtrim(char *s1, char *set);
 char	*ft_strjoin_three(char *s1, char *buff, char *s2);
 char	*ft_strjoin(char *s1, char *buff);
 int		ft_atoi(const char *str);
+char	*ft_itoa(int n);
 
 //get_next_line
 

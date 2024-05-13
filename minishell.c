@@ -6,30 +6,31 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 04:28:13 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/05 21:49:01 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/13 18:20:39 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_list	*minishell_init(t_minishell *minishell, t_list *data, char **env)
+t_list	*minishell_init(t_minishell *m, t_list *data, char **env)
 {
-	minishell->cmd_line = NULL;
-	minishell->last_dir = NULL;
-	minishell->curr_dir = getcwd(NULL, 0);
-	minishell->defult_path = malloc(90 * sizeof(char));
-	minishell->defult_path = "PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:\
+	data = fill_env(env, data, m);
+	m->cmd_line = NULL;
+	m->last_dir = NULL;
+	m->curr_dir = getcwd(NULL, 0);
+	m->defult_path = malloc(90 * sizeof(char));
+	m->defult_path = "PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:\
 /usr/local/munki:/Library/Apple/usr/bin";
-	minishell->pids = NULL;
-	minishell->env_status = 0;
-	minishell->syntax = 0;
-	minishell->cmd_excuted = 1;
-	minishell->trm_prompt = NULL;
-	minishell->username = getenv("USER");
-	minishell->cmd_path = "./minishell";
-	minishell->trimed_cmd = NULL;
-	minishell->exit_status = 0;
-	data = fill_env(env, data, minishell);
+	m->pids = NULL;
+	m->env_status = 0;
+	m->syntax = 0;
+	m->cmd_excuted = 1;
+	m->trm_prompt = NULL;
+	m->username = getenv("USER");
+	m->cmd_path = "./minishell";
+	m->trimed_cmd = NULL;
+	m->exit_status = 0;
+	ft_shlvl(&data);
 	return (data);
 }
 

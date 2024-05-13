@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 10:47:15 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/04 19:34:01 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/13 18:46:39 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,21 @@ void	env_build(t_list *data, t_minishell *mini, char *cmd)
 	{
 		if (mini->last_dir)
 			printf("OLDPWD=%s\n", mini->last_dir);
-		(printf("PWD=%s\n", mini->curr_dir), printf("SHLVL=%d\n", mini->shlvl));
+		(printf("PWD=%s\n", mini->curr_dir));
 		printf("_=%s\n", mini->cmd_path);
 	}
+}
+
+void	ft_shlvl(t_list **data)
+{
+	t_list	*tmp;
+	int		level;
+	char	**var;
+
+	tmp = var_finder("SHLVL", data);
+	var = ft_split(tmp->env, '=');
+	level = ft_atoi(var[1]) + 1;
+	tmp->env = ft_strjoin("SHLVL=", ft_itoa(level));
+	printf("--->%s\n", tmp->env);
+	free_handler(var);
 }

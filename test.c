@@ -3,7 +3,15 @@
 
 int main()
 {
-	char *l = "ls -la > f";
-
-	printf("%s\n", *split_token(l));
+	int ar[5] = {111111, 2, 3, 4, 5};
+	for (int i = 0; i < 5; i++)
+	{
+		printf("%d ", i[ar]);
+	
+	}
+		printf("\n");
+	for (int i = 0; i < 5; i++)
+	{
+		printf("%d ", ar[i]);
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/08 16:07:17 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:18:09 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ char	*path_check(char *command, t_list *data, int end[])
 	}
 	(free_handler(paths), free(cmnd), fds_closer(end));
 	write(2, "command not found\n", 19);
-	exit(127);
 	return (NULL);
 }
 
@@ -147,7 +146,6 @@ void	single_command(char *line, t_minishell *mini, t_list **data)
 
 void	read_command(t_minishell *mini, t_list **data)
 {
-
 	while (1)
 	{
 		signals(&mini->term);
