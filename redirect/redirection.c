@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 10:41:37 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/13 16:35:56 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/14 18:46:59 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	**first_red(char **token)
 	int		fd;
 	int		i;
 	char	*commands;
+	char	**cmds;
 	
 	i = 2;
 	commands = NULL;
@@ -28,7 +29,9 @@ char	**first_red(char **token)
 	free_handler(token);
 	if (ft_strchr(commands, '>'))
 		return(last_red(commands));
-	return(ft_split(commands, ' '));
+	cmds = ft_split(commands, ' ');
+	free(commands);
+	return(cmds);
 }
 
 char	**last_red(char *line)
