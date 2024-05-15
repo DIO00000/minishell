@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 02:08:56 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/27 20:45:37 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/15 23:03:48 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,17 @@ int	ft_strncmp(char *s1, char *s2, size_t n)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-// void	ft_here_doc(int end[], int ac, char **av)
-// {
-// 	char	*str;
+void	ft_here_doc(char *ok, int end[])
+{
+	char	*str;
 
-// 	str = NULL;
-// 	if (ac < 6)
-// 		(fds_closer(end), exit(1));
-// 	if (fork() == 0)
-// 	{
-// 		while (1)
-// 		{
-// 			str = get_next_line(0);
-// 			if (ft_strncmp(str, av[2], ft_strlen(av[2])) == 0)
-// 			{
-// 				(free(str), fds_closer(end));
-// 				exit(1);
-// 			}
-// 			write(end[1], str, ft_strlen(str));
-// 			free(str);
-// 		}
-// 	}
-// }
+	str = NULL;
+	while (1)
+	{
+		str = get_next_line(0);
+		if (!ft_strncmp(str, ok, ft_strlen(ok)))
+			return ;
+		write(end[1], str, ft_strlen(str));
+		free(str);
+	}
+}

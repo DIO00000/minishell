@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 13:00:49 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/13 01:21:57 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/14 22:09:52 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	lexer(t_minishell *minishell)
 		minishell->cmd = ft_split(minishell->trimed_cmd, ' ');
 		if (!minishell->cmd)
 			ft_error("minishell: ", "malloc failed");
-		free(minishell->trimed_cmd);
+		// free(minishell->trimed_cmd);
 	}
 	minishell->trimed_cmd = put_spaces(minishell->trimed_cmd, space_counter);
 	if (!minishell->trimed_cmd)
@@ -106,7 +106,7 @@ void	lexer(t_minishell *minishell)
 	minishell->cmd = ft_split(minishell->trimed_cmd, ' ');
 	if (!minishell->cmd)
 		ft_error("minishell: ", "malloc failed");
-	free(minishell->trimed_cmd);
+	// free(minishell->trimed_cmd);
 }
 
 // int	isempty_line(t_minishell *minishell)

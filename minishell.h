@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/13 20:05:07 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/15 22:28:47 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,13 +142,13 @@ char	*where_path(t_list *data);
 size_t	ft_strlen(char *s);
 void	free_handler(char **str);
 int		ft_strncmp(char *s1, char *s2, size_t n);
-void	ft_here_doc(int end[], int ac, char **av);
+void	ft_here_doc(char *ok, int end[]);
 int		count_words(char *str, char c);
 void	special_cases(char **lines, char **env);
 void    handler(void);
 void    sig_quit(int    signum);
 void    sig_init(int    signum);
-char	**first_red(char **token);
+char	**first_red(char **token, int end[]);
 char	**last_red(char *line);
 
 //readline

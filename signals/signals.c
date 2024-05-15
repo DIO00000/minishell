@@ -53,7 +53,7 @@ void    sig_init(int    signum)
 	{
 		write(1, "\n", 2);
 		rl_on_new_line();
-		rl_replace_line("", 0);
+		// rl_replace_line("", 0);
 		rl_redisplay();
 	}
 }
