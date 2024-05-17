@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 23:49:43 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/17 00:30:19 by oelharbi         ###   ########.fr       */
+/*   Created: 2024/05/16 16:05:48 by oelharbi          #+#    #+#             */
+/*   Updated: 2024/05/16 16:09:06 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
-void	parsing(t_minishell *mini)
+int main(int ac, char **av)
 {
-	int	i;
-
-	i = -1;
-	if (!mini->cmd)
-		return ;
-	while (mini->cmd[++i])
-		lstadd_back(&mini->lst, lstnew(mini->cmd[i]));
-	// int j = 0;
-	// while (mini->lst)
-	// {
-	// 	printf("The string [%d] => %s\n", j, mini->lst->string);
-	// 	mini->lst = mini->lst->next;
-	// }
+	char **res;
+	if (ac == 2)
+	{
+		ft_split(av[1], ' ');
+		int i = 0;
+		while (res[i])
+		{
+			printf("string[%d] ==> %s\n", i, res[i]);
+			i++;
+		}
+	}
 }

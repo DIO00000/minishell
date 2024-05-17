@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 23:49:43 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/17 00:30:19 by oelharbi         ###   ########.fr       */
+/*   Created: 2023/10/31 10:25:27 by oelharbi          #+#    #+#             */
+/*   Updated: 2023/11/21 14:27:55 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "libft.h"
 
-void	parsing(t_minishell *mini)
+int	ft_isalnum(int c)
 {
-	int	i;
-
-	i = -1;
-	if (!mini->cmd)
-		return ;
-	while (mini->cmd[++i])
-		lstadd_back(&mini->lst, lstnew(mini->cmd[i]));
-	// int j = 0;
-	// while (mini->lst)
-	// {
-	// 	printf("The string [%d] => %s\n", j, mini->lst->string);
-	// 	mini->lst = mini->lst->next;
-	// }
+	if (ft_isalpha (c) == 1 || ft_isdigit (c) == 1)
+		return (1);
+	return (0);
 }

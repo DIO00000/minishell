@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 23:49:43 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/17 00:30:19 by oelharbi         ###   ########.fr       */
+/*   Created: 2023/11/07 21:20:38 by oelharbi          #+#    #+#             */
+/*   Updated: 2023/11/30 11:53:54 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "libft.h"
 
-void	parsing(t_minishell *mini)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	i;
+	unsigned char	*str1;
+	unsigned char	*str2;
+	size_t			i;
 
-	i = -1;
-	if (!mini->cmd)
-		return ;
-	while (mini->cmd[++i])
-		lstadd_back(&mini->lst, lstnew(mini->cmd[i]));
-	// int j = 0;
-	// while (mini->lst)
-	// {
-	// 	printf("The string [%d] => %s\n", j, mini->lst->string);
-	// 	mini->lst = mini->lst->next;
-	// }
+	i = 0; 
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	while (n > 0 && (str1[i] || str2[i]))
+	{
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
+		i++;
+		n--;
+	}
+	return (0);
 }

@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 23:49:43 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/17 00:30:19 by oelharbi         ###   ########.fr       */
+/*   Created: 2023/11/03 17:50:28 by oelharbi          #+#    #+#             */
+/*   Updated: 2023/11/23 11:30:23 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "libft.h"
 
-void	parsing(t_minishell *mini)
+char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	char	*str;
 
-	i = -1;
-	if (!mini->cmd)
-		return ;
-	while (mini->cmd[++i])
-		lstadd_back(&mini->lst, lstnew(mini->cmd[i]));
-	// int j = 0;
-	// while (mini->lst)
-	// {
-	// 	printf("The string [%d] => %s\n", j, mini->lst->string);
-	// 	mini->lst = mini->lst->next;
-	// }
+	str = (char *)s;
+	while (*str != (char)c)
+	{
+		if (*str == '\0')
+			return (NULL);
+		str++;
+	}
+	return (str);
 }

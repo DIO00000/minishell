@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 23:49:43 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/17 00:30:19 by oelharbi         ###   ########.fr       */
+/*   Created: 2023/11/12 09:49:59 by oelharbi          #+#    #+#             */
+/*   Updated: 2023/11/26 19:26:12 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "libft.h"
 
-void	parsing(t_minishell *mini)
+char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 {
-	int	i;
+	unsigned int	len;
+	char			*res;
+	unsigned int	i;
 
-	i = -1;
-	if (!mini->cmd)
-		return ;
-	while (mini->cmd[++i])
-		lstadd_back(&mini->lst, lstnew(mini->cmd[i]));
-	// int j = 0;
-	// while (mini->lst)
-	// {
-	// 	printf("The string [%d] => %s\n", j, mini->lst->string);
-	// 	mini->lst = mini->lst->next;
-	// }
+	if (!s || !f)
+		return (NULL); 
+	len = ft_strlen(s);
+	res = malloc(len + 1);
+	if (res == NULL)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		res[i] = (*f)(i, s[i]);
+		i++;
+	}
+	res[len] = '\0';
+	return (res);
 }

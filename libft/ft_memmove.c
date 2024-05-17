@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 23:49:43 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/17 00:30:19 by oelharbi         ###   ########.fr       */
+/*   Created: 2023/11/01 19:32:12 by oelharbi          #+#    #+#             */
+/*   Updated: 2023/12/02 12:43:11 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "libft.h"
 
-void	parsing(t_minishell *mini)
+void	*ft_memmove(void *dst, void *src, size_t len)
 {
-	int	i;
+	char	*dest;
+	char	*source;
 
-	i = -1;
-	if (!mini->cmd)
-		return ;
-	while (mini->cmd[++i])
-		lstadd_back(&mini->lst, lstnew(mini->cmd[i]));
-	// int j = 0;
-	// while (mini->lst)
-	// {
-	// 	printf("The string [%d] => %s\n", j, mini->lst->string);
-	// 	mini->lst = mini->lst->next;
-	// }
+	if (!dst && !src)
+		return (NULL); 
+	dest = (char *)dst;
+	source = (char *)src;
+	if (dst < src)
+		ft_memcpy(dst, src, len);
+	else if (dst > src)
+	{
+		while (len > 0)
+		{
+			len--;
+			dest[len] = source[len];
+		}
+	}
+	return (dst);
 }

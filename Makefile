@@ -1,31 +1,74 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/04/18 22:20:54 by hbettal           #+#    #+#              #
-#    Updated: 2024/05/13 00:30:04 by oelharbi         ###   ########.fr        #
+#    Created: 2024/05/16 12:05:04 by oelharbi          #+#    #+#              #
+#    Updated: 2024/05/17 19:39:15 by oelharbi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+
+DIR = .obj
+
+CFLAGS = -Wall -Wextra -Werror # -fsanitize=address -g
+
 READLINE_INC = -I$(shell brew --prefix readline)/include
+
 READLINE_LIB = -L$(shell brew --prefix readline)/lib -lreadline
-SRC =  utilities/ft_split.c minishell.c utilities/utilities.c excution/setup.c redirect/here_doc.c \
-		signals/signals.c parsing/exit.c utilities/special_cases.c builtins/pwd.c builtins/echo.c \
-		redirect/redirection.c builtins/build_check.c builtins/cd.c prompt/prompt.c builtins/env.c \
-		utilities/list.c utilities/ft_strtrim.c builtins/export.c lexer/readline.c \
-		builtins/unset.c lexer/get_next_line.c lexer/get_next_line_utils.c \
-		lexer/lexer.c utilities/numbers_utlis.c lexer/lexer_utils.c \
+
+NAME = minishell
+
+LIBFT = ./libft/libft.a
+
+HEADER = minishell.h ./libft/libft.h
+
+OBJ = minishell.o signals.o parsing/lexer.o parsing/exit.o parsing/lexer_utils.o parsing/prompt.o parsing/parsing.o parsing/parsing_utils.o 
+
+# S_OBJ            =    $(addprefix $(DIR)/,$(VUR_SRC:.c=.o))
 
 all: $(NAME)
+	@echo "\033[1;32mCompilation Completed Successfully! ✅\033[0;m"
 
-$(NAME): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) $(READLINE_INC) $(READLINE_LIB) -o $(NAME) 
+$(NAME) : $(OBJ) $(LIBFT) $(HEADER)
+	@$(CC) $(CFLAGS) $(LIBFT) $(OBJ)  $(READLINE_LIB)  -o $(NAME)
+
+$(LIBFT) :
+	@echo "\033[1;33mBuilding LIBFT...\033[0m"
+	@make -C ./libft
+	@echo "\033[1;33mBuilding Minishell...\033[0m"
+
+# ./mandatory/%.o : ./mandatory/%.c $(HEADER)
+# 	@echo "\033[0;34mCompiling $< .\033[0;m"
+# 	@sleep 0.2
+# 	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
+
+$(addprefix $(DIR)/,%.o) : %.c $(HEADER)
+	@mkdir -p $(dir $@)
+	@echo "\033[0;34mCompiling $< .\033[0;m"
+	@sleep 0.2
+	@$(CC) $(CFLAGS) $(READLINE_INC) -c $< -o $@
+
+
 
 clean:
-	rm -f $(NAME)
+	@echo "\033[0;31mRemoving object files.\033[0;m"
+	@sleep 0.2
+	@echo "\033[0;31mRemoving object files.\033[0;m"
+	@sleep 0.2
+	@rm -f $(OBJ)
+	@make clean -C ./libft
+	@echo "\033[1;32mCleaning DONE ✅\033[0;m"
+
+fclean: clean
+	@echo "\033[0;31mRemoving program.\033[0;m"
+	@echo "\033[1;32mDONE ✅\033[0;m"
+	@rm -f $(NAME)
+	@make fclean -C ./libft
+
+re: fclean all 
+
+.PHONY: clean

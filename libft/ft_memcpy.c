@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 23:49:43 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/17 00:30:19 by oelharbi         ###   ########.fr       */
+/*   Created: 2023/11/01 10:45:13 by oelharbi          #+#    #+#             */
+/*   Updated: 2023/12/02 12:25:51 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "libft.h"
 
-void	parsing(t_minishell *mini)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	int	i;
+	char	*tp_dest;
+	char	*tp_src;
+	size_t	i;
 
-	i = -1;
-	if (!mini->cmd)
-		return ;
-	while (mini->cmd[++i])
-		lstadd_back(&mini->lst, lstnew(mini->cmd[i]));
-	// int j = 0;
-	// while (mini->lst)
-	// {
-	// 	printf("The string [%d] => %s\n", j, mini->lst->string);
-	// 	mini->lst = mini->lst->next;
-	// }
+	tp_dest = (char *) dst;
+	tp_src = (char *) src;
+	i = 0;
+	if (tp_dest == NULL && tp_src == NULL)
+		return (NULL);
+	while (i < n)
+	{
+		tp_dest[i] = tp_src[i];
+		i++;
+	}
+	return (tp_dest);
 }
