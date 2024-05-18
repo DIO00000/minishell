@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 10:41:37 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/15 23:50:02 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/18 15:14:44 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,22 @@ char	**first_red(char **token, int end[])
 	
 	i = 2;
 	commands = NULL;
-	if (!ft_strncmp(token[0], "<<", 3))
-		ft_here_doc(token[1], end);
 	while (token[i])
 		commands = ft_strjoin(commands, token[i++]);
+	cmds = ft_split(commands, ' ');
+	if (!ft_strncmp(token[0], "<<", 3))
+	{
+		ft_here_doc(token[1], end);
+		free_handler(token);
+		free(commands);
+		return (cmds);
+	}
 	fd = open(token[1], O_RDONLY);
 	if (dup2(fd, 0) == -1)
 		exit(1);
 	free_handler(token);
 	if (ft_strchr(commands, '>'))
 		return(last_red(commands));
-	cmds = ft_split(commands, ' ');
 	free(commands);
 	return(cmds);
 }

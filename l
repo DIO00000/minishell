@@ -1,0 +1,16 @@
+Makefile
+builtins
+excution
+hello.c
+l
+lexer
+minishell
+minishell.c
+minishell.dSYM
+minishell.h
+parsing
+prompt
+redirect
+signals
+test.c
+utilities
