@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:02:41 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/17 00:05:02 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/18 11:45:33 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	mini_init(t_minishell *mini)
 	mini->last_dir = NULL;
 	mini->curr_dir = getcwd(NULL, 0);
 	mini->username = getenv("USER");
-	
+	mini->lst = NULL;
 }
 
 void	read_line(t_minishell *mini)
@@ -47,12 +47,13 @@ int		main(int ac, char **av, char **env)
 	(void)av;
 	(void)env;
 	mini_init(&mini);
-	while(1)
+	while (1)
 	{
+		signals(&mini.term);
 		prompt_custom(&mini);
 		read_line(&mini);
-		signals(&mini.term);
 		lexer(&mini);
 		parsing(&mini);
+		ft_exit(&mini, NULL, NULL, 0);
 	}
 }

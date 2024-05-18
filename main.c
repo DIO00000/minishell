@@ -6,23 +6,16 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:05:48 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/16 16:09:06 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/18 11:41:21 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main(int ac, char **av)
+int main()
 {
-	char **res;
-	if (ac == 2)
-	{
-		ft_split(av[1], ' ');
-		int i = 0;
-		while (res[i])
-		{
-			printf("string[%d] ==> %s\n", i, res[i]);
-			i++;
-		}
-	}
+	int i = 0;
+
+	if (i)
+		printf("if(i) means if i = 1");
 }

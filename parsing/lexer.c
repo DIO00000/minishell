@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:45:19 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/16 21:47:14 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/18 11:42:57 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char	*put_spaces(char **str, int space_counter)
 	int	i;
 	char	*new_str;
 
+	new_str = NULL;
 	i = 0;
 	new_str = allocator(str, space_counter);
 	if (!new_str)
@@ -51,7 +52,7 @@ char	*put_spaces(char **str, int space_counter)
 			if (i > 0 && !ft_iswhitespace(new_str[i - 1]))
 				(ft_shift(new_str, i, i + 1, -1), i++);
 			if (new_str[i] != '|')
-				while(new_str[i + 1] == '<' || new_str[ + 1] == '>')
+				while(new_str[i + 1] == '<' || new_str[i + 1] == '>')
 					i++;
 			if (!ft_iswhitespace(new_str[i + 1]) && new_str[i + 1] != '\0')
 				(ft_shift(new_str, i, i + 1, 1), i++);
@@ -110,7 +111,7 @@ void	lexer(t_minishell *minishell)
 {
 	int	i;
 	int	space_counter;
-	
+
 	i = 0;
 	space_counter = ft_count_spaces(minishell->input);
 	if (space_counter == 0)
@@ -122,11 +123,4 @@ void	lexer(t_minishell *minishell)
 	}
 	else
 		add_2d_spaces(&minishell, space_counter);
-	char **str = minishell->cmd;
-	int j = 0;
-	while (str[j])
-	{
-		printf("string[%d] => %s\n", j, str[j]);
-		j++;
-	}
 }

@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 11:59:10 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/18 11:34:16 by oelharbi         ###   ########.fr       */
+/*   Created: 2024/05/18 14:33:53 by oelharbi          #+#    #+#             */
+/*   Updated: 2024/05/18 14:47:28 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	parameter_expansion(t_minishell *mini, char *current)
 {
-	t_list	*delete;
+	(void)mini;
+	int	exp_counter;
+	// int	index;
 
-	if (!lst || !del)
-		return ;
-	while (*lst)
-	{
-		delete = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = delete;
-	}
-	free(*lst);
-	*lst = NULL;
+	exp_counter = expansion_counter(current);
+	printf("exp_ counetr ===> %d\n", exp_counter);
 }

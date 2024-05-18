@@ -6,15 +6,13 @@
 #    By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:05:04 by oelharbi          #+#    #+#              #
-#    Updated: 2024/05/17 19:39:15 by oelharbi         ###   ########.fr        #
+#    Updated: 2024/05/18 14:45:31 by oelharbi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-DIR = .obj
-
-CFLAGS = -Wall -Wextra -Werror # -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 
 READLINE_INC = -I$(shell brew --prefix readline)/include
 
@@ -26,9 +24,7 @@ LIBFT = ./libft/libft.a
 
 HEADER = minishell.h ./libft/libft.h
 
-OBJ = minishell.o signals.o parsing/lexer.o parsing/exit.o parsing/lexer_utils.o parsing/prompt.o parsing/parsing.o parsing/parsing_utils.o 
-
-# S_OBJ            =    $(addprefix $(DIR)/,$(VUR_SRC:.c=.o))
+OBJ = minishell.o signals.o parsing/lexer.o parsing/exit.o parsing/lexer_utils.o parsing/prompt.o parsing/parsing.o parsing/parsing_utils.o parsing/classification.o parsing/expansion.o parsing/expansion_utils.o
 
 all: $(NAME)
 	@echo "\033[1;32mCompilation Completed Successfully! ✅\033[0;m"
@@ -46,8 +42,7 @@ $(LIBFT) :
 # 	@sleep 0.2
 # 	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
-$(addprefix $(DIR)/,%.o) : %.c $(HEADER)
-	@mkdir -p $(dir $@)
+%.o : %.c $(HEADER)
 	@echo "\033[0;34mCompiling $< .\033[0;m"
 	@sleep 0.2
 	@$(CC) $(CFLAGS) $(READLINE_INC) -c $< -o $@

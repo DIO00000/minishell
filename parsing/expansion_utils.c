@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   expansion_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 11:59:10 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/18 11:34:16 by oelharbi         ###   ########.fr       */
+/*   Created: 2024/05/18 14:43:05 by oelharbi          #+#    #+#             */
+/*   Updated: 2024/05/18 14:44:29 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+int	expansion_counter(char *str)
 {
-	t_list	*delete;
+	int	count;
 
-	if (!lst || !del)
-		return ;
-	while (*lst)
+	count = 0;
+	while (*str)
 	{
-		delete = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = delete;
+		if (*str == '$')
+			count++;
+		str++;
 	}
-	free(*lst);
-	*lst = NULL;
+	return (count);
 }

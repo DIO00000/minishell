@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/17 00:02:02 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/18 14:46:54 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,19 @@
 # include <stdarg.h>
 # include "libft/libft.h"
 
+#define PIPE 1
+#define REDIN 2
+#define HERDOC 3
+#define LIM 4
+#define REDOUT 5
+#define COMMAND 6
+#define ARGUMENT 7
+#define FILE 8
+#define ERROR 9
+#define APPEND 10
+
+
+
 
 // #define MINI "\033[1;36m\033[1;32m➜ \033[0m\033[1;33mminishell\033[2;30m -\033[0m\033[1;36m\033[1;32m ✘ \033[0m"
 #define GREEN_ARROW "\001\e[1m\e[32m➜  \001\e[1m\e[34m\002"
@@ -40,29 +53,20 @@
 # define SPACES " \t\n\v\r\f"
 
 
-typedef struct s_flag
-{
-	int	is_arg;
-	int	cmd_line;
-	int	cmd;
-}				t_flag;
+typedef enum	e_parse_state {
+    START,
+    IN_COMMAND,
+    IN_ARG,
+    IN_FILE,
+    IN_HEREDOC
+}	t_parse_state;
 
-//	PIPEX
-typedef struct s_data
-{
-	char	***env;
-	int		infd;
-	int		id_count;
-	int		heredoc;
-}				t_data;
-
-//	LINKED LIST
 typedef struct s_parser
 {
 	char			*string;
-	int				flag;
+	int				class;
 	struct s_parser	*next;
-}				t_parser;
+}	t_parser;
 
 //	COMMAND_TABLE (PIPELINE)
 typedef struct s_table
@@ -72,7 +76,7 @@ typedef struct s_table
 	int			outfd;
 	t_parser	*redin;
 	t_parser	*redout;
-}				t_table;
+}	t_table;
 
 
 typedef struct s_minishell
@@ -129,17 +133,30 @@ char	*ft_join(char *s1, char *buff);
 
 //parsing
 void	parsing(t_minishell *mini);
+void	classification(t_minishell *mini);
 
 //parsing_utils
 void		lstadd_back(t_parser **lst, t_parser *new);
 t_parser	*lstlast(t_parser *lst);
 t_parser	*lstnew(void *content);
+int			count_quote(char *str);
+void		lstclear(t_parser **lst);
+char		*remove_quotes(char **str, int count_quotes);
+void		handle_redirection(t_parser *current, int class);
 
+
+//expansion
+void	parameter_expansion(t_minishell *mini, char *current);
+
+//expansion_utils
+int	expansion_counter(char *str);
 
 
 //test
 
 void	ft_exit(t_minishell *mini, char *cmd, char *str, int ext);
 void	free_strings(char **strings);
+
+
 
 #endif
