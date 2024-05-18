@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 23:54:13 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/18 14:30:52 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/18 15:35:15 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	count_quote(char *str)
 	int		count;
 
 	count = 0;
+	current_quote = '\0';
 	while (*str)
 	{
 		if (*str == '\'' || *str == '\"')
