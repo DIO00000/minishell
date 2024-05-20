@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:15:24 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/18 11:42:35 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:37:16 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	remove_c(struct termios *term)
 	tcsetattr(1, TCSAFLUSH, &term_removal);
 }
 
-void    sig_init(int signum)
+void	sig_init(int signum)
 {
-    if (signum == SIGINT)
+	if (signum == SIGINT)
 	{
 		write(1, "\n", 2);
 		rl_on_new_line();

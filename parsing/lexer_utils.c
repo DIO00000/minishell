@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 15:05:36 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/16 21:12:13 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:30:10 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,10 @@ char	*ft_join(char *s1, char *buff)
 	}
 	if (!buff)
 		return (free(s1), NULL);
-	i = ft_strlen(s1);
-	x = ft_strlen(buff) + ft_strlen(s1) + 1;
+	(1 == 1) && (i = ft_strlen(s1), x = ft_strlen(buff) + ft_strlen(s1) + 1);
 	str = malloc(x);
 	if (!str)
 		return (free(s1), s1 = NULL, NULL);
-	ft_strlcpy(str, s1, i + 1);
-	ft_strlcat(str, buff, x);
+	(ft_strlcpy(str, s1, i + 1), ft_strlcat(str, buff, x));
 	return (free(s1), s1 = NULL, str);
 }

@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 19:32:12 by oelharbi          #+#    #+#             */
-/*   Updated: 2023/12/02 12:43:11 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:38:06 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_memmove(void *dst, void *src, size_t len)
 	char	*source;
 
 	if (!dst && !src)
-		return (NULL); 
+		return (NULL);
 	dest = (char *)dst;
 	source = (char *)src;
 	if (dst < src)

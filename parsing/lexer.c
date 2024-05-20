@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:45:19 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/19 19:16:59 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:34:09 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,14 @@ void	ft_shift(char *str, int start, int end, int shifter)
 		str[end] = ' ';
 }
 
-char	*put_spaces(char **str, int space_counter)
+char	*put_spaces(char **str, int space_count)
 {
-	int	i;
+	int		i;
 	char	*new_str;
 
-	new_str = NULL;
-	i = 0;
-	new_str = allocator(str, space_counter);
+	(1 == 1) && (new_str = NULL, i = 0, new_str = allocator(str, space_count));
 	if (!new_str)
-		return(NULL);
+		return (NULL);
 	while (new_str[i])
 	{
 		if (ft_isoperator(new_str[i]))
@@ -52,7 +50,7 @@ char	*put_spaces(char **str, int space_counter)
 			if (i > 0 && !ft_iswhitespace(new_str[i - 1]))
 				(ft_shift(new_str, i, i + 1, -1), i++);
 			if (new_str[i] != '|')
-				while(new_str[i + 1] == '<' || new_str[i + 1] == '>')
+				while (new_str[i + 1] == '<' || new_str[i + 1] == '>')
 					i++;
 			if (!ft_iswhitespace(new_str[i + 1]) && new_str[i + 1] != '\0')
 				(ft_shift(new_str, i, i + 1, 1), i++);
@@ -70,25 +68,19 @@ int	ft_count_spaces(char *str)
 	int	space_counter;
 	int	is_space;
 
-	i = 0;
-	space_counter = 0;
-	is_space = 0;
+	(1 == 1) && (i = 0, space_counter = 0, is_space = 0);
 	while (str[i])
 	{
-		if (ft_isqoute(str[i]))
-			i = get_quote_index(str, i + 1);
-		else if (ft_isoperator(str[i]))
+		(ft_isqoute(str[i])) && (i = get_quote_index(str, i + 1));
+		if (ft_isoperator(str[i]))
 		{
 			if (i > 0 && !ft_iswhitespace(str[i - 1]))
 				space_counter++;
 			if (str[i] != '|')
-				while(str[i + 1] == '<' || str[i + 1] == '>')
+				while (str[i + 1] == '<' || str[i + 1] == '>')
 					i++;
 			if (!ft_iswhitespace(str[i + 1]) && str[i + 1] != '\0')
-			{
-				space_counter++;
-				is_space = 1;
-			}
+				(1 == 1) && (space_counter++, is_space = 1);
 		}
 		else
 			is_space = 0;
@@ -96,6 +88,7 @@ int	ft_count_spaces(char *str)
 	}
 	return (space_counter);
 }
+
 void	add_2d_spaces(t_minishell **mini, int space_counter)
 {
 	(*mini)->input = put_spaces(&(*mini)->input, space_counter);
@@ -103,7 +96,7 @@ void	add_2d_spaces(t_minishell **mini, int space_counter)
 		ft_exit((*mini), NULL, NULL, ENOMEM);
 	(*mini)->cmd = ft_split((*mini)->input, SPACES);
 	(free((*mini)->input), (*mini)->input = NULL);
-	if (!(*mini)->cmd)	
+	if (!(*mini)->cmd)
 		ft_exit((*mini), NULL, NULL, ENOMEM);
 }
 

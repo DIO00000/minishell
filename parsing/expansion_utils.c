@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:43:05 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/20 13:13:22 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:22:50 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int	expansion_counter(char *str)
 	count = 0;
 	while (*str)
 	{
-		if (*str == '$')
-			count++;
+		(*str == '$') && (count++);
 		str++;
 	}
 	return (count);
@@ -83,8 +82,7 @@ char	*remove_str(char **str, char *env, int start, int len)
 	int		j;
 	int		i;
 
-	j = 0;
-	i = 0;
+	(1 == 1) && (j = 0, i = 0);
 	result = malloc((ft_strlen(*str) - len - 1) + ft_strlen(env) + 1);
 	if (!result)
 		return (NULL);

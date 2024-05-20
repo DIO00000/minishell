@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 23:54:13 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/18 14:30:52 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:35:13 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,9 @@ int	count_quote(char *str)
 		if (*str == '\'' || *str == '\"')
 		{
 			if (current_quote == '\0')
-			{
-				current_quote = *str;
-				count++;
-			}
+				(1 == 1) && (current_quote = *str, count++);
 			else if (*str == current_quote)
-			{
-				current_quote = '\0';
-				count++;
-			}
+				(1 == 1) && (current_quote = '\0', count++);
 		}
 		str++;
 	}

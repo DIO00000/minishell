@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 10:12:29 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/16 21:45:08 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:38:33 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@ int	is_thechar(char s, char *c)
 
 	i = 0;
 	while (c[i])
-		if(s == c[i++])
+		if (s == c[i++])
 			return (1);
 	return (0);
 }
-
 
 int	ft_words(const char *s, char *c)
 {
@@ -52,7 +51,6 @@ int	ft_words(const char *s, char *c)
 	}
 	return (count);
 }
-#include <stdio.h>
 
 int	the_word(char *s, char *c)
 {

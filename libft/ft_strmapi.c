@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 09:49:59 by oelharbi          #+#    #+#             */
-/*   Updated: 2023/11/26 19:26:12 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:38:52 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 	unsigned int	i;
 
 	if (!s || !f)
-		return (NULL); 
+		return (NULL);
 	len = ft_strlen(s);
 	res = malloc(len + 1);
 	if (res == NULL)

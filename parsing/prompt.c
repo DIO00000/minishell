@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:37:21 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/19 19:18:27 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:36:15 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ void	prompt_custom(t_minishell *minishell)
 	dir = ft_strjoin(SPC, cur_dir);
 	n_arrow = ft_strjoin(username, dir);
 	final = ft_strjoin(n_arrow, X);
-	free(username);
-	free(dir);
-	free(n_arrow);
-	free(cur_dir);
+	(free(username), free(dir), free(n_arrow), free(cur_dir));
 	minishell->trm_prompt = final;
 }
 
