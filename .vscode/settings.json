@@ -6,6 +6,8 @@
 		"bitset": "c",
 		"chrono": "c",
 		"unordered_map": "c",
-		"iterator": "c"
+		"iterator": "c",
+		"string": "c",
+		"iosfwd": "c"
 	}
 }

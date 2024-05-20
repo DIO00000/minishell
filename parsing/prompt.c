@@ -6,20 +6,20 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:37:21 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/16 21:50:48 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/19 19:18:27 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void    prompt_custom(t_minishell *minishell)
+void	prompt_custom(t_minishell *minishell)
 {
-	char    *username;
-	char    *final;
-	char    *n_arrow;
-	char    *cur_dir;
-	char    *dir;
-	
+	char	*username;
+	char	*final;
+	char	*n_arrow;
+	char	*cur_dir;
+	char	*dir;
+
 	if (minishell->trm_prompt != NULL)
 		free(minishell->trm_prompt);
 	cur_dir = get_dir(minishell);
@@ -34,14 +34,14 @@ void    prompt_custom(t_minishell *minishell)
 	minishell->trm_prompt = final;
 }
 
-char    *get_dir(t_minishell *minishell)
+char	*get_dir(t_minishell *minishell)
 {
-	(void)minishell;
-	int i;
-	char *pwd;
-	char **words;
-	char *dir;
+	int		i;
+	char	*pwd;
+	char	**words;
+	char	*dir;
 
+	(void)minishell;
 	i = 0;
 	pwd = getcwd(NULL, 0);
 	if (pwd == NULL)

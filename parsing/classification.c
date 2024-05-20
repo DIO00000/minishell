@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 09:36:44 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/18 14:47:36 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/20 11:44:39 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	classification(t_minishell *mini)
 	while (current)
 	{
 		operator(&state, current);
-		parameter_expansion(mini, current->string);
+		parameter_expansion(mini, current);
 		count_quotes = count_quote(current->string);
 		if (count_quotes > 0)
 		{

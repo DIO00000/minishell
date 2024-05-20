@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:45:19 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/18 11:42:57 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/19 19:16:59 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	ft_count_spaces(char *str)
 			if (!ft_iswhitespace(str[i + 1]) && str[i + 1] != '\0')
 			{
 				space_counter++;
-				is_space = 1;	
+				is_space = 1;
 			}
 		}
 		else

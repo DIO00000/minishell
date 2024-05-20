@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:02:41 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/18 11:45:33 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/19 19:18:52 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	read_line(t_minishell *mini)
 	}
 }
 
-int		main(int ac, char **av, char **env)
+int	main(int ac, char **av, char **env)
 {
 	t_minishell	mini;
 
