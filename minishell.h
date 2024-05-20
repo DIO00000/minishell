@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:46:47 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/15 22:28:47 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/20 22:15:45 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,12 +122,13 @@ void    cd_build(char **cmd, t_minishell *mini);
 void	pwd_build(char *pwd, t_minishell *mini);
 void	echo_build(char	*cmd);
 t_list	*fill_env(char **origin_env, t_list *data, t_minishell *mini);
-void	env_build(t_list *data, t_minishell *mini, char *cmd);
+void	env_build(t_list *data, char *cmd);
 void	export_build(char **var, t_list **data);
 void	unset_build(char **var, t_list **data);
 void	indexer(t_list **data);
 t_list	*var_finder(char *var, t_list **data);
-void	ft_shlvl(t_list **data);
+void	ft_shlvl(t_list *data, t_minishell *m);
+void	ft_pwd(t_list	*data, t_minishell *m);
 
 // Excuting
 
@@ -142,14 +143,16 @@ char	*where_path(t_list *data);
 size_t	ft_strlen(char *s);
 void	free_handler(char **str);
 int		ft_strncmp(char *s1, char *s2, size_t n);
-void	ft_here_doc(char *ok, int end[]);
+void	ft_here_doc(t_pex *pex, char *here);
 int		count_words(char *str, char c);
 void	special_cases(char **lines, char **env);
 void    handler(void);
 void    sig_quit(int    signum);
 void    sig_init(int    signum);
-char	**first_red(char **token, int end[]);
+char	**first_red(char **token);
 char	**last_red(char *line);
+void	last_cmd(int end[], char *line, t_list **data, t_minishell *mini);
+void	more_commands(t_pex *pex, t_list **data, t_minishell *mini);
 
 //readline
 
@@ -197,7 +200,5 @@ int		ft_isqoute(char c);
 int		get_qoute_index(char *str, int i);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memmove(void *dst, void *src, size_t len);
-
-
 
 #endif

@@ -6,11 +6,21 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 10:47:15 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/13 18:46:39 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/20 23:23:13 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+t_list	*empty_env(t_list *data, t_minishell *mini)
+{
+	ft_lstadd_back(&data, ft_lstnew(mini->defult_path));
+	ft_lstadd_back(&data, ft_lstnew("OLDPWD"));
+	ft_lstadd_back(&data, ft_lstnew(ft_strjoin("PWD=", mini->curr_dir)));
+	ft_lstadd_back(&data, ft_lstnew("SHLVL=1"));
+	ft_lstadd_back(&data, ft_lstnew("_=/usr/bin/env"));
+	return (data);
+}
 
 t_list	*fill_env(char **origin_env, t_list *data, t_minishell *mini)
 {
@@ -20,12 +30,12 @@ t_list	*fill_env(char **origin_env, t_list *data, t_minishell *mini)
 
 	i = -1;
 	if (!origin_env[0])
+		data = empty_env(data, mini);
+	else
 	{
-		mini->new_env = ft_split(mini->defult_path, ' ');
-		return (ft_lstadd_back(&data, ft_lstnew(mini->defult_path)), data);
+		while (origin_env[++i])
+			ft_lstadd_back(&data, ft_lstnew(origin_env[i]));
 	}
-	while (origin_env[++i])
-		ft_lstadd_back(&data, ft_lstnew(origin_env[i]));
 	tmp = data;
 	ctmp = tmp->env;
 	while (tmp->next)
@@ -39,43 +49,58 @@ t_list	*fill_env(char **origin_env, t_list *data, t_minishell *mini)
 	return (data);
 }
 
-void	env_build(t_list *data, t_minishell *mini, char *cmd)
+void	env_build(t_list *data, char *cmd)
 {
 	if (cmd)
 	{
 		printf("env: %s: No such file or directory\n", cmd);
 		return ;
 	}
-	if (!ft_strncmp(data->env, "SECURITYSESSIONID", 17))
+	if (!ft_strncmp(data->env, "PATH=", 5))
 		data = data->next;
-	if (data && ft_strncmp(data->env, "PATH=", 5))
+	while (data)
 	{
-		while (data)
-		{
-			if (ft_strchr(data->env, '='))
-				printf("%s\n", data->env);
-			data = data->next;
-		}
-	}
-	else
-	{
-		if (mini->last_dir)
-			printf("OLDPWD=%s\n", mini->last_dir);
-		(printf("PWD=%s\n", mini->curr_dir));
-		printf("_=%s\n", mini->cmd_path);
+		if (ft_strchr(data->env, '='))
+			printf("%s\n", data->env);
+		data = data->next;
 	}
 }
 
-void	ft_shlvl(t_list **data)
+void	ft_shlvl(t_list *data, t_minishell *m)
 {
 	t_list	*tmp;
 	int		level;
 	char	**var;
+	char	*ctmp;
+	char	*str;
+	int		i;
 
-	tmp = var_finder("SHLVL", data);
+	i = 0;
+	tmp = var_finder("SHLVL", &data);
 	var = ft_split(tmp->env, '=');
 	level = ft_atoi(var[1]) + 1;
 	tmp->env = ft_strjoin("SHLVL=", ft_itoa(level));
-	printf("--->%s\n", tmp->env);
-	free_handler(var);
+	tmp = data;
+	ctmp = tmp->env;
+	while (tmp->next)
+	{
+		str = ft_strjoin_three(ctmp, " ",tmp->next->env);
+		if (i)
+			free(ctmp);
+		ctmp = str;
+		tmp = tmp->next;
+		i++;
+	}
+	m->new_env = ft_split(ctmp, ' ');
+	(free_handler(var), free(ctmp));
+}
+
+void	ft_pwd(t_list	*data, t_minishell *m)
+{
+	t_list	*tmp;
+	
+	tmp = var_finder("PWD", &data);
+	tmp->env = ft_strjoin("PWD=", m->curr_dir);
+	tmp = var_finder("OLDPWD", &data);
+	tmp->env = ft_strjoin("OLDPWD=", m->last_dir);
 }

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 04:28:13 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/13 20:05:35 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/20 23:13:05 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 t_list	*minishell_init(t_minishell *m, t_list *data, char **env)
 {
-	data = fill_env(env, data, m);
-	m->last_dir = NULL;
 	m->curr_dir = getcwd(NULL, 0);
+	m->last_dir = NULL;
 	m->defult_path = malloc(90 * sizeof(char));
 	m->defult_path = "PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:\
 /usr/local/munki:/Library/Apple/usr/bin";
+	data = fill_env(env, data, m);
 	m->pids = NULL;
 	m->env_status = 0;
 	m->syntax = 0;
@@ -29,7 +29,7 @@ t_list	*minishell_init(t_minishell *m, t_list *data, char **env)
 	m->cmd_path = "./minishell";
 	m->trimed_cmd = NULL;
 	m->exit_status = 0;
-	ft_shlvl(&data);
+	ft_shlvl(data, m);
 	return (data);
 }
 

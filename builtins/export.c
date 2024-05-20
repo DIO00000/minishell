@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:45:00 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/04 19:37:16 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/20 23:21:55 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,21 @@ void	add_variable(char *var, t_list **data, char **sps, int i)
 	}
 }
 
+void	creat_var(char **var, t_list **data, int i)
+{
+	char	**sps;
+
+	while (var[++i])
+	{
+		sps = ft_split(var[i], '=');
+		(add_variable(var[i], data, sps, ft_strlen(sps[0])), indexer(data));
+		free_handler(sps);
+	}
+}
+
 void	export_build(char **var, t_list **data)
 {
 	int		i;
-	char	**sps;
 	t_list	*tmp;
 
 	tmp = *data;
@@ -91,16 +102,11 @@ void	export_build(char **var, t_list **data)
 			tmp = *data;
 			while (tmp)
 			{
-				(tmp->index == i) && (printf("declare -x %s\n", tmp->env));
+				if (tmp->index == i && ft_strncmp(tmp->env, "PATH=/usr", 9))
+					printf("declare -x %s\n", tmp->env);
 				tmp = tmp->next;
 			}
 		}
 	}
-	i = 0;
-	while (var[++i])
-	{
-		sps = ft_split(var[i], '=');
-		(add_variable(var[i], data, sps, ft_strlen(sps[0])), indexer(data));
-		free_handler(sps);
-	}
+	creat_var(var, data, 0);
 }

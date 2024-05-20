@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/15 23:54:05 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/20 23:38:29 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ char	*path_check(char *command, t_list *data, int end[])
 	}
 	(free_handler(paths), free(cmnd), fds_closer(end));
 	write(2, "command not found\n", 19);
-	return (NULL);
+	exit (127);
 }
 
-void	middle_commands(t_pex *pex, char *line, t_list **data, t_minishell *mini)
+void	middle_commands(t_pex *pex, char *line, t_list **data, t_minishell *m)
 {
 	char	*path;
 	char	**commands;
@@ -55,7 +55,7 @@ void	middle_commands(t_pex *pex, char *line, t_list **data, t_minishell *mini)
 		if (dup2(pex->end[1], 1) == -1)
 			return (fds_closer(pex->end), exit(1));
 		fds_closer(pex->end);
-		execve(path, commands, mini->new_env);
+		execve(path, commands, m->new_env);
 		exit(1);
 	}
 }
@@ -87,16 +87,18 @@ void	first_cmd(t_list **data, t_pex *pex, t_minishell *mini)
 
 	if (fork() == 0)
 	{
-		if (!(commands = ft_split(pex->split_line[0], ' ')))
+		commands = ft_split(pex->split_line[0], ' ');
+		if (!commands)
 			(fds_closer(pex->end), exit(1));
-		if (!ft_strncmp(pex->split_line[0], "<", 1) && commands[2])
+		if (!ft_strncmp(commands[0], "<", 2) && commands[2])
 		{
 			path_check(commands[2], *data, pex->end);
-			commands = first_red(commands, pex->end);
+			commands = first_red(commands);
 		}
-		if (!(path = path_check(commands[pex->i - 1], *data, pex->end)))
+		path = path_check(commands[pex->i - 1], *data, pex->end);
+		if (!path)
 			(fds_closer(pex->end), exit(1));
-		if ((pex->lines > 1 && pex->i == 1 ) || (pex->lines == 1 && pex->i == 2))
+		if ((pex->lines > 1 && pex->i == 1) || (pex->lines == 1 && pex->i == 2))
 			if (dup2(pex->end[1], 1) == -1)
 				return (fds_closer(pex->end), exit(1));
 		fds_closer(pex->end);
@@ -104,24 +106,29 @@ void	first_cmd(t_list **data, t_pex *pex, t_minishell *mini)
 	}
 }
 
-void	more_commands(t_pex pex, t_list **data, t_minishell *mini)
+void	more_commands(t_pex *pex, t_list **data, t_minishell *mini)
 {
-	if (pex.lines > 1)
+	int	status;
+
+	if (pex->lines > 1)
 	{
-		pex.input = pex.end[0];
-		while (pex.split_line[pex.i + 1])
+		pex->input = pex->end[0];
+		while (pex->split_line[pex->i + 1])
 		{
-			if (pipe(pex.end) == -1)
+			if (pipe(pex->end) == -1)
 				(write(2, "pipe failed", 11), exit(1));
-			(middle_commands(&pex, pex.split_line[pex.i], data, mini), close(pex.end[1]));
-			pex.input = pex.end[0];
-			pex.i++;
+			middle_commands(pex, pex->split_line[pex->i], data, mini);
+			close(pex->end[1]);
+			close(pex->input);
+			pex->input = pex->end[0];
+			pex->i++;
 		}
-		last_cmd(pex.end, pex.split_line[pex.i], data, mini);
+		last_cmd(pex->end, pex->split_line[pex->i], data, mini);
 	}
-	(free_handler(pex.split_line), fds_closer(pex.end));
-	while (wait(NULL) == 0)
+	(free_handler(pex->split_line), fds_closer(pex->end));
+	while (!wait(&status))
 		;
+	mini->exit_status = (status >> 8) & 0xFF;
 }
 
 void	single_command(char *line, t_minishell *mini, t_list **data)
@@ -131,16 +138,16 @@ void	single_command(char *line, t_minishell *mini, t_list **data)
 	pex.i = 1;
 	pex.split_line = ft_split(line, '|');
 	if (build_check(pex.split_line[0], mini, data))
-			return ;
-	// special_cases(pex.split_line, env);
+		return ;
 	pex.lines = count_words(line, '|');
 	if (pipe(pex.end) == -1)
 		(write(2, "Error\n", 7), exit(1));
-	(first_cmd(data, &pex, mini), close(pex.end[1]));
-	// if (!ft_strncmp(line, "<<", 2))
-	// 	(ft_here_doc(pex.end), close(pex.end[1]), pex.i++);
-	// else
-	more_commands(pex, data, mini);
+	if (!ft_strncmp(line, "<<", 2))
+		(ft_here_doc(&pex, pex.split_line[0]), close(pex.end[1]));
+	else
+		(first_cmd(data, &pex, mini), close(pex.end[1]));
+	more_commands(&pex, data, mini);
+	close(pex.end[0]);
 }
 
 void	read_command(t_minishell *mini, t_list **data)
