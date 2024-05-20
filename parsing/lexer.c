@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:45:19 by oelharbi          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/05/19 19:16:59 by oelharbi         ###   ########.fr       */
+=======
+/*   Updated: 2024/05/18 15:23:00 by hbettal          ###   ########.fr       */
+>>>>>>> 7a4cafab5450f5024d510a8b8b8b318734d9de93
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,3 +128,4 @@ void	lexer(t_minishell *minishell)
 	else
 		add_2d_spaces(&minishell, space_counter);
 }
+
