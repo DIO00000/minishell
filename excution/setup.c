@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/20 23:38:29 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/21 17:38:06 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	first_cmd(t_list **data, t_pex *pex, t_minishell *mini)
 		commands = ft_split(pex->split_line[0], ' ');
 		if (!commands)
 			(fds_closer(pex->end), exit(1));
-		if (!ft_strncmp(commands[0], "<", 2) && commands[2])
+		if (!ft_strncmp(commands[0], "<", 2) && commands[1] && commands[2])
 		{
 			path_check(commands[2], *data, pex->end);
 			commands = first_red(commands);
