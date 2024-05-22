@@ -1,8 +1,21 @@
 {
 	"files.associations": {
+<<<<<<< HEAD
 		"__locale": "c",
 		"minishell_hrb.h": "c",
 		"minishell.h": "c",
 		"errno.h": "c"
+=======
+		"minishell.h": "c",
+		"__bit_reference": "c",
+		"__hash_table": "c",
+		"__split_buffer": "c",
+		"array": "c",
+		"initializer_list": "c",
+		"string": "c",
+		"string_view": "c",
+		"unordered_map": "c",
+		"vector": "c"
+>>>>>>> Hamza
 	}
 }
