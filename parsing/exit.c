@@ -6,11 +6,27 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:46:01 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/20 16:47:28 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:24:25 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	free_table(t_minishell *mini)
+{
+	int			i;
+
+	i = 0;
+	if (!mini->final_cmd)
+		return ;
+	while (i < mini->list_size)
+	{
+		if (mini->final_cmd[i].cmd)
+			free(mini->final_cmd[i].cmd);
+		i++;
+	}
+	free(mini->final_cmd);
+}
 
 void	free_strings(char **strings)
 {
@@ -37,17 +53,13 @@ void	print_error(char *var, char *msg)
 	ft_putstr_fd("\n", 2);
 }
 
-
 void	cleanup(t_minishell *mini, int exit_status)
 {
-	(void)mini;
-	(void)exit_status;
-
-	// if (mini->table)
-	// {
-	// 	free_table(mini);
-	// 	mini->table = NULL;
-	// }
+	if (mini->final_cmd)
+	{
+		free_table(mini);
+		mini->final_cmd = NULL;
+	}
 	if (mini->lst)
 		lstclear(&mini->lst);
 	if (mini->cmd)
@@ -67,7 +79,6 @@ void	cleanup(t_minishell *mini, int exit_status)
 
 void	ft_exit(t_minishell *mini, char *cmd, char *str, int ext)
 {
-	(void)mini;
 	struct stat	file;
 
 	if (ext == 13)
@@ -80,6 +91,8 @@ void	ft_exit(t_minishell *mini, char *cmd, char *str, int ext)
 		print_error(cmd, str);
 	if (mini)
 		cleanup(mini, ext);
+	if (mini->trm_prompt)
+		free(mini->input);
 	if (ext)
 		exit(ext);
 }

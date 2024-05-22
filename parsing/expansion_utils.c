@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:43:05 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/22 12:48:41 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:08:37 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,9 @@ char	*remove_str(char **str, char *env, int start, int len)
 	int		i;
 
 	(1 == 1) && (j = 0, i = 0);
-	result = zyalloc(((ft_strlen(*str) - len - 1)\
-		+ ft_strlen(env) + 1), 'a', true);
+	result = malloc((ft_strlen(*str) - len - 1) + ft_strlen(env) + 1);
+	if (!result)
+		return (NULL);
 	while ((*str)[i])
 	{
 		if (i == start - 1)

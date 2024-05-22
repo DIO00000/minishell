@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/22 12:42:50 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:26:43 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@
 
 // #define MINI "\033[1;36m\033[1;32m➜ \033[0m\033[1;33mminishell\033[2;30m -\033[0m\033[1;36m\033[1;32m ✘ \033[0m"
 #define GREEN_ARROW "\001\e[1m\e[32m➜  \001\e[1m\e[34m\002"
-#define SPC "\001\e[1m\e[33m\002 "
-#define X "\001\e[1m\e[33m\002 ✘ \001\e[0m\002"
+#define X "\001\e[1m\e[33m\002 minishell ✘ \001\e[0m\002"
 # define SPACES " \t\n\v\r\f"
 
 
