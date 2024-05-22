@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:15:24 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/22 12:33:08 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:13:09 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,3 +46,4 @@ void	sig_quit(int signum)
 	ft_putnbr_fd(signum, 2);
 	ft_putchar_fd('\n', 2);
 }
+
