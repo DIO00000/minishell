@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/22 13:26:43 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:38:34 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # include <sys/types.h>
 # include <dirent.h>
 # include <stdarg.h>
-# include "libft/libft.h"
+// # include "libft/libft.h"
 # include <stdbool.h>
 
 #define PIPE 1
@@ -49,9 +49,10 @@
 
 
 // #define MINI "\033[1;36m\033[1;32m➜ \033[0m\033[1;33mminishell\033[2;30m -\033[0m\033[1;36m\033[1;32m ✘ \033[0m"
-#define GREEN_ARROW "\001\e[1m\e[32m➜  \001\e[1m\e[34m\002"
-#define X "\001\e[1m\e[33m\002 minishell ✘ \001\e[0m\002"
+# define GREEN_ARROW "\001\e[1m\e[32m➜  \001\e[1m\e[34m\002"
+# define X "\001\e[1m\e[33m\002 minishell ✘ \001\e[0m\002"
 # define SPACES " \t\n\v\r\f"
+# define SPC "\001\e[1m\e[33m\002 "
 
 
 typedef enum e_parse_state
@@ -195,5 +196,24 @@ int			get_cmd_size(t_minishell *mini, t_parser *curr, int i);
 t_parser	*get_pipe(t_parser *lst, int i);
 void		ft_close_fds(t_minishell *mini);
 int			open_files(t_minishell *mini, int i);
+
+
+void	ft_putchar_fd(char c, int fd);
+void	ft_putnbr_fd(int n, int fd);
+void	ft_putstr_fd(char *s, int fd);
+char	**ft_split(char *s, char *c);
+size_t	ft_strlen(const char *s);
+size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+void	*ft_memmove(void *dst, void *src, size_t len);
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_strdup(const char *s1);
+char	*ft_substr(const char *s, unsigned int start, size_t len);
+int		ft_isalnum(int c);
+int		ft_isalpha(int c);
+char	*ft_itoa(int n);
+int		ft_isdigit(int c);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif

@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 13:04:47 by oelharbi          #+#    #+#             */
-/*   Updated: 2023/12/01 09:25:25 by oelharbi         ###   ########.fr       */
+/*   Created: 2023/10/31 10:53:26 by oelharbi          #+#    #+#             */
+/*   Updated: 2024/05/22 15:28:01 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+int	ft_isdigit(int c)
 {
-	t_list	*head;
-
-	head = lst;
-	while (head != NULL)
-	{
-		f(head->content);
-		head = head->next;
-	}
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
 }

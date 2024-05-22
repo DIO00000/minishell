@@ -1,6 +1,8 @@
 {
 	"files.associations": {
 		"__locale": "c",
-		"minishell_hrb.h": "c"
+		"minishell_hrb.h": "c",
+		"minishell.h": "c",
+		"errno.h": "c"
 	}
 }

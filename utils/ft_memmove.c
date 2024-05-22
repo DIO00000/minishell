@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 14:59:39 by oelharbi          #+#    #+#             */
-/*   Updated: 2023/12/01 15:29:55 by oelharbi         ###   ########.fr       */
+/*   Created: 2023/11/01 19:32:12 by oelharbi          #+#    #+#             */
+/*   Updated: 2024/05/22 15:26:14 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_memmove(void *dst, void *src, size_t len)
 {
-	void	*m;
-	size_t	check;
+	char	*dest;
+	char	*source;
 
-	check = count * size;
-	if (size != 0 && check / size != count)
+	if (!dst && !src)
 		return (NULL);
-	m = malloc(count * size);
-	if (m == NULL)
-		return (NULL);
-	ft_bzero(m, (count * size));
-	return (m);
+	dest = (char *)dst;
+	source = (char *)src;
+	if (dst < src)
+		ft_memcpy(dst, src, len);
+	else if (dst > src)
+	{
+		while (len > 0)
+		{
+			len--;
+			dest[len] = source[len];
+		}
+	}
+	return (dst);
 }

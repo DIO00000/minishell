@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 10:53:26 by oelharbi          #+#    #+#             */
-/*   Updated: 2023/11/10 10:32:49 by oelharbi         ###   ########.fr       */
+/*   Created: 2023/11/08 16:51:58 by oelharbi          #+#    #+#             */
+/*   Updated: 2024/05/22 15:26:35 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-int	ft_isdigit(int c)
+char	*ft_strdup(const char *s1)
 {
-	if (c >= 48 && c <= 57)
-		return (1);
-	return (0);
+	char	*s;
+	size_t	i;
+	char	*str;
+
+	s = (char *)s1;
+	i = 0;
+	str = malloc(ft_strlen(s) + 1);
+	if (str == NULL)
+		return (NULL);
+	while (s[i])
+	{
+		str[i] = s[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

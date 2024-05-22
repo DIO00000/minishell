@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 11:59:10 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/18 11:34:16 by oelharbi         ###   ########.fr       */
+/*   Created: 2023/11/10 09:09:00 by oelharbi          #+#    #+#             */
+/*   Updated: 2024/05/22 15:26:24 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_putstr_fd(char *s, int fd)
 {
-	t_list	*delete;
-
-	if (!lst || !del)
+	if (!s)
 		return ;
-	while (*lst)
-	{
-		delete = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = delete;
-	}
-	free(*lst);
-	*lst = NULL;
+	write (fd, s, ft_strlen(s));
 }

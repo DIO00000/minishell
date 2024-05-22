@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_hrb.c                                    :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:02:41 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/22 15:01:14 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:45:21 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	mini_init(t_minishell *mini)
 
 void	read_line(t_minishell *mini)
 {
-	// mini->input = readline(mini->trm_prompt);
-	mini->input = readline(GREEN_ARROW X);
+	mini->input = readline(mini->trm_prompt);
+	// mini->input = readline(GREEN_ARROW X);
 	if (mini->input)
 		add_history(mini->input);
 	else
@@ -51,7 +51,7 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		signals(&mini.term);
-		// prompt_custom(&mini);
+		prompt_custom(&mini);
 		read_line(&mini);
 		lexer(&mini);
 		parsing(&mini);

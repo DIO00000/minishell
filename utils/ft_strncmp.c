@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 10:39:30 by oelharbi          #+#    #+#             */
-/*   Updated: 2023/11/27 16:06:57 by oelharbi         ###   ########.fr       */
+/*   Created: 2023/11/07 21:20:38 by oelharbi          #+#    #+#             */
+/*   Updated: 2024/05/22 15:26:48 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	unsigned int	i;
+	unsigned char	*str1;
+	unsigned char	*str2;
+	size_t			i;
 
-	if (!s || !f)
-		return ;
 	i = 0;
-	while (s[i])
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	while (n > 0 && (str1[i] || str2[i]))
 	{
-		(*f)(i, &s[i]);
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
 		i++;
+		n--;
 	}
+	return (0);
 }

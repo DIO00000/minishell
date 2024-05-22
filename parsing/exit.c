@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:46:01 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/22 13:24:25 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:46:41 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ void	ft_exit(t_minishell *mini, char *cmd, char *str, int ext)
 		print_error(cmd, str);
 	if (mini)
 		cleanup(mini, ext);
-	if (mini->trm_prompt)
-		free(mini->input);
 	if (ext)
 		exit(ext);
 }

@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 19:32:12 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/20 16:38:06 by oelharbi         ###   ########.fr       */
+/*   Created: 2023/11/11 07:45:28 by oelharbi          #+#    #+#             */
+/*   Updated: 2024/05/22 15:38:20 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-void	*ft_memmove(void *dst, void *src, size_t len)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*dest;
-	char	*source;
+	char	*string;
+	int		i;
+	int		j;
 
-	if (!dst && !src)
+	if (!s1 && !s2)
 		return (NULL);
-	dest = (char *)dst;
-	source = (char *)src;
-	if (dst < src)
-		ft_memcpy(dst, src, len);
-	else if (dst > src)
-	{
-		while (len > 0)
-		{
-			len--;
-			dest[len] = source[len];
-		}
-	}
-	return (dst);
+	if (!s1)
+		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
+	i = ft_strlen(s1);
+	j = ft_strlen(s1) + ft_strlen(s2) + 1;
+	string = malloc(j);
+	if (string == NULL)
+		return (NULL);
+	ft_strlcpy(string, s1, i + 1);
+	ft_strlcat(string, s2, j);
+	return (string);
 }

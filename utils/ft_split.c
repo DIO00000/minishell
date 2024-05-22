@@ -6,11 +6,11 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 10:12:29 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/20 16:38:33 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:26:30 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
 int	is_thechar(char s, char *c)
 {

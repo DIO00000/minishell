@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 09:00:32 by oelharbi          #+#    #+#             */
-/*   Updated: 2023/12/01 09:06:01 by oelharbi         ###   ########.fr       */
+/*   Created: 2023/11/01 10:45:13 by oelharbi          #+#    #+#             */
+/*   Updated: 2024/05/22 15:26:10 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-int	ft_lstsize(t_list *lst)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	int	count;
+	char	*tp_dest;
+	char	*tp_src;
+	size_t	i;
 
-	count = 0;
-	if (!lst)
-		return (0);
-	while (lst)
+	tp_dest = (char *) dst;
+	tp_src = (char *) src;
+	i = 0;
+	if (tp_dest == NULL && tp_src == NULL)
+		return (NULL);
+	while (i < n)
 	{
-		count++;
-		lst = lst->next;
+		tp_dest[i] = tp_src[i];
+		i++;
 	}
-	return (count);
+	return (tp_dest);
 }

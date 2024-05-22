@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 08:29:33 by oelharbi          #+#    #+#             */
-/*   Updated: 2023/11/12 16:40:04 by oelharbi         ###   ########.fr       */
+/*   Created: 2023/11/09 15:56:03 by oelharbi          #+#    #+#             */
+/*   Updated: 2024/05/22 15:26:20 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-	if (!s)
-		return ;
-	ft_putstr_fd(s, fd);
-	ft_putchar_fd('\n', fd);
+	long	s;
+
+	s = (long)n;
+	if (s < 0)
+	{
+		ft_putchar_fd('-', fd);
+		s *= -1;
+	}
+	if (s / 10)
+		ft_putnbr_fd((s / 10), fd);
+	ft_putchar_fd((s % 10) + 48, fd);
 }
