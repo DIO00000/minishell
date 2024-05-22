@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:15:24 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/20 16:37:16 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:33:08 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,11 @@ void	sig_init(int signum)
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
+}
+
+void	sig_quit(int signum)
+{
+	ft_putstr_fd("Quit: ", 2);
+	ft_putnbr_fd(signum, 2);
+	ft_putchar_fd('\n', 2);
 }

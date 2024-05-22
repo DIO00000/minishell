@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 23:54:13 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/20 16:35:13 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:07:59 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ void	lstclear(t_parser **lst)
 	while (current)
 	{
 		next = current->next;
-		free(current->string);
-		free(current);
+		(free(current->string), free(current));
 		current = next;
 	}
 	*lst = NULL;

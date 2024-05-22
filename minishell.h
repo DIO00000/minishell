@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/20 13:14:29 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:42:50 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include <dirent.h>
 # include <stdarg.h>
 # include "libft/libft.h"
+# include <stdbool.h>
 
 #define PIPE 1
 #define REDIN 2
@@ -42,6 +43,7 @@
 #define FILE 8
 #define ERROR 9
 #define APPEND 10
+#define QUOTE_ERR 11
 
 
 
@@ -62,6 +64,13 @@ typedef enum e_parse_state
 	IN_HEREDOC
 }	t_parse_state;
 
+typedef struct s_garbage
+{
+    void				*adr;
+    bool				is_free;
+    struct s_garbage	*next;
+}    t_garbage;
+
 typedef struct s_exp_helper
 {
 	int		exp_counter;
@@ -78,20 +87,20 @@ typedef struct s_parser
 	struct s_parser	*next;
 }	t_parser;
 
-//	COMMAND_TABLE (PIPELINE)
-typedef struct s_table
+typedef struct s_final_st
 {
-	char		**line;
-	int			infd;
-	int			outfd;
-	t_parser	*redin;
-	t_parser	*redout;
-}	t_table;
+	char		**cmd;
+	int			in_fd;
+	int			out_fd;
+	t_parser	*redirection_in;
+	t_parser	*redirection_out;
+}	t_final_st;
 
 typedef struct s_minishell
 {
 	t_parser		*lst;
-	t_table			*table;
+	t_final_st		*final_cmd;
+	int				list_size;
 	char			**cmd;
 	char			**new_env;
 	char			*cmd_path;
@@ -100,7 +109,6 @@ typedef struct s_minishell
 	char			*input;
 	int				signal;
 	int				*pids;
-	int				table_size;
 	int				env_status;
 	int				syntax;
 	struct termios	term;
@@ -121,7 +129,7 @@ char		*get_dir(t_minishell *minishell);
 void		sig_init(int signum);
 void		signals(struct termios *term);
 void		remove_c(struct termios *term);
-
+void		sig_quit(int signum);
 
 //readline
 void		read_line(t_minishell *mini);
@@ -140,7 +148,7 @@ int			get_quote_index(char *str, int i);
 char		*ft_join(char *s1, char *buff);
 
 //parsing
-void		parsing(t_minishell *mini);
+int			parsing(t_minishell *mini);
 void		classification(t_minishell *mini);
 
 //parsing_utils
@@ -165,11 +173,28 @@ void		exit_number(t_minishell *mini, char **str, int start);
 char		*remove_str(char **str, char *envvar, int start, int len);
 
 
+//sytax_error
+void	syntax_printer(char *str);
+int		systax_error(t_parser *lst);
+
+//garbage
+void	*zyalloc(size_t size, int flag, bool is_free);
+
+
 //test
 
 void		ft_exit(t_minishell *mini, char *cmd, char *str, int ext);
 void		free_strings(char **strings);
+void		print_error(char *var, char *msg);
 
+//struct_to_execute
 
+int			lstsize(t_parser *lst);
+int			struct_cmd(t_minishell *mini);
+int			set_cmd_line(t_minishell *mini, int i);
+int			get_cmd_size(t_minishell *mini, t_parser *curr, int i);
+t_parser	*get_pipe(t_parser *lst, int i);
+void		ft_close_fds(t_minishell *mini);
+int			open_files(t_minishell *mini, int i);
 
 #endif

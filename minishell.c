@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:02:41 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/20 16:14:40 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:50:05 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 void	mini_init(t_minishell *mini)
 {
 	mini->input = NULL;
+	mini->exit_status = 0;
 	mini->env_status = 0;
 	mini->pids = NULL;
 	mini->cmd = NULL;
-	mini->table = NULL;
+	mini->final_cmd = NULL;
 	mini->new_env = NULL;
 	mini->trm_prompt = NULL;
 	mini->last_dir = NULL;

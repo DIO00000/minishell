@@ -6,13 +6,13 @@
 #    By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:05:04 by oelharbi          #+#    #+#              #
-#    Updated: 2024/05/20 15:52:29 by oelharbi         ###   ########.fr        #
+#    Updated: 2024/05/22 12:54:18 by oelharbi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 
 READLINE_INC = -I$(shell brew --prefix readline)/include
 
@@ -24,7 +24,7 @@ LIBFT = ./libft/libft.a
 
 HEADER = minishell.h ./libft/libft.h
 
-OBJ = minishell.o signals.o parsing/lexer.o parsing/exit.o parsing/lexer_utils.o parsing/prompt.o parsing/parsing.o parsing/parsing_utils.o parsing/classification.o parsing/expansion.o parsing/expansion_utils.o
+OBJ = minishell.o signals.o parsing/lexer.o parsing/exit.o parsing/lexer_utils.o parsing/prompt.o parsing/parsing.o parsing/parsing_utils.o parsing/classification.o parsing/expansion.o parsing/expansion_utils.o parsing/syntax_error.o parsing/struct_to_execute_utils.o parsing/struct_to_execute.o parsing/garbage_collector.o
 
 all: $(NAME)
 	@echo "\033[1;32mCompilation Completed Successfully! ✅\033[0;m"

@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:46:01 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/18 11:35:28 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:47:28 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_exit(t_minishell *mini, char *cmd, char *str, int ext)
 	struct stat	file;
 
 	if (ext == 13)
-	{	
+	{
 		ext = 126;
 	}
 	if (stat(cmd, &file) == 0 && S_ISDIR(file.st_mode))

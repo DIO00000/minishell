@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 09:36:44 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/20 16:20:36 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/20 21:42:21 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	classification(t_minishell *mini)
 			if (!current->string)
 				ft_exit(mini, NULL, NULL, 12);
 		}
-		(count_quotes == -1) && (current->class = ERROR);
+		(count_quotes == -1) && (current->class = QUOTE_ERR);
 		if (!current->class)
 			some_thing_else(&state, current);
 		current = current->next;

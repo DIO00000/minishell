@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:45:19 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/20 16:34:09 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/20 21:42:01 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,11 @@ void	add_2d_spaces(t_minishell **mini, int space_counter)
 {
 	(*mini)->input = put_spaces(&(*mini)->input, space_counter);
 	if (!(*mini)->input)
-		ft_exit((*mini), NULL, NULL, ENOMEM);
+		ft_exit((*mini), NULL, NULL, 12);
 	(*mini)->cmd = ft_split((*mini)->input, SPACES);
 	(free((*mini)->input), (*mini)->input = NULL);
 	if (!(*mini)->cmd)
-		ft_exit((*mini), NULL, NULL, ENOMEM);
+		ft_exit((*mini), NULL, NULL, 12);
 }
 
 void	lexer(t_minishell *minishell)
@@ -112,7 +112,7 @@ void	lexer(t_minishell *minishell)
 		minishell->cmd = ft_split(minishell->input, SPACES);
 		(free(minishell->input), minishell->input = NULL);
 		if (!minishell->cmd)
-			ft_exit(minishell, NULL, NULL, ENOMEM);
+			ft_exit(minishell, NULL, NULL, 12);
 	}
 	else
 		add_2d_spaces(&minishell, space_counter);
