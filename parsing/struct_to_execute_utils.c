@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:34:46 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/22 12:53:53 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:20:46 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 int	lstsize(t_parser *lst)
 {
-	int	pipe_line;
+	int			pipe_line;
+	t_parser	*curr;
 
 	pipe_line = 1;
-	while (lst)
+	curr = lst;
+	while (curr)
 	{
-		if (lst->class == PIPE)
+		if (curr->class == PIPE)
 			pipe_line++;
-		lst = lst->next;
+		curr = curr->next;
 	}
 	return (pipe_line);
 }
@@ -33,12 +35,12 @@ int	set_cmd_line(t_minishell *mini, int i)
 	int			index;
 
 	curr = get_pipe(mini->lst, i);
-	cmd_size = get_cmd_size(mini, curr, i);
+	cmd_size = get_cmd_size(mini, i);
 	mini->final_cmd[i].cmd = malloc(sizeof(char *) * (cmd_size + 1));
 	if (!mini->final_cmd[i].cmd)
 		return (0);
 	index = 0;
-	while (index < i)
+	while (index < cmd_size)
 	{
 		if (curr->class == ARGUMENT || curr->class == COMMAND)
 			mini->final_cmd[i].cmd[index++] = curr->string;
@@ -48,13 +50,13 @@ int	set_cmd_line(t_minishell *mini, int i)
 	return (1);
 }
 
-int	get_cmd_size(t_minishell *mini, t_parser *curr, int i)
+int	get_cmd_size(t_minishell *mini, int i)
 {
-	int	index;
-	int	cmd_size;
+	int			cmd_size;
+	t_parser	*curr;
 
-	index = 0;
 	cmd_size = 0;
+	curr = get_pipe(mini->lst, i);
 	while (curr && curr->class != PIPE)
 	{
 		mini->final_cmd[i].in_fd = -2;
@@ -72,18 +74,20 @@ int	get_cmd_size(t_minishell *mini, t_parser *curr, int i)
 
 t_parser	*get_pipe(t_parser *lst, int i)
 {
-	int	index;
+	int			index;
+	t_parser	*curr;
 
 	index = 0;
+	curr = lst;
 	if (i == 0)
-		return (lst);
-	while (lst && index < i)
+		return (curr);
+	while (curr && index < i)
 	{
-		if (lst->class == PIPE)
+		if (curr->class == PIPE)
 			index++;
-		lst = lst->next;
+		curr = curr->next;
 	}
-	return (lst);
+	return (curr);
 }
 
 int	open_files(t_minishell *mini, int i)
@@ -98,7 +102,7 @@ int	open_files(t_minishell *mini, int i)
 		if (curr->class == HERDOC)
 		{
 			// her_fd = ft_here_doc(mini, curr->next); //Hamza
-			if (mini->env_status == 7)
+			if (mini->exit_status == 7)
 				return (close(her_fd), ft_close_fds(mini), 0);
 			if (curr == mini->final_cmd[i].redirection_in)
 				mini->final_cmd[i].in_fd = her_fd;

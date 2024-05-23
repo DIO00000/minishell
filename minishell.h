@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/22 15:38:34 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:36:50 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include <stdarg.h>
 // # include "libft/libft.h"
 # include <stdbool.h>
+# include <fcntl.h>
 
 #define PIPE 1
 #define REDIN 2
@@ -192,7 +193,7 @@ void		print_error(char *var, char *msg);
 int			lstsize(t_parser *lst);
 int			struct_cmd(t_minishell *mini);
 int			set_cmd_line(t_minishell *mini, int i);
-int			get_cmd_size(t_minishell *mini, t_parser *curr, int i);
+int			get_cmd_size(t_minishell *mini, int i);
 t_parser	*get_pipe(t_parser *lst, int i);
 void		ft_close_fds(t_minishell *mini);
 int			open_files(t_minishell *mini, int i);
@@ -215,5 +216,12 @@ int		ft_isalpha(int c);
 char	*ft_itoa(int n);
 int		ft_isdigit(int c);
 char	*ft_strjoin(char const *s1, char const *s2);
+
+
+void	manage_fds(t_minishell *mini);
+void	open_fds(t_minishell *mini, int i);
+int		open_infd(t_parser *curr, t_parser *redirecyion_in);
+int		open_outfd(t_parser *curr, t_parser *redirecyion_out);
+
 
 #endif

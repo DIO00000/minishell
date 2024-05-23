@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:30:47 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/22 12:54:38 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:37:30 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int	struct_cmd(t_minishell *mini)
 			return (1);
 		i++;
 	}
-	// manage_fds(mini);
+	manage_fds(mini);
 	return (1);
 }

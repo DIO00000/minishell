@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 23:49:43 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/22 12:34:44 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:05:53 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int	parsing(t_minishell *mini)
 	if (mini->exit_status == 7)
 		return (mini->exit_status = 1, 1);
 	signal(SIGQUIT, sig_quit);
-	//excute
+	// excute(mini);
 	return (0);
 }
