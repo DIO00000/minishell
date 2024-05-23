@@ -6,7 +6,11 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:45:00 by hbettal           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/05/23 20:41:52 by oelharbi         ###   ########.fr       */
+=======
+/*   Updated: 2024/05/20 23:21:55 by hbettal          ###   ########.fr       */
+>>>>>>> 01d5301dd9f45f1c64a39a1d2ea1d0a72897f057
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +86,11 @@ void	creat_var(char **var, t_list **data, int i)
 
 	while (var[++i])
 	{
+<<<<<<< HEAD
 		sps = ft_split(var[i], "=");
+=======
+		sps = ft_split(var[i], '=');
+>>>>>>> 01d5301dd9f45f1c64a39a1d2ea1d0a72897f057
 		(add_variable(var[i], data, sps, ft_strlen(sps[0])), indexer(data));
 		free_handler(sps);
 	}

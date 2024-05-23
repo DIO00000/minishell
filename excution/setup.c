@@ -6,7 +6,11 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/05/23 22:28:11 by oelharbi         ###   ########.fr       */
+=======
+/*   Updated: 2024/05/21 17:38:06 by hbettal          ###   ########.fr       */
+>>>>>>> 01d5301dd9f45f1c64a39a1d2ea1d0a72897f057
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +91,11 @@ void	first_cmd(t_list **data, t_pex *pex, t_minishell *mini)
 
 	if (fork() == 0)
 	{
+<<<<<<< HEAD
 		commands = ft_split(pex->split_line[0], " ");
+=======
+		commands = ft_split(pex->split_line[0], ' ');
+>>>>>>> 01d5301dd9f45f1c64a39a1d2ea1d0a72897f057
 		if (!commands)
 			(fds_closer(pex->end), exit(1));
 		if (!ft_strncmp(commands[0], "<", 2) && commands[1] && commands[2])
@@ -139,7 +147,11 @@ void	single_command(char *line, t_minishell *mini, t_list **data)
 	pex.split_line = ft_split(line, "|");
 	if (build_check(pex.split_line[0], mini, data))
 		return ;
+<<<<<<< HEAD
 	pex.lines = mini->list_size;
+=======
+	pex.lines = count_words(line, '|');
+>>>>>>> 01d5301dd9f45f1c64a39a1d2ea1d0a72897f057
 	if (pipe(pex.end) == -1)
 		(write(2, "Error\n", 7), exit(1));
 	if (!ft_strncmp(line, "<<", 2))

@@ -6,7 +6,11 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 10:47:15 by hbettal           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/05/23 20:40:19 by oelharbi         ###   ########.fr       */
+=======
+/*   Updated: 2024/05/20 23:23:13 by hbettal          ###   ########.fr       */
+>>>>>>> 01d5301dd9f45f1c64a39a1d2ea1d0a72897f057
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +81,11 @@ void	ft_shlvl(t_list *data, t_minishell *m)
 
 	i = 0;
 	tmp = var_finder("SHLVL", &data);
+<<<<<<< HEAD
 	var = ft_split(tmp->env, "=");
+=======
+	var = ft_split(tmp->env, '=');
+>>>>>>> 01d5301dd9f45f1c64a39a1d2ea1d0a72897f057
 	level = ft_atoi(var[1]) + 1;
 	tmp->env = ft_strjoin("SHLVL=", ft_itoa(level));
 	tmp = data;
@@ -91,7 +99,11 @@ void	ft_shlvl(t_list *data, t_minishell *m)
 		tmp = tmp->next;
 		i++;
 	}
+<<<<<<< HEAD
 	m->new_env = ft_split(ctmp, " ");
+=======
+	m->new_env = ft_split(ctmp, ' ');
+>>>>>>> 01d5301dd9f45f1c64a39a1d2ea1d0a72897f057
 	(free_handler(var), free(ctmp));
 }
 

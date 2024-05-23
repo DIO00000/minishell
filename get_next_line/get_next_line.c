@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 22:23:18 by oelharbi          #+#    #+#             */
+<<<<<<< HEAD:get_next_line/get_next_line.c
 /*   Updated: 2024/05/23 20:21:59 by oelharbi         ###   ########.fr       */
+=======
+/*   Updated: 2024/05/20 05:00:59 by hbettal          ###   ########.fr       */
+>>>>>>> 01d5301dd9f45f1c64a39a1d2ea1d0a72897f057:lexer/get_next_line.c
 /*                                                                            */
 /* ************************************************************************** */
 
