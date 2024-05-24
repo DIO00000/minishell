@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:02:41 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/23 22:26:32 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/24 07:11:37 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,29 @@ t_list	*mini_init(t_minishell *mini, t_list *data, char **env)
 
 void	read_line(t_minishell *mini)
 {
-	// mini->input = readline(mini->trm_prompt);
-	mini->input = readline(GREEN_ARROW X);
-	if (mini->input)
-		add_history(mini->input);
+	char	*line;
+	char	**c_exit;
+	
+	mini->input = readline(mini->trm_prompt);
+	add_history(mini->input);
+	// mini->input = readline(GREEN_ARROW X);
+	if (!(c_exit = ft_split(mini->input, " ")))
+		(printf("exit\n"), exit(mini->exit_status));
+	if (isatty(0))
+	{
+		if (c_exit[0] && (!mini->input || !ft_strncmp(c_exit[0], "exit", 5)))
+		{
+			if (!c_exit[1])
+				(printf("exit\n"), free(mini->input), exit(mini->exit_status));
+			else
+				(printf("exit\n"), free(mini->input), exit(ft_atoi(c_exit[1])));
+		}
+	}
 	else
 	{
-		printf("exit\n");
-		ft_exit(mini, NULL, NULL, 0);
-		exit(mini->exit_status);
+		line = get_next_line(0);
+		mini->input = ft_strtrim(line, "\n");
+		free(line);
 	}
 }
 
@@ -62,11 +76,10 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		signals(&mini.term);
-		// prompt_custom(&mini);
+		prompt_custom(&mini);
 		read_line(&mini);
 		lexer(&mini);
-		parsing(&mini);
-		single_command((&mini)->input, &mini, &data);
+		parsing(&mini, data);
 		ft_exit(&mini, NULL, NULL, 0);
 	}
 }

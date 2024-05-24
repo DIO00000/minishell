@@ -3,22 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   build_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/23 20:39:48 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/24 00:53:37 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int    build_check(char *cmd, t_minishell *mini, t_list **data)
+int    build_check(t_minishell *mini, t_list **data)
 {
 	int		q;
+	char	*cmd;
 	char	**flags;
 
 	q = 0;
-	if (!(flags = ft_split(cmd, " ")))
+	cmd = mini->final_cmd[0].cmd[0];	
+	if (!(flags = mini->final_cmd[0].cmd))
 		return (0);
 	if (!ft_strncmp(flags[0], "cd", 3))
 		(cd_build(flags, mini), ft_pwd(*data, mini), q = 1);

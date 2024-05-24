@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/23 22:29:48 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/24 00:58:18 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@
 
 // DEFINES
 
+# define TUBE -1337
 # define GREEN_ARROW "\001\e[1m\e[32m➜  \001\e[1m\e[34m\002"
-# define X "\001\e[1m\e[33m\002 minishell ✘ \001\e[0m\002"
+# define X "\001\e[1m\e[33m\002 ✘ \001\e[0m\002"
 # define SPACES " \t\n\v\r\f"
 # define SPC "\001\e[1m\e[33m\002 "
 
@@ -67,7 +68,6 @@ typedef struct s_pex
 	int		i;
 	int		end[2];
 	int		input;
-	char	**split_line;
 	int		lines;
 }	t_pex;
 
@@ -172,7 +172,7 @@ char		*ft_join(char *s1, char *buff);
 
 // PARSING
 
-int			parsing(t_minishell *mini);
+int			parsing(t_minishell *mini, t_list *data);
 void		classification(t_minishell *mini);
 void		parameter_expansion(t_minishell *mini, t_parser *current);
 
@@ -243,7 +243,7 @@ void		*zyalloc(size_t size, int flag, bool is_free);
 
 // BUILDTIONS
 
-int			build_check(char *cmd, t_minishell *mini, t_list **data);
+int			build_check(t_minishell *mini, t_list **data);
 void		cd_build(char **cmd, t_minishell *mini);
 void		pwd_build(char *pwd, t_minishell *mini);
 void		echo_build(char	*cmd);
@@ -258,7 +258,7 @@ void		ft_pwd(t_list	*data, t_minishell *m);
 
 // EXCUTING
 
-void	single_command(char *line, t_minishell *mini, t_list **data);
+void		single_command(t_minishell *mini, t_list **data);
 char		*path_check(char *command, t_list *data, int end[]);
 void		read_command(t_minishell *mini, t_list **data);
 void		fds_closer(int end[]);
@@ -268,7 +268,7 @@ void		ft_here_doc(t_pex *pex, char *here);
 int			count_words(char *str, char c);
 char		**first_red(char **token);
 char		**last_red(char *line);
-void		last_cmd(int end[], char *line, t_list **data, t_minishell *mini);
+void		last_cmd(t_pex *pex, t_list **data, t_minishell *mini);
 void		more_commands(t_pex *pex, t_list **data, t_minishell *mini);
 
 // UTILITIES

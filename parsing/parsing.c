@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 23:49:43 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/23 19:05:53 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/24 00:22:13 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	parsing(t_minishell *mini)
+int	parsing(t_minishell *mini, t_list *data)
 {
 	int	i;
 
@@ -31,6 +31,7 @@ int	parsing(t_minishell *mini)
 	if (mini->exit_status == 7)
 		return (mini->exit_status = 1, 1);
 	signal(SIGQUIT, sig_quit);
+	single_command(mini, &data);
 	// excute(mini);
 	return (0);
 }

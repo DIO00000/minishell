@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_fds.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:49:11 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/23 19:04:56 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/23 23:56:15 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ int	open_outfd(t_parser *curr, t_parser *redirecyion_out)
 {
 	int	fd;
 
-	fd = -1337;
+	fd = -9000;
+	// printf("curr ==> %d\nredout ==> %d\n", curr->class, redirecyion_out->class);
 	if (curr->class == REDOUT)
 	{
 		fd = open(curr->next->string, O_RDWR | O_TRUNC | O_CREAT, 0644);
+		printf("if ==> [%d]\n", fd);
 		if (fd == -1)
 			fd = open(curr->next->string, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	}
@@ -37,7 +39,7 @@ int	open_outfd(t_parser *curr, t_parser *redirecyion_out)
 	if (curr == redirecyion_out)
 		return (fd);
 	close(fd);
-	return (-1337);
+	return (-9000);
 }
 
 int	open_infd(t_parser *curr, t_parser *redirecyion_in)
@@ -79,7 +81,7 @@ void	open_fds(t_minishell *mini, int i)
 			if (mini->final_cmd[i].out_fd > 2)
 				close(mini->final_cmd[i].out_fd);
 			mini->final_cmd[i].out_fd = \
-			open_outfd(curr, mini->final_cmd->redirection_out);
+			open_outfd(curr, mini->final_cmd[i].redirection_out);
 		}
 		if (mini->final_cmd[i].in_fd == -1 || mini->final_cmd[i].out_fd == -1)
 		{

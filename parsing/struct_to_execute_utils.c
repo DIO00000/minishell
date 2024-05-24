@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_to_execute_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:34:46 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/23 16:20:46 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/24 00:01:24 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	get_cmd_size(t_minishell *mini, int i)
 			cmd_size++;
 		if (curr->class == HERDOC || curr->class == REDIN)
 			mini->final_cmd[i].redirection_in = curr;
-		else if (curr->class == APPEND || curr->class == REDOUT)
+		if (curr->class == APPEND || curr->class == REDOUT)
 			mini->final_cmd[i].redirection_out = curr;
 		curr = curr->next;
 	}
@@ -111,8 +111,7 @@ int	open_files(t_minishell *mini, int i)
 		}
 		if (curr->class == ERROR)
 		{
-			mini->exit_status = 258;
-			mini->syntax = 1;
+			(1) && (mini->exit_status = 258 ,mini->syntax = 1);
 			return (ft_close_fds(mini), 0);
 		}
 		curr = curr->next;

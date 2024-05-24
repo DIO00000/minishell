@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_fds.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:35:05 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/23 18:27:08 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/24 00:23:34 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,16 @@ void	manage_fds(t_minishell *mini)
 		if (!mini->final_cmd[index].redirection_in)
 		{
 			if (index == 0)
-				mini->final_cmd[index].in_fd = open("/dev/stdin", O_RDONLY);
+				mini->final_cmd[index].in_fd = 0;
 			else
-				mini->final_cmd[index].in_fd = -1;
+				mini->final_cmd[index].in_fd = TUBE;
 		}
 		if (!mini->final_cmd[index].redirection_out)
 		{
 			if (index == mini->list_size - 1)
-				mini->final_cmd[index].out_fd = \
-				open("/dev/stdout", O_RDWR | O_TRUNC);
+				mini->final_cmd[index].out_fd = 1;
 			else
-				mini->final_cmd[index].out_fd = -1;
+				mini->final_cmd[index].out_fd = TUBE;
 		}
 		open_fds(mini, index);
 		index++;
