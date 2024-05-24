@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/24 08:12:58 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/24 19:16:50 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void	more_commands(t_pex *pex, t_list **data, t_minishell *mini)
 		{
 			if (pipe(pex->end) == -1)
 				(write(2, "pipe failed", 11), exit(1));
-			middle_commands(pex, data, mini); //mini.fina[pix.i].cmd
+			middle_commands(pex, data, mini);
 			close(pex->end[1]);
 			close(pex->input);
 			pex->input = pex->end[0];
@@ -151,8 +151,6 @@ void	single_command(t_minishell *mini, t_list **data)
 	pex.lines = mini->list_size;
 	if (pipe(pex.end) == -1)
 		(write(2, "Error\n", 7), exit(1));
-	// if (!ft_strncmp(line, "<<", 2))
-	// 	(ft_here_doc(&pex, pex.split_line[0]), close(pex.end[1]));
 	(first_cmd(data, &pex, mini), close(pex.end[1]));
 	more_commands(&pex, data, mini);
 	close(pex.end[0]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:43:05 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/22 13:08:37 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/24 19:47:09 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*remove_str(char **str, char *env, int start, int len)
 	int		j;
 	int		i;
 
-	(1 == 1) && (j = 0, i = 0);
+	(1) && (j = 0, i = 0);
 	result = malloc((ft_strlen(*str) - len - 1) + ft_strlen(env) + 1);
 	if (!result)
 		return (NULL);

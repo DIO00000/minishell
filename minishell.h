@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/24 00:58:18 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/24 19:39:04 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,8 +173,8 @@ char		*ft_join(char *s1, char *buff);
 // PARSING
 
 int			parsing(t_minishell *mini, t_list *data);
-void		classification(t_minishell *mini);
-void		parameter_expansion(t_minishell *mini, t_parser *current);
+void		classification(t_minishell *mini, t_list *data);
+void		parameter_expansion(t_minishell *mini, t_parser *current, t_list *data);
 
 // PARSING_UTILS
 
@@ -246,7 +246,7 @@ void		*zyalloc(size_t size, int flag, bool is_free);
 int			build_check(t_minishell *mini, t_list **data);
 void		cd_build(char **cmd, t_minishell *mini);
 void		pwd_build(char *pwd, t_minishell *mini);
-void		echo_build(char	*cmd);
+void	echo_build(char	*cmd, t_minishell *mini);
 t_list		*fill_env(char **origin_env, t_list *data, t_minishell *mini);
 void		env_build(t_list *data, char *cmd);
 void		export_build(char **var, t_list **data);

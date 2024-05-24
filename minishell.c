@@ -6,32 +6,24 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:02:41 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/24 07:11:37 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/24 21:19:57 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_list	*mini_init(t_minishell *mini, t_list *data, char **env)
+t_list	*mini_init(t_minishell *m, t_list *data, char **env)
 {
-	mini->input = NULL;
-	mini->exit_status = 0;
-	mini->env_status = 0;
-	mini->pids = NULL;
-	mini->cmd = NULL;
-	mini->final_cmd = NULL;
-	mini->new_env = NULL;
-	mini->trm_prompt = NULL;
-	mini->last_dir = NULL;
-	mini->curr_dir = getcwd(NULL, 0);
-	mini->username = getenv("USER");
-	mini->lst = NULL;
-	mini->defult_path = malloc(90 * sizeof(char));
-	mini->defult_path = "PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:\
+	(1) && (m->input = NULL, m->exit_status = 0, m->env_status = 0);
+	(1) && (m->pids = NULL, m->cmd = NULL, m->final_cmd = NULL);
+	(1) && (m->new_env = NULL, m->trm_prompt = NULL, m->last_dir = NULL);
+	(1) && (m->curr_dir = getcwd(NULL, 0), m->username = getenv("USER"));
+	(1) && (m->lst = NULL, m->defult_path = malloc(90 * sizeof(char)));
+	m->defult_path = "PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:\
 	/usr/local/munki:/Library/Apple/usr/bin";
-	data = fill_env(env, data, mini);
-	mini->cmd_path = "./minishell";
-	ft_shlvl(data, mini);
+	data = fill_env(env, data, m);
+	m->cmd_path = "./minishell";
+	ft_shlvl(data, m);
 	return (data);
 }
 

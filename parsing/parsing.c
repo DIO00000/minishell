@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 23:49:43 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/24 00:22:13 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/24 19:38:48 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	parsing(t_minishell *mini, t_list *data)
 		return (1);
 	while (mini->cmd[++i])
 		lstadd_back(&mini->lst, lstnew(mini->cmd[i]));
-	(classification(mini), systax_error(mini->lst));
+	(classification(mini, data), systax_error(mini->lst));
 	if (!mini->lst)
 		return (1);
 	if (!struct_cmd(mini))

@@ -6,13 +6,15 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:33:53 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/24 06:21:45 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/24 20:04:18 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ex_set(t_minishell *mini, char **str, t_exp_helper *help)
+void	var_value(char	*)
+
+void	ex_set(t_minishell *mini, char **str, t_exp_helper *help, t_list *data)
 {
 	t_list	*tmp;
 
@@ -26,15 +28,15 @@ void	ex_set(t_minishell *mini, char **str, t_exp_helper *help)
 	help->exp_name = ft_substr((*str), help->start, help->start - help->end);
 	if (!help->exp_name)
 		ft_exit(mini, NULL, NULL, 12);
-	// tmp = var_finder(help->exp_name, &data);
+	tmp = var_finder(help->exp_name, &data);
 	help->exp_env = tmp->env;
-	free(help->exp_name);
-	// (*str) = var_value();
+	(*str) = var_value(help->exp_env);
+	// free(help->exp_name);
 	if (!(*str))
 		ft_exit(mini, NULL, NULL, 12);
 }
 
-void	parameter_expansion(t_minishell *mini, t_parser *current)
+void	parameter_expansion(t_minishell *mini, t_parser *current, t_list *data)
 {
 	t_exp_helper	help;
 
@@ -42,6 +44,6 @@ void	parameter_expansion(t_minishell *mini, t_parser *current)
 	while (help.exp_counter--)
 	{
 		if (current->class != LIM)
-			ex_set(mini, &current->string, &help);
+			ex_set(mini, &current->string, &help, data);
 	}
 }

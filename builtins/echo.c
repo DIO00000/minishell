@@ -6,13 +6,14 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 17:06:12 by hbettal           #+#    #+#             */
-/*   Updated: 2024/04/26 20:09:25 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/24 19:35:02 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	echo_build(char	*cmd)
+void	echo_build(char	*cmd, t_minishell *mini)
 {
-	(void)cmd;
+	printf("%s\n", cmd);
+	mini->exit_status = 0;
 }
