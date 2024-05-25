@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/21 17:06:12 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/24 22:25:48 by hbettal          ###   ########.fr       */
+/*   Created: 2024/05/25 11:24:39 by hbettal           #+#    #+#             */
+/*   Updated: 2024/05/25 12:07:09 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	echo_build(char	*cmd, t_minishell *mini)
+void	exit_build(t_minishell *mini, char *status)
 {
-	printf("%s\n", cmd);
-	mini->exit_status = 0;
+	if (status)
+		(printf("exit\n"), exit(ft_atoi(status)));
+	exit(mini->exit_status);
 }

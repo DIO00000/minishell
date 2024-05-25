@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/24 19:39:04 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/25 12:08:52 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,10 +243,11 @@ void		*zyalloc(size_t size, int flag, bool is_free);
 
 // BUILDTIONS
 
-int			build_check(t_minishell *mini, t_list **data);
+int			build_check(t_minishell *mini, t_list **data, t_pex *pex);
 void		cd_build(char **cmd, t_minishell *mini);
 void		pwd_build(char *pwd, t_minishell *mini);
-void	echo_build(char	*cmd, t_minishell *mini);
+void		echo_build(char	*cmd, t_minishell *mini);
+void		exit_build(t_minishell *mini, char *status);
 t_list		*fill_env(char **origin_env, t_list *data, t_minishell *mini);
 void		env_build(t_list *data, char *cmd);
 void		export_build(char **var, t_list **data);

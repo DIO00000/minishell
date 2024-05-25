@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:02:41 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/24 21:19:57 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/25 12:24:52 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,16 @@ void	read_line(t_minishell *mini)
 	char	**c_exit;
 	
 	mini->input = readline(mini->trm_prompt);
-	add_history(mini->input);
+	printf("%s", mini->input);
+	if (mini->input && ft_strncmp(mini->input, "\n", 1))
+		add_history(mini->input);
 	// mini->input = readline(GREEN_ARROW X);
 	if (!(c_exit = ft_split(mini->input, " ")))
 		(printf("exit\n"), exit(mini->exit_status));
 	if (isatty(0))
 	{
-		if (c_exit[0] && (!mini->input || !ft_strncmp(c_exit[0], "exit", 5)))
-		{
-			if (!c_exit[1])
-				(printf("exit\n"), free(mini->input), exit(mini->exit_status));
-			else
-				(printf("exit\n"), free(mini->input), exit(ft_atoi(c_exit[1])));
-		}
+		if (!mini->input)
+			(printf("exit\n"), free(mini->input), exit(mini->exit_status));
 	}
 	else
 	{

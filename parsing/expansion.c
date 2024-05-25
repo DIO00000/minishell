@@ -6,16 +6,26 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:33:53 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/24 20:04:18 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/24 22:23:58 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	var_value(char	*)
+char	*var_value(char	*var)
+{
+	char	*value;
+	char	**tmp;
+
+	tmp = ft_split(var, "=");
+	value = tmp[1];
+	free_handler(tmp);
+	return (value);
+}
 
 void	ex_set(t_minishell *mini, char **str, t_exp_helper *help, t_list *data)
 {
+	(void)data;
 	t_list	*tmp;
 
 	tmp = NULL;
@@ -28,9 +38,11 @@ void	ex_set(t_minishell *mini, char **str, t_exp_helper *help, t_list *data)
 	help->exp_name = ft_substr((*str), help->start, help->start - help->end);
 	if (!help->exp_name)
 		ft_exit(mini, NULL, NULL, 12);
-	tmp = var_finder(help->exp_name, &data);
-	help->exp_env = tmp->env;
-	(*str) = var_value(help->exp_env);
+	// tmp = var_finder(help->exp_name, &data);
+	// if (!tmp)
+	// 	return ;
+	// help->exp_env = tmp->env;
+	// (*str) = var_value(help->exp_env);
 	// free(help->exp_name);
 	if (!(*str))
 		ft_exit(mini, NULL, NULL, 12);
