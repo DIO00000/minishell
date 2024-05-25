@@ -3,27 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   build_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/25 13:52:36 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/25 17:07:20 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	export_parse(char **flags)
+int	export_parse(char **flags)
 {
 	if (!flags[1])
-		return ;
+		return (1);
 		int i = 1;
 	while (flags[i])
 	{
-		// printf("FLAGS ==> [%s] i ==>[%d]\n", flags[i], i);
-		// if (ft_isdigit(*flags[i]))
-		// 	printf("HAHAHAHAHAH\n");
+		if (ft_isdigit(*flags[i]))
+			return (print_error(flags[i], "not a valid identifier"), 0);
+		if (*flags[i] == '=' || *flags[i] == '$')
+			return (print_error(flags[i], "not a valid identifier"), 0);
 		i++;
 	}
+	return (1);
 }
 
 int    build_check(t_minishell *mini, t_list **data, t_pex *pex)
@@ -33,10 +35,8 @@ int    build_check(t_minishell *mini, t_list **data, t_pex *pex)
 	char	**flags;
 
 	q = 0;
-	printf("i ==> %d\n", pex->i);
 	cmd = mini->final_cmd[pex->i].cmd[0];
 	flags = mini->final_cmd[pex->i].cmd;
-	
 	if (!flags)
 		return (0);
 	if (!ft_strncmp(flags[0], "cd", 3))
@@ -49,7 +49,8 @@ int    build_check(t_minishell *mini, t_list **data, t_pex *pex)
 		(env_build(*data, flags[1]), q = 1);
 	else if (!ft_strncmp(flags[0], "export", 7))
 	{
-		// export_parse(flags);
+		if (!export_parse(flags))
+			return (0);
 		(export_build(flags, data), q = 1);
 	}
 	else if (!ft_strncmp(flags[0], "unset", 6))

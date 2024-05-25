@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/25 12:08:52 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/25 16:37:48 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,8 +173,8 @@ char		*ft_join(char *s1, char *buff);
 // PARSING
 
 int			parsing(t_minishell *mini, t_list *data);
-void		classification(t_minishell *mini, t_list *data);
-void		parameter_expansion(t_minishell *mini, t_parser *current, t_list *data);
+void		classification(t_minishell *mini);
+void		parameter_expansion(t_minishell *mini, t_parser *current);
 
 // PARSING_UTILS
 

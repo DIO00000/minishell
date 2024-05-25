@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:02:41 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/25 13:29:40 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/25 16:37:54 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ void	read_line(t_minishell *mini)
 	mini->input = readline(mini->trm_prompt);
 	// mini->input = readline(GREEN_ARROW X);
 	if ((mini->input) && ft_strncmp(mini->input, "\n", 2))
-	{
-		printf("p%dp\n", mini->input);
 		add_history(mini->input);
-	}
 	if (!(c_exit = ft_split(mini->input, " ")))
 		(printf("exit\n"), exit(mini->exit_status));
 	if (isatty(0))

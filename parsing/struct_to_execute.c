@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_to_execute.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:30:47 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/25 13:57:37 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/25 16:10:25 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	struct_cmd(t_minishell *mini)
 		if (!open_files(mini, i))
 			return (1);
 		i++;
-		
 	}
 	manage_fds(mini);
 	return (1);

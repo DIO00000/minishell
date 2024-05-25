@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/25 13:53:13 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/25 16:13:26 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,6 @@ void	single_command(t_minishell *mini, t_list **data)
 
 	pex.i = 0;
 
-	printf("%p\n", mini->final_cmd);
 	mini->exit_status = 0;
 	// if (!mini->final_cmd)
 		// return(printf("ana khawiiiiiii NULLL\n"));
@@ -165,7 +164,7 @@ void	single_command(t_minishell *mini, t_list **data)
 	pex.lines = mini->list_size;
 	if (pipe(pex.end) == -1)
 		(write(2, "Error\n", 6), exit(1));
-	(first_cmd(data, &pex, mini), close(pex.end[1]));// env | wc
+	(first_cmd(data, &pex, mini), close(pex.end[1]));
 	more_commands(&pex, data, mini);
 	close(pex.end[0]);
 }

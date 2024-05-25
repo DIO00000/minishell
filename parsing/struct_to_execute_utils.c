@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_to_execute_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:34:46 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/25 14:04:17 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/25 16:13:04 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	get_cmd_size(t_minishell *mini, int i)
 	curr = get_pipe(mini->lst, i);
 	while (curr && curr->class != PIPE)
 	{
-		printf("classs ==> %d\n", curr->class);
 		mini->final_cmd[i].in_fd = -2;
 		mini->final_cmd[i].out_fd = -2;
 		if (curr->class == ARGUMENT || curr->class == COMMAND)

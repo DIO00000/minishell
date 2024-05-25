@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   classification.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 09:36:44 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/24 19:38:08 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/25 16:43:33 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	some_thing_else(t_parse_state *state, t_parser *current)
 	if (*state == START)
 		(1) && (current->class = COMMAND, *state = IN_COMMAND);
 	else if (*state == IN_COMMAND)
-		(1) && (current->class = ARGUMENT, *state = IN_ARG);
+		(1) && (current->class = ARGUMENT, *state = IN_COMMAND);
 	else
-		(1) && (current->class = FILE, *state = IN_COMMAND);
+		(1) && (current->class = FILE, *state = IN_FILE);
 }
 
-void	classification(t_minishell *mini, t_list *data)
+void	classification(t_minishell *mini)
 {
 	t_parser		*current;
 	t_parse_state	state;
@@ -45,7 +45,7 @@ void	classification(t_minishell *mini, t_list *data)
 	(1) && (current = mini->lst, state = START, count_quotes = 0);
 	while (current)
 	{
-		(operator(&state, current), parameter_expansion(mini, current, data));
+		(operator(&state, current), parameter_expansion(mini, current));
 		count_quotes = count_quote(current->string);
 		if (count_quotes > 0)
 		{

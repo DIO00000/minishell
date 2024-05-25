@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_fds.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:49:11 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/23 23:56:15 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/25 16:43:18 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	open_outfd(t_parser *curr, t_parser *redirecyion_out)
 	int	fd;
 
 	fd = -9000;
-	// printf("curr ==> %d\nredout ==> %d\n", curr->class, redirecyion_out->class);
 	if (curr->class == REDOUT)
 	{
 		fd = open(curr->next->string, O_RDWR | O_TRUNC | O_CREAT, 0644);
