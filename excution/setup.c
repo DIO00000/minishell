@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/25 11:14:00 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/25 13:53:13 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,10 @@ void	single_command(t_minishell *mini, t_list **data)
 
 	pex.i = 0;
 
+	printf("%p\n", mini->final_cmd);
 	mini->exit_status = 0;
+	// if (!mini->final_cmd)
+		// return(printf("ana khawiiiiiii NULLL\n"));
 	if (mini->list_size == 1)
 		if (build_check(mini, data, &pex))
 			return ;

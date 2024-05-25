@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:02:41 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/25 12:49:25 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/25 13:29:40 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_list	*mini_init(t_minishell *m, t_list *data, char **env)
 	(1) && (m->lst = NULL, m->defult_path = malloc(90 * sizeof(char)));
 	m->defult_path = "PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:\
 	/usr/local/munki:/Library/Apple/usr/bin";
+	m->syntax = 0;
 	data = fill_env(env, data, m);
 	m->cmd_path = "./minishell";
 	ft_shlvl(data, m);
@@ -33,9 +34,12 @@ void	read_line(t_minishell *mini)
 	char	**c_exit;
 	
 	mini->input = readline(mini->trm_prompt);
-	if (mini->input && ft_strncmp(mini->input, "\n", 1))
-		add_history(mini->input);
 	// mini->input = readline(GREEN_ARROW X);
+	if ((mini->input) && ft_strncmp(mini->input, "\n", 2))
+	{
+		printf("p%dp\n", mini->input);
+		add_history(mini->input);
+	}
 	if (!(c_exit = ft_split(mini->input, " ")))
 		(printf("exit\n"), exit(mini->exit_status));
 	if (isatty(0))
@@ -68,6 +72,7 @@ int	main(int ac, char **av, char **env)
 		read_line(&mini);
 		lexer(&mini);
 		parsing(&mini, data);
+		// single_command(&mini, &data);
 		ft_exit(&mini, NULL, NULL, 0);
 	}
 }

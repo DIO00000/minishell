@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:34:46 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/24 00:01:24 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/25 14:04:17 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	set_cmd_line(t_minishell *mini, int i)
 	while (index < cmd_size)
 	{
 		if (curr->class == ARGUMENT || curr->class == COMMAND)
-			mini->final_cmd[i].cmd[index++] = curr->string;
+			mini->final_cmd[i].cmd[index] = curr->string;
+		index++;
 		curr = curr->next;
 	}
 	mini->final_cmd[i].cmd[index] = NULL;
@@ -59,6 +60,7 @@ int	get_cmd_size(t_minishell *mini, int i)
 	curr = get_pipe(mini->lst, i);
 	while (curr && curr->class != PIPE)
 	{
+		printf("classs ==> %d\n", curr->class);
 		mini->final_cmd[i].in_fd = -2;
 		mini->final_cmd[i].out_fd = -2;
 		if (curr->class == ARGUMENT || curr->class == COMMAND)
