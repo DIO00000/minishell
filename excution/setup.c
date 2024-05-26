@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/26 19:56:10 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/26 19:57:25 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	first_cmd(t_list **data, t_pex *pex, t_minishell *mini)
 
 	if (fork() == 0)
 	{
-		if (mini->list_size > 1 && mini->)
+		if (mini->list_size > 1)
 			if (dup2(pex->end[1], 1) == -1)
 				return (fds_closer(pex->end), exit(1));
 		if (build_check(mini, data, pex))

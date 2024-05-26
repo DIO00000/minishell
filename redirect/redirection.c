@@ -6,17 +6,17 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 10:41:37 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/26 19:53:41 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/26 19:56:52 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	check_fd(t_minishell *mini, int i)
-{
-	if (mini->final_cmd[i].in_fd == TUBE)
+// void	check_fd(t_minishell *mini, int i)
+// {
+// 	if (mini->final_cmd[i].in_fd == TUBE)
 		
-}
+// }
 
 // char	**first_red(char **token) 
 // {
