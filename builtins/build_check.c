@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/25 17:07:20 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/25 23:32:45 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,7 @@ int    build_check(t_minishell *mini, t_list **data, t_pex *pex)
 	else if (!ft_strncmp(flags[0], "env", 4))
 		(env_build(*data, flags[1]), q = 1);
 	else if (!ft_strncmp(flags[0], "export", 7))
-	{
-		if (!export_parse(flags))
-			return (0);
 		(export_build(flags, data), q = 1);
-	}
 	else if (!ft_strncmp(flags[0], "unset", 6))
 		(unset_build(flags, data), q = 1);
 	else if (!ft_strncmp(flags[0], "exit", 5))

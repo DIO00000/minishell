@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:45:00 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/23 20:41:52 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/26 19:33:21 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ void	add_variable(char *var, t_list **data, char **sps, int i)
 	else if (sps[0][i - 1] == '+' && sps[1])
 	{
 		tmp = var_finder(*ft_split(sps[0], "+"), data);
-		tmp->env = ft_strjoin(tmp->env, sps[1]);
+		if (ft_strchr(tmp->env, '='))
+			tmp->env = ft_strjoin(tmp->env, sps[1]);
+		else
+			tmp->env = ft_strjoin_three(tmp->env, "=", sps[1]);
 	}
 }
 
@@ -93,6 +96,8 @@ void	export_build(char **var, t_list **data)
 	int		i;
 	t_list	*tmp;
 
+	if (!export_parse(var))
+		return ;
 	tmp = *data;
 	i = -1;
 	if (!var[1])

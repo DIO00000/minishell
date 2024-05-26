@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   classification.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 09:36:44 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/25 16:43:33 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/26 18:08:38 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	some_thing_else(t_parse_state *state, t_parser *current)
 		(1) && (current->class = FILE, *state = IN_FILE);
 }
 
-void	classification(t_minishell *mini)
+void	classification(t_minishell *mini, t_list *data)
 {
 	t_parser		*current;
 	t_parse_state	state;
@@ -45,7 +45,7 @@ void	classification(t_minishell *mini)
 	(1) && (current = mini->lst, state = START, count_quotes = 0);
 	while (current)
 	{
-		(operator(&state, current), parameter_expansion(mini, current));
+		(operator(&state, current), parameter_expansion(mini, current, data));
 		count_quotes = count_quote(current->string);
 		if (count_quotes > 0)
 		{

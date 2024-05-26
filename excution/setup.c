@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/25 16:13:26 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/26 19:34:59 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	first_cmd(t_list **data, t_pex *pex, t_minishell *mini)
 
 	if (fork() == 0)
 	{
-		if (mini->list_size > 1)
+		if (mini->list_size > 1 && mini->)
 			if (dup2(pex->end[1], 1) == -1)
 				return (fds_closer(pex->end), exit(1));
 		if (build_check(mini, data, pex))
@@ -156,8 +156,6 @@ void	single_command(t_minishell *mini, t_list **data)
 	pex.i = 0;
 
 	mini->exit_status = 0;
-	// if (!mini->final_cmd)
-		// return(printf("ana khawiiiiiii NULLL\n"));
 	if (mini->list_size == 1)
 		if (build_check(mini, data, &pex))
 			return ;
