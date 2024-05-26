@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/26 19:57:25 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/26 21:08:57 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*path_check(char *command, t_list *data, int end[])
 		free(path);
 	}
 	(free_handler(paths), free(cmnd), fds_closer(end));
-	write(2, "command not found\n", 19);
+	printf("minishell: %s: command not found", command);
 	exit (127);
 }
 
@@ -45,7 +45,7 @@ void	middle_commands(t_pex *pex, t_list **data, t_minishell *mini)
 
 	if (fork() == 0)
 	{
-		// check_fd(mini, pex.i);
+		check_fd(mini, pex);
 		if (build_check(mini, data, pex))
 			exit(1);
 		else
@@ -64,18 +64,20 @@ void	middle_commands(t_pex *pex, t_list **data, t_minishell *mini)
 	}
 }
 
-void	last_cmd(t_pex *pex, t_list **data, t_minishell *mini)
+pid_t	last_cmd(t_pex *pex, t_list **data, t_minishell *mini)
 {
 	char	*path;
 	char	**commands;
+	pid_t	id;
 
 	commands = NULL;
-
-	if (fork() == 0)
+	id = fork();
+	if (id == 0)
 	{
 		pex->i++;
-		if (dup2(pex->end[0], 0) == -1)
-			(fds_closer(pex->end), exit(1));
+		check_fd(mini, pex);
+		// if (dup2(pex->end[0], 0) == -1)
+		// 	(fds_closer(pex->end), exit(1));
 		if (build_check(mini, data, pex))
 			exit(1);
 		else
@@ -90,6 +92,7 @@ void	last_cmd(t_pex *pex, t_list **data, t_minishell *mini)
 		execve(path, commands, mini->new_env);
 		exit(1);
 	}
+	return (id);
 }
 
 void	first_cmd(t_list **data, t_pex *pex, t_minishell *mini)
@@ -99,9 +102,7 @@ void	first_cmd(t_list **data, t_pex *pex, t_minishell *mini)
 
 	if (fork() == 0)
 	{
-		if (mini->list_size > 1)
-			if (dup2(pex->end[1], 1) == -1)
-				return (fds_closer(pex->end), exit(1));
+		check_fd(mini, pex);
 		if (build_check(mini, data, pex))
 		{
 			fds_closer(pex->end);
@@ -123,8 +124,10 @@ void	first_cmd(t_list **data, t_pex *pex, t_minishell *mini)
 
 void	more_commands(t_pex *pex, t_list **data, t_minishell *mini)
 {
-	int	status;
+	int		status;
+	pid_t	id;
 
+	id = 0;
 	if (mini->list_size > 1)
 	{
 		pex->input = pex->end[0];
@@ -138,12 +141,13 @@ void	more_commands(t_pex *pex, t_list **data, t_minishell *mini)
 			pex->input = pex->end[0];
 			pex->i++;
 		}
-		last_cmd(pex, data, mini);
+		id = last_cmd(pex, data, mini);
 	}
 	fds_closer(pex->end);
 	// wait last cmd in args before wait all other cmds
 	//wait()
-	while (wait(&status) != -1)
+	waitpid(id, &status, 0);
+	while (wait(NULL) != -1)
 		;
 	mini->exit_status = (status >> 8) & 0xFF;
 }
@@ -153,7 +157,6 @@ void	single_command(t_minishell *mini, t_list **data)
 	t_pex	pex;
 
 	pex.i = 0;
-
 	mini->exit_status = 0;
 	if (mini->list_size == 1)
 		if (build_check(mini, data, &pex))
@@ -163,6 +166,10 @@ void	single_command(t_minishell *mini, t_list **data)
 		(write(2, "Error\n", 6), exit(1));
 	(first_cmd(data, &pex, mini), close(pex.end[1]));
 	more_commands(&pex, data, mini);
+	// if (mini->final_cmd[(&pex)->i].out_fd != 1)
+	// 	close(mini->final_cmd[(&pex)->i].out_fd);
+	// if (mini->final_cmd[(&pex)->i].out_fd != 0)
+	// 	close(mini->final_cmd[(&pex)->i].in_fd);
 	close(pex.end[0]);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 09:36:44 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/26 18:08:38 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/26 21:22:14 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	some_thing_else(t_parse_state *state, t_parser *current)
 	else if (*state == IN_COMMAND)
 		(1) && (current->class = ARGUMENT, *state = IN_COMMAND);
 	else
-		(1) && (current->class = FILE, *state = IN_FILE);
+		(1) && (current->class = FILE, *state = START);
 }
 
 void	classification(t_minishell *mini, t_list *data)

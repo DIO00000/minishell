@@ -6,17 +6,39 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 10:41:37 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/26 19:56:52 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/26 21:05:15 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// void	check_fd(t_minishell *mini, int i)
-// {
-// 	if (mini->final_cmd[i].in_fd == TUBE)
-		
-// }
+void	check_fd(t_minishell *mini, t_pex *pex)
+{
+	if (mini->final_cmd[pex->i].in_fd == TUBE)
+	{	
+		if (dup2(pex->end[0], 0) == -1)
+			(fds_closer(pex->end), exit(1));
+	}
+	else
+	{
+		if (dup2(mini->final_cmd[pex->i].in_fd, 1) == -1)
+			return (fds_closer(pex->end), exit(1));
+		if (mini->final_cmd[pex->i].out_fd != 0)
+			close(mini->final_cmd[pex->i].in_fd);
+	}		
+	if (mini->final_cmd[pex->i].out_fd == TUBE && mini->list_size > 1)
+	{
+		if (dup2(pex->end[1], 1) == -1)
+			return (fds_closer(pex->end), exit(1));
+	}
+	else
+	{		
+		if (dup2(mini->final_cmd[pex->i].out_fd, 1) == -1)
+			return (fds_closer(pex->end), exit(1));
+		if (mini->final_cmd[pex->i].out_fd != 1)
+			close(mini->final_cmd[pex->i].out_fd);
+	}
+}
 
 // char	**first_red(char **token) 
 // {

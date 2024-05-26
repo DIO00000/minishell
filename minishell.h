@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/26 19:55:22 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/26 21:01:00 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,15 +262,9 @@ void		ft_pwd(t_list	*data, t_minishell *m);
 
 void		single_command(t_minishell *mini, t_list **data);
 char		*path_check(char *command, t_list *data, int end[]);
-void		read_command(t_minishell *mini, t_list **data);
 void		fds_closer(int end[]);
 char		*where_path(t_list *data);
 void		free_handler(char **str);
-void		ft_here_doc(t_pex *pex, char *here);
-int			count_words(char *str, char c);
-char		**first_red(char **token);
-char		**last_red(char *line);
-void		last_cmd(t_pex *pex, t_list **data, t_minishell *mini);
 void		more_commands(t_pex *pex, t_list **data, t_minishell *mini);
 
 // UTILITIES
@@ -287,7 +281,7 @@ char		*ft_strjoin_three(char *s1, char *buff, char *s2);
 int			ft_atoi(const char *str);
 void		free_handler(char **str);
 void		fds_closer(int end[]);
-void	check_fd(t_minishell *mini, int i);
+void		check_fd(t_minishell *mini, t_pex *pex);
 
 //GET_NEXT_LINE
 
