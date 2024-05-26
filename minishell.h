@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/26 18:09:30 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/26 19:55:22 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -287,6 +287,7 @@ char		*ft_strjoin_three(char *s1, char *buff, char *s2);
 int			ft_atoi(const char *str);
 void		free_handler(char **str);
 void		fds_closer(int end[]);
+void	check_fd(t_minishell *mini, int i);
 
 //GET_NEXT_LINE
 

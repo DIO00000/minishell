@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/26 19:34:59 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/26 19:56:10 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ void	middle_commands(t_pex *pex, t_list **data, t_minishell *mini)
 
 	if (fork() == 0)
 	{
-		if (dup2(pex->end[1], 1) == -1)
-			return (fds_closer(pex->end), exit(1));
+		// check_fd(mini, pex.i);
 		if (build_check(mini, data, pex))
 			exit(1);
 		else
