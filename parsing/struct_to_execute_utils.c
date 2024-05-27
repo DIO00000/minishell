@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:34:46 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/26 21:52:53 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/27 01:07:15 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,7 @@ int	set_cmd_line(t_minishell *mini, int i)
 	while (index < cmd_size)
 	{
 		if (curr->class == ARGUMENT || curr->class == COMMAND)
-		{
-			printf("ANA HNA\n");
-			mini->final_cmd[i].cmd[index] = curr->string;
-		}
-		index++;
+			mini->final_cmd[i].cmd[index++] = curr->string;
 		curr = curr->next;
 	}
 	mini->final_cmd[i].cmd[index] = NULL;

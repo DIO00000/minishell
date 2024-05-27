@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_fds.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:49:11 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/25 16:43:18 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/27 02:20:04 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,20 @@ void	open_fds(t_minishell *mini, int i)
 		}
 		curr = curr->next;
 	}
+}
+
+void	close_fds(t_minishell *mini)
+{
+	int i;
+
+	i = 0;
+	while (i < mini->list_size)
+	{
+		if (mini->final_cmd[i].out_fd > 2)
+			close(mini->final_cmd[i].out_fd);
+		if (mini->final_cmd[i].out_fd > 2)
+			close(mini->final_cmd[i].in_fd);
+		i++;
+	}
+	close(3);
 }

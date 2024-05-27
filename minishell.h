@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/26 21:01:00 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/27 01:50:35 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,7 @@ void		ft_close_fds(t_minishell *mini);
 int			open_files(t_minishell *mini, int i);
 void		manage_fds(t_minishell *mini);
 void		open_fds(t_minishell *mini, int i);
+void		close_fds(t_minishell *mini);
 int			open_infd(t_parser *curr, t_parser *redirecyion_in);
 int			open_outfd(t_parser *curr, t_parser *redirecyion_out);
 

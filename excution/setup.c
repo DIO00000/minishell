@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/26 21:08:57 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/27 02:12:31 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*path_check(char *command, t_list *data, int end[])
 		free(path);
 	}
 	(free_handler(paths), free(cmnd), fds_closer(end));
-	printf("minishell: %s: command not found", command);
+	printf("minishell: %s: command not found\n", command);
 	exit (127);
 }
 
@@ -47,7 +47,7 @@ void	middle_commands(t_pex *pex, t_list **data, t_minishell *mini)
 	{
 		check_fd(mini, pex);
 		if (build_check(mini, data, pex))
-			exit(1);
+			(fds_closer(pex->end), exit(mini->exit_status));
 		else
 		{
 			commands = mini->final_cmd[pex->i + 1].cmd;
@@ -74,12 +74,9 @@ pid_t	last_cmd(t_pex *pex, t_list **data, t_minishell *mini)
 	id = fork();
 	if (id == 0)
 	{
-		pex->i++;
-		check_fd(mini, pex);
-		// if (dup2(pex->end[0], 0) == -1)
-		// 	(fds_closer(pex->end), exit(1));
+		(pex->i++, check_fd(mini, pex));
 		if (build_check(mini, data, pex))
-			exit(1);
+			(fds_closer(pex->end), exit(mini->exit_status));
 		else
 		{
 			commands = mini->final_cmd[pex->i].cmd;
@@ -88,9 +85,8 @@ pid_t	last_cmd(t_pex *pex, t_list **data, t_minishell *mini)
 				exit(1);
 			fds_closer(pex->end);
 		}
-		//write(2, commands[0], ft_strlen(*commands));
 		execve(path, commands, mini->new_env);
-		exit(1);
+		exit(mini->exit_status);
 	}
 	return (id);
 }
@@ -144,8 +140,6 @@ void	more_commands(t_pex *pex, t_list **data, t_minishell *mini)
 		id = last_cmd(pex, data, mini);
 	}
 	fds_closer(pex->end);
-	// wait last cmd in args before wait all other cmds
-	//wait()
 	waitpid(id, &status, 0);
 	while (wait(NULL) != -1)
 		;
@@ -166,10 +160,7 @@ void	single_command(t_minishell *mini, t_list **data)
 		(write(2, "Error\n", 6), exit(1));
 	(first_cmd(data, &pex, mini), close(pex.end[1]));
 	more_commands(&pex, data, mini);
-	// if (mini->final_cmd[(&pex)->i].out_fd != 1)
-	// 	close(mini->final_cmd[(&pex)->i].out_fd);
-	// if (mini->final_cmd[(&pex)->i].out_fd != 0)
-	// 	close(mini->final_cmd[(&pex)->i].in_fd);
+	close_fds(mini);
 	close(pex.end[0]);
 }
 

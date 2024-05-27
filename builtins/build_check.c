@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/26 21:36:54 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/27 01:14:19 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int    build_check(t_minishell *mini, t_list **data, t_pex *pex)
 	q = 0;
 	cmd = mini->final_cmd[pex->i].cmd[0];
 	flags = mini->final_cmd[pex->i].cmd;
-	if (!flags)
+	if (!flags || !flags[0])
 		return (0);
 	if (!ft_strncmp(flags[0], "cd", 3))
 		(cd_build(flags, mini), ft_pwd(*data, mini), q = 1);
