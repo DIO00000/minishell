@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/27 02:12:31 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/27 21:43:24 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	middle_commands(t_pex *pex, t_list **data, t_minishell *mini)
 	{
 		check_fd(mini, pex);
 		if (build_check(mini, data, pex))
-			(fds_closer(pex->end), exit(mini->exit_status));
+			exit(mini->exit_status);
 		else
 		{
 			commands = mini->final_cmd[pex->i + 1].cmd;
@@ -76,7 +76,7 @@ pid_t	last_cmd(t_pex *pex, t_list **data, t_minishell *mini)
 	{
 		(pex->i++, check_fd(mini, pex));
 		if (build_check(mini, data, pex))
-			(fds_closer(pex->end), exit(mini->exit_status));
+			exit(mini->exit_status);
 		else
 		{
 			commands = mini->final_cmd[pex->i].cmd;
@@ -100,10 +100,7 @@ void	first_cmd(t_list **data, t_pex *pex, t_minishell *mini)
 	{
 		check_fd(mini, pex);
 		if (build_check(mini, data, pex))
-		{
-			fds_closer(pex->end);
 			exit(mini->exit_status);
-		}
 		else
 		{
 			commands = mini->final_cmd[0].cmd;
@@ -164,16 +161,3 @@ void	single_command(t_minishell *mini, t_list **data)
 	close(pex.end[0]);
 }
 
-// void	read_command(t_minishell *mini, t_list **data)
-// {
-// 	while (1)
-// 	{
-// 		signals(&mini->term);
-// 		prompt_custom(mini);
-// 		if (read_line(mini) == NULL)
-// 			break ;
-// 		lexer(mini);
-// 		single_command(mini->input, mini, data);
-// 		add_history(mini->input);
-// 	}
-// }

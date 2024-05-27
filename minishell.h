@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/27 16:10:25 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/27 19:33:34 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 // DEFINES
 
 # define TUBE -1337
+# define HR -42
 # define GREEN_ARROW "\001\e[1m\e[32m➜  \001\e[1m\e[34m\002"
 # define X "\001\e[1m\e[33m\002 ✘ \001\e[0m\002"
 # define SPACES " \t\n\v\r\f"
@@ -264,6 +265,7 @@ void		ft_pwd(t_list	*data, t_minishell *m);
 void		single_command(t_minishell *mini, t_list **data);
 char		*path_check(char *command, t_list *data, int end[]);
 void		fds_closer(int end[]);
+void		ft_here_doc(t_minishell *mini, t_pex *pex);
 char		*where_path(t_list *data);
 void		free_handler(char **str);
 void		more_commands(t_pex *pex, t_list **data, t_minishell *mini);

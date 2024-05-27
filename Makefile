@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+         #
+#    By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:05:04 by oelharbi          #+#    #+#              #
-#    Updated: 2024/05/25 16:05:40 by oelharbi         ###   ########.fr        #
+#    Updated: 2024/05/27 19:02:25 by hbettal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,8 +68,6 @@ $(NAME) : $(OBJ) $(HEADER)
 %.o : %.c $(HEADER)
 	@echo "\033[0;34mCompiling $< .\033[0;m"
 	@$(CC) $(CFLAGS) $(READLINE_INC) -c $< -o $@
-
-
 
 clean:
 	@echo "\033[0;31mRemoving object files.\033[0;m"

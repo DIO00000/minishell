@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:49:11 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/27 02:20:04 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/27 20:44:24 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	open_outfd(t_parser *curr, t_parser *redirecyion_out)
 	if (curr->class == REDOUT)
 	{
 		fd = open(curr->next->string, O_RDWR | O_TRUNC | O_CREAT, 0644);
-		printf("if ==> [%d]\n", fd);
 		if (fd == -1)
 			fd = open(curr->next->string, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	}
@@ -100,9 +99,8 @@ void	close_fds(t_minishell *mini)
 	{
 		if (mini->final_cmd[i].out_fd > 2)
 			close(mini->final_cmd[i].out_fd);
-		if (mini->final_cmd[i].out_fd > 2)
+		if (mini->final_cmd[i].in_fd > 2)
 			close(mini->final_cmd[i].in_fd);
 		i++;
 	}
-	close(3);
 }

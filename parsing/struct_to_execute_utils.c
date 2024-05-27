@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:34:46 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/27 01:07:15 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/27 19:32:19 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,11 @@ int	open_files(t_minishell *mini, int i)
 	{
 		if (curr->class == HERDOC)
 		{
-			// her_fd = ft_here_doc(mini, curr->next); //Hamza
+			her_fd = HR;
 			if (mini->exit_status == 7)
-				return (close(her_fd), ft_close_fds(mini), 0);
+				return (ft_close_fds(mini), 0);
 			if (curr == mini->final_cmd[i].redirection_in)
 				mini->final_cmd[i].in_fd = her_fd;
-			else
-				close (her_fd);
 		}
 		if (curr->class == ERROR)
 		{
