@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/27 01:14:19 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/27 16:31:21 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int    build_check(t_minishell *mini, t_list **data, t_pex *pex)
 	else if (!ft_strncmp(flags[0], "pwd", 4))
 		(pwd_build(cmd, mini), q = 1);
 	else if (!ft_strncmp(flags[0], "echo", 5))
-		(echo_build(flags[1], mini), q = 1);
+		(echo_build(flags, mini), q = 1);
 	else if (!ft_strncmp(flags[0], "env", 4))
 		(env_build(*data, flags[1]), q = 1);
 	else if (!ft_strncmp(flags[0], "export", 7))
