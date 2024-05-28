@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/28 01:35:06 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/28 02:20:08 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,16 @@ int	export_parse(char *flags)
 int    build_check(t_minishell *mini, t_list **data, t_pex *pex)
 {
 	int		q;
-	char	*cmd;
 	char	**flags;
 
 	q = 0;
-	cmd = mini->final_cmd[pex->i].cmd[0];
 	flags = mini->final_cmd[pex->i].cmd;
-	if (!flags)
+	if (!flags || !flags[0])
 		return (0);
 	if (!ft_strncmp(flags[0], "cd", 3))
 		(cd_build(flags, mini), ft_pwd(*data, mini), q = 1);
 	else if (!ft_strncmp(flags[0], "pwd", 4))
-		(pwd_build(cmd, mini), q = 1);
+		(pwd_build(flags[0], mini), q = 1);
 	else if (!ft_strncmp(flags[0], "echo", 5))
 		(echo_build(flags, mini), q = 1);
 	else if (!ft_strncmp(flags[0], "env", 4))

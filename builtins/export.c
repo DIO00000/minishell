@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:45:00 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/28 01:29:46 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/28 02:48:23 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	export_build(char **var, t_list **data)
 
 	tmp = *data;
 	i = -1;
-	if (!var[1])
+	if (!var[1] || !var[1][0])
 	{
 		while (++i < ft_lstsize(*data))
 		{

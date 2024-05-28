@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 17:06:12 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/27 16:29:10 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/28 02:50:38 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,11 @@ void	echo_build(char	**cmd, t_minishell *mini)
 			if (cmd[i + 1])
 				printf(" ");
 		}
+		mini->exit_status = 0;
+		return ;
 	}
 	while (cmd[i])
-		printf("%s\n", cmd[i++]);
+		printf("%s ", cmd[i++]);
+	printf("\n");
 	mini->exit_status = 0;
 }
