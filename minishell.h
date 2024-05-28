@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/27 19:33:34 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/28 01:19:09 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ char		*ft_join(char *s1, char *buff);
 int			parsing(t_minishell *mini, t_list *data);
 void		classification(t_minishell *mini, t_list *data);
 void		parameter_expansion(t_minishell *mini, t_parser *current, t_list *data);
-int			export_parse(char **flags);
+int			export_parse(char *flags);
 
 // PARSING_UTILS
 

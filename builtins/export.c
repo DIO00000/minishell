@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:45:00 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/26 19:33:21 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/28 01:29:46 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ void	creat_var(char **var, t_list **data, int i)
 	while (var[++i])
 	{
 		sps = ft_split(var[i], "=");
+		if (!export_parse(sps[0]))
+			continue ;
 		(add_variable(var[i], data, sps, ft_strlen(sps[0])), indexer(data));
 		free_handler(sps);
 	}
@@ -96,8 +98,6 @@ void	export_build(char **var, t_list **data)
 	int		i;
 	t_list	*tmp;
 
-	if (!export_parse(var))
-		return ;
 	tmp = *data;
 	i = -1;
 	if (!var[1])
@@ -112,6 +112,7 @@ void	export_build(char **var, t_list **data)
 				tmp = tmp->next;
 			}
 		}
+		return ;
 	}
 	creat_var(var, data, 0);
 }

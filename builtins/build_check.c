@@ -6,24 +6,31 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/27 18:06:25 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/28 01:35:06 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	export_parse(char **flags)
+int	export_parse(char *flags)
 {
-	if (!flags[1])
+	int i;
+	
+	i = -1;
+	if (!flags || !flags[0])
 		return (1);
-		int i = 1;
-	while (flags[i])
+	if (ft_isdigit(*flags))
+		return (print_error(flags, "not a valid identifier"), 0);
+	if (*flags == '=' || *flags == '$')
+		return (print_error(flags, "not a valid identifier"), 0);
+	while (flags[++i])
 	{
-		if (ft_isdigit(*flags[i]))
-			return (print_error(flags[i], "not a valid identifier"), 0);
-		if (*flags[i] == '=' || *flags[i] == '$')
-			return (print_error(flags[i], "not a valid identifier"), 0);
-		i++;
+		if (!flags[i + 1] && flags[i] == '+')
+			return (1);
+		if ((flags[i] < '0' || flags[i] > '9') && flags[i] != '_' && \
+			(flags[i] < 'a' || flags[i] > 'z') && \
+			(flags[i] < 'A' || flags[i] > 'Z'))
+			return (print_error(flags, "not a valid identifier"), 0);
 	}
 	return (1);
 }
