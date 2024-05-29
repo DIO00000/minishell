@@ -6,7 +6,7 @@
 #    By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:05:04 by oelharbi          #+#    #+#              #
-#    Updated: 2024/05/28 02:49:03 by hbettal          ###   ########.fr        #
+#    Updated: 2024/05/29 10:42:55 by hbettal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ NAME = minishell
 HEADER = minishell.h
 
 OBJ = 	minishell.o							signals.o\
-		parsing/lexer.o						parsing/exit.o\
+		parsing/lexer.o						parsing/error_exit.o\
 		parsing/lexer_utils.o				parsing/prompt.o\
 		parsing/parsing.o					parsing/parsing_utils.o\
 		parsing/classification.o			parsing/expansion.o\
@@ -48,6 +48,7 @@ OBJ = 	minishell.o							signals.o\
 		utilities/ft_strtrim.o				builtins/export.o\
 		builtins/unset.o					get_next_line/get_next_line.o\
 		utilities/ft_split_k.o				builtins/exit.o\
+		excution/run_cmd.o
 
 all: $(NAME)
 	@echo "\033[1;32mCompilation Completed Successfully! ✅\033[0;m"

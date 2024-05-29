@@ -6,12 +6,18 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/27 21:43:24 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/29 15:54:45 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+void	print_no_cmd(char *cmd)
+{
+	write(2, "minishell: ", 11);
+	write(2, cmd, ft_strlen(cmd));
+	write(2, ": command not found\n", 20);
+}
 char	*path_check(char *command, t_list *data, int end[])
 {
 	int		i;
@@ -19,12 +25,14 @@ char	*path_check(char *command, t_list *data, int end[])
 	char	*path;
 	char	**paths;
 
+	if (!command || !command[0])
+		(write(2, "minishell:  : command not found\n", 32), exit(127));
 	if (access(command, F_OK) != -1)
 		return (command);
 	i = -1;
 	paths = ft_split(where_path(data), ":");
 	if (!paths)
-		exit(1);
+		(print_no_cmd(command), exit(127));
 	cmnd = ft_strjoin("/", command);
 	while (paths[++i])
 	{
@@ -34,85 +42,7 @@ char	*path_check(char *command, t_list *data, int end[])
 		free(path);
 	}
 	(free_handler(paths), free(cmnd), fds_closer(end));
-	printf("minishell: %s: command not found\n", command);
-	exit (127);
-}
-
-void	middle_commands(t_pex *pex, t_list **data, t_minishell *mini)
-{
-	char	*path;
-	char	**commands;
-
-	if (fork() == 0)
-	{
-		check_fd(mini, pex);
-		if (build_check(mini, data, pex))
-			exit(mini->exit_status);
-		else
-		{
-			commands = mini->final_cmd[pex->i + 1].cmd;
-			if (dup2(pex->input, 0) < 0)
-				(write (2, "dup2 failed", 11), exit(1));
-			close(pex->input);
-			path = path_check(commands[0], *data, pex->end);
-			if (!commands || !path)
-				(fds_closer(pex->end), exit(1));
-			fds_closer(pex->end);
-		}
-		execve(path, commands, mini->new_env);
-		exit(1);
-	}
-}
-
-pid_t	last_cmd(t_pex *pex, t_list **data, t_minishell *mini)
-{
-	char	*path;
-	char	**commands;
-	pid_t	id;
-
-	commands = NULL;
-	id = fork();
-	if (id == 0)
-	{
-		(pex->i++, check_fd(mini, pex));
-		if (build_check(mini, data, pex))
-			exit(mini->exit_status);
-		else
-		{
-			commands = mini->final_cmd[pex->i].cmd;
-			path = path_check(commands[0], *data, pex->end);
-			if (!commands || !path)
-				exit(1);
-			fds_closer(pex->end);
-		}
-		execve(path, commands, mini->new_env);
-		exit(mini->exit_status);
-	}
-	return (id);
-}
-
-void	first_cmd(t_list **data, t_pex *pex, t_minishell *mini)
-{
-	char	*path;
-	char	**commands;
-
-	if (fork() == 0)
-	{
-		check_fd(mini, pex);
-		if (build_check(mini, data, pex))
-			exit(mini->exit_status);
-		else
-		{
-			commands = mini->final_cmd[0].cmd;
-			if (!commands)
-				(fds_closer(pex->end), exit(1));
-			path = path_check(commands[pex->i], *data, pex->end);
-			if (!path)
-				(fds_closer(pex->end), exit(1));
-			fds_closer(pex->end);
-		}
-		(execve(path, commands, mini->new_env), exit(1));
-	}
+	(print_no_cmd(command), exit(127));
 }
 
 void	more_commands(t_pex *pex, t_list **data, t_minishell *mini)
@@ -146,12 +76,22 @@ void	more_commands(t_pex *pex, t_list **data, t_minishell *mini)
 void	single_command(t_minishell *mini, t_list **data)
 {
 	t_pex	pex;
+	int		sv_stdout;
+	int		sv_stdin;
 
-	pex.i = 0;
+	(1) && (sv_stdout = dup(1), sv_stdin = dup(0), pex.i = 0);
 	mini->exit_status = 0;
 	if (mini->list_size == 1)
+	{
+		check_fd(mini, &pex);
 		if (build_check(mini, data, &pex))
+		{
+			(dup2(sv_stdout, 1), close(sv_stdout));
+			(dup2(sv_stdin, 0), close(sv_stdin));
 			return ;
+		}
+	}
+	(dup2(sv_stdout, 1), close(sv_stdout), dup2(sv_stdin, 0), close(sv_stdin));
 	pex.lines = mini->list_size;
 	if (pipe(pex.end) == -1)
 		(write(2, "Error\n", 6), exit(1));
@@ -160,4 +100,3 @@ void	single_command(t_minishell *mini, t_list **data)
 	close_fds(mini);
 	close(pex.end[0]);
 }
-

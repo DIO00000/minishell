@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/28 02:20:08 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/29 07:52:41 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	export_parse(char *flags)
 {
-	int i;
-	
+	int	i;
+
 	i = -1;
 	if (!flags || !flags[0])
 		return (1);
@@ -35,7 +35,7 @@ int	export_parse(char *flags)
 	return (1);
 }
 
-int    build_check(t_minishell *mini, t_list **data, t_pex *pex)
+int	build_check(t_minishell *mini, t_list **data, t_pex *pex)
 {
 	int		q;
 	char	**flags;
@@ -47,7 +47,7 @@ int    build_check(t_minishell *mini, t_list **data, t_pex *pex)
 	if (!ft_strncmp(flags[0], "cd", 3))
 		(cd_build(flags, mini), ft_pwd(*data, mini), q = 1);
 	else if (!ft_strncmp(flags[0], "pwd", 4))
-		(pwd_build(flags[0], mini), q = 1);
+		(pwd_build(mini), q = 1);
 	else if (!ft_strncmp(flags[0], "echo", 5))
 		(echo_build(flags, mini), q = 1);
 	else if (!ft_strncmp(flags[0], "env", 4))
@@ -57,6 +57,6 @@ int    build_check(t_minishell *mini, t_list **data, t_pex *pex)
 	else if (!ft_strncmp(flags[0], "unset", 6))
 		(unset_build(flags, data), q = 1);
 	else if (!ft_strncmp(flags[0], "exit", 5))
-		(exit_build(mini, flags[1]), q = 1);
+		(exit_build(mini, flags), q = 1);
 	return (q);
 }

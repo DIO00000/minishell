@@ -6,11 +6,20 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:33:53 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/26 19:18:56 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/29 08:14:57 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	expansion_error(char c)
+{
+	if (c == '_' || c == '?')
+		return (0);
+	else if (!ft_isalpha(c))
+		return (1);
+	return (0);
+}
 
 char	*var_value(char	*var)
 {
@@ -47,7 +56,6 @@ void	ex_set(t_minishell *mini, char **str, t_exp_helper *help, t_list *data)
 	free(help->exp_name);
 	(*str) = remove_str(str, var_value(help->exp_env), help->start, \
 	help->end - help->start);
-	
 	if (!(*str))
 		ft_exit(mini, NULL, NULL, 12);
 }

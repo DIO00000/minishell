@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/28 01:19:09 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/29 08:08:54 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,8 @@ char		*ft_join(char *s1, char *buff);
 
 int			parsing(t_minishell *mini, t_list *data);
 void		classification(t_minishell *mini, t_list *data);
-void		parameter_expansion(t_minishell *mini, t_parser *current, t_list *data);
+void		parameter_expansion(t_minishell *mini, \
+t_parser *current, t_list *data);
 int			export_parse(char *flags);
 
 // PARSING_UTILS
@@ -248,9 +249,9 @@ void		*zyalloc(size_t size, int flag, bool is_free);
 
 int			build_check(t_minishell *mini, t_list **data, t_pex *pex);
 void		cd_build(char **cmd, t_minishell *mini);
-void		pwd_build(char *pwd, t_minishell *mini);
+void		pwd_build(t_minishell *mini);
 void		echo_build(char	**cmd, t_minishell *mini);
-void		exit_build(t_minishell *mini, char *status);
+void		exit_build(t_minishell *mini, char **status);
 t_list		*fill_env(char **origin_env, t_list *data, t_minishell *mini);
 void		env_build(t_list *data, char *cmd);
 void		export_build(char **var, t_list **data);
@@ -263,6 +264,9 @@ void		ft_pwd(t_list	*data, t_minishell *m);
 // EXCUTING
 
 void		single_command(t_minishell *mini, t_list **data);
+void		middle_commands(t_pex *pex, t_list **data, t_minishell *mini);
+pid_t		last_cmd(t_pex *pex, t_list **data, t_minishell *mini);
+void		first_cmd(t_list **data, t_pex *pex, t_minishell *mini);
 char		*path_check(char *command, t_list *data, int end[]);
 void		fds_closer(int end[]);
 void		ft_here_doc(t_minishell *mini, t_pex *pex);

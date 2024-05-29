@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 10:47:15 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/23 20:40:19 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:58:24 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,27 @@ t_list	*fill_env(char **origin_env, t_list *data, t_minishell *mini)
 {
 	int		i;
 	t_list	*tmp;
+	char	*str;
 	char	*ctmp;
 
 	i = -1;
 	if (!origin_env[0])
 		data = empty_env(data, mini);
 	else
-	{
 		while (origin_env[++i])
 			ft_lstadd_back(&data, ft_lstnew(origin_env[i]));
-	}
-	tmp = data;
-	ctmp = tmp->env;
+	(1) && (tmp = data, str = tmp->env, ctmp = NULL, i = 0);
 	while (tmp->next)
 	{
-		ctmp = ft_strjoin_three(ctmp, " ",tmp->next->env);
+		str = ft_strjoin_three(ctmp, " ", tmp->next->env);
+		if (i)
+			free(ctmp);
+		ctmp = str;
 		tmp = tmp->next;
+		i++;
 	}
-	mini->new_env = ft_split(ctmp, " ");
-	free(ctmp);
-	indexer(&data);
+	mini->new_env = ft_split(str, " ");
+	(free(str), indexer(&data));
 	return (data);
 }
 
@@ -73,23 +74,18 @@ void	ft_shlvl(t_list *data, t_minishell *m)
 	char	**var;
 	char	*ctmp;
 	char	*str;
-	int		i;
 
-	i = 0;
 	tmp = var_finder("SHLVL", &data);
 	var = ft_split(tmp->env, "=");
 	level = ft_atoi(var[1]) + 1;
 	tmp->env = ft_strjoin("SHLVL=", ft_itoa(level));
-	tmp = data;
-	ctmp = tmp->env;
+	(1) && (tmp = data, ctmp = tmp->env, level = 0);
 	while (tmp->next)
 	{
-		str = ft_strjoin_three(ctmp, " ",tmp->next->env);
-		if (i)
+		str = ft_strjoin_three(ctmp, " ", tmp->next->env);
+		if (level)
 			free(ctmp);
-		ctmp = str;
-		tmp = tmp->next;
-		i++;
+		(1) && (ctmp = str, tmp = tmp->next, level++);
 	}
 	m->new_env = ft_split(ctmp, " ");
 	(free_handler(var), free(ctmp));
@@ -98,9 +94,11 @@ void	ft_shlvl(t_list *data, t_minishell *m)
 void	ft_pwd(t_list	*data, t_minishell *m)
 {
 	t_list	*tmp;
-	
+
 	tmp = var_finder("PWD", &data);
-	tmp->env = ft_strjoin("PWD=", m->curr_dir);
+	if (tmp)
+		tmp->env = ft_strjoin("PWD=", m->curr_dir);
 	tmp = var_finder("OLDPWD", &data);
-	tmp->env = ft_strjoin("OLDPWD=", m->last_dir);
+	if (tmp)
+		tmp->env = ft_strjoin("OLDPWD=", m->last_dir);
 }

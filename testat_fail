@@ -1,0 +1,5 @@
+
+echo $$USER
+unset PWD
+export salam="ls -la" && $salam 
+ <Makefile "" | "">/dev/stdout

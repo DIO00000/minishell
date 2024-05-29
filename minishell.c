@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:02:41 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/25 16:37:54 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:00:36 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_list	*mini_init(t_minishell *m, t_list *data, char **env)
 	/usr/local/munki:/Library/Apple/usr/bin";
 	m->syntax = 0;
 	data = fill_env(env, data, m);
+	free(env);
 	m->cmd_path = "./minishell";
 	ft_shlvl(data, m);
 	return (data);
@@ -31,13 +32,11 @@ t_list	*mini_init(t_minishell *m, t_list *data, char **env)
 void	read_line(t_minishell *mini)
 {
 	char	*line;
-	char	**c_exit;
-	
+
 	mini->input = readline(mini->trm_prompt);
-	// mini->input = readline(GREEN_ARROW X);
 	if ((mini->input) && ft_strncmp(mini->input, "\n", 2))
 		add_history(mini->input);
-	if (!(c_exit = ft_split(mini->input, " ")))
+	if (!mini->input)
 		(printf("exit\n"), exit(mini->exit_status));
 	if (isatty(0))
 	{
@@ -52,16 +51,37 @@ void	read_line(t_minishell *mini)
 	}
 }
 
+void f()
+{
+	system("leaks minishell");
+}
+
+char	**copy_env(char **env)
+{
+    int i = 0;
+    while (env[i] != NULL)
+        i++;
+    char **new_env = malloc((i + 1) * sizeof(char *));
+    i = -1;
+    while (env[++i] != NULL)
+        new_env[i] = ft_strdup(env[i]);
+    new_env[i] = NULL;
+    return new_env;
+}
+
 int	main(int ac, char **av, char **env)
 {
+	// atexit(f);
+	char		**my_env;
 	t_minishell	mini;
 	t_list		*data;
 
 	data = NULL;
+	my_env = copy_env(env);
 	((void)ac, (void)av);
 	if (!isatty(0))
 		return (print_error(NULL, "this input is not a tty"), 1);
-	data = mini_init(&mini, data, env);
+	data = mini_init(&mini, data, my_env);
 	while (1)
 	{
 		signals(&mini.term);
@@ -69,7 +89,6 @@ int	main(int ac, char **av, char **env)
 		read_line(&mini);
 		lexer(&mini);
 		parsing(&mini, data);
-		// single_command(&mini, &data);
 		ft_exit(&mini, NULL, NULL, 0);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:43:05 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/24 19:47:09 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/29 08:14:52 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,6 @@ int	ft_end(char *str, int start)
 	while (ft_isalnum(str[start]) || str[start] == '_')
 		start++;
 	return (start);
-}
-
-int	expansion_error(char c)
-{
-	if (c == '_' || c == '?')
-		return (0);
-	else if (!ft_isalpha(c))
-		return (1);
-	return (0);
 }
 
 void	exit_number(t_minishell *mini, char **str, int start)

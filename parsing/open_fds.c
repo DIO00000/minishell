@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:49:11 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/27 20:44:24 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/29 12:24:10 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	open_fds(t_minishell *mini, int i)
 
 void	close_fds(t_minishell *mini)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < mini->list_size)
