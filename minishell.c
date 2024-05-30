@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:02:41 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/29 16:00:36 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/30 09:45:22 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ void f()
 char	**copy_env(char **env)
 {
     int i = 0;
-    while (env[i] != NULL)
+    while (env[i])
         i++;
     char **new_env = malloc((i + 1) * sizeof(char *));
     i = -1;
-    while (env[++i] != NULL)
+    while (env[++i])
         new_env[i] = ft_strdup(env[i]);
     new_env[i] = NULL;
     return new_env;

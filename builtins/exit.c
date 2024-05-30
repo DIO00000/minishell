@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 11:24:39 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/29 10:17:40 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/29 19:10:11 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	exit_build(t_minishell *mini, char **status)
 		}
 		while (status[1][++i])
 		{
+			if (status[1][i] == '-' || status[1][i] == '+')
+				continue ;
 			if (!ft_isdigit(status[1][i]))
 			{
 				printf("exit\nminishell: exit: %s:\

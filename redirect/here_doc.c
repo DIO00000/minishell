@@ -6,28 +6,11 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 02:08:56 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/27 19:40:55 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/29 18:36:06 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-// char	*join_flags(char **flags, char	*str)
-// {
-// 	int		i;
-// 	char	*flag;
-
-// 	i = 1;
-// 	str = NULL;
-// 	flag = NULL;
-// 	while (flags[++i])
-// 	{
-// 		str = ft_strjoin_three(flag, " ", flags[i]);
-// 		free(flag);
-// 		flag = str;
-// 	}
-// 	return (str);
-// }
 
 // void	ft_here_doc(t_minishell *mini, t_pex *pex)
 // {

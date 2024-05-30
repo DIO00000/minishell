@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 10:47:15 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/29 15:58:24 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/30 12:07:39 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,6 @@ void	ft_pwd(t_list	*data, t_minishell *m)
 	tmp = var_finder("OLDPWD", &data);
 	if (tmp)
 		tmp->env = ft_strjoin("OLDPWD=", m->last_dir);
+	if (!var_finder("PWD", &data))
+		tmp->env = "OLDPWD=\"\"";
 }
