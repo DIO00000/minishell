@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:02:41 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/30 09:45:22 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/31 05:49:17 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,11 @@ t_list	*mini_init(t_minishell *m, t_list *data, char **env)
 	(1) && (m->pids = NULL, m->cmd = NULL, m->final_cmd = NULL);
 	(1) && (m->new_env = NULL, m->trm_prompt = NULL, m->last_dir = NULL);
 	(1) && (m->curr_dir = getcwd(NULL, 0), m->username = getenv("USER"));
-	(1) && (m->lst = NULL, m->defult_path = malloc(90 * sizeof(char)));
-	m->defult_path = "PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:\
-	/usr/local/munki:/Library/Apple/usr/bin";
-	m->syntax = 0;
+	(1) && (m->lst = NULL, m->syntax = 0, m->cmd_path = "./minishell");
+	m->defult_path = ft_strdup("PATH=/usr/gnu/bin:/usr/local/bin:/bin:\
+/usr/bin:.");
 	data = fill_env(env, data, m);
 	free(env);
-	m->cmd_path = "./minishell";
 	ft_shlvl(data, m);
 	return (data);
 }
@@ -58,23 +56,26 @@ void f()
 
 char	**copy_env(char **env)
 {
-    int i = 0;
-    while (env[i])
-        i++;
-    char **new_env = malloc((i + 1) * sizeof(char *));
-    i = -1;
-    while (env[++i])
-        new_env[i] = ft_strdup(env[i]);
-    new_env[i] = NULL;
-    return new_env;
+	int		i;
+	char	**new_env;
+
+	i = 0;
+	while (env[i])
+		i++;
+	new_env = malloc((i + 1) * sizeof(char *));
+	i = -1;
+	while (env[++i])
+		new_env[i] = ft_strdup(env[i]);
+	new_env[i] = NULL;
+	return (new_env);
 }
 
 int	main(int ac, char **av, char **env)
 {
-	// atexit(f);
 	char		**my_env;
 	t_minishell	mini;
 	t_list		*data;
+	// atexit(f);
 
 	data = NULL;
 	my_env = copy_env(env);

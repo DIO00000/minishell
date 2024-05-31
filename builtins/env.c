@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 10:47:15 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/30 12:07:39 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/31 05:45:40 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 t_list	*empty_env(t_list *data, t_minishell *mini)
 {
 	ft_lstadd_back(&data, ft_lstnew(mini->defult_path));
-	ft_lstadd_back(&data, ft_lstnew("OLDPWD"));
+	ft_lstadd_back(&data, ft_lstnew(ft_strdup("OLDPWD")));
 	ft_lstadd_back(&data, ft_lstnew(ft_strjoin("PWD=", mini->curr_dir)));
 	ft_lstadd_back(&data, ft_lstnew("SHLVL=1"));
-	ft_lstadd_back(&data, ft_lstnew("_=/usr/bin/env"));
+	ft_lstadd_back(&data, ft_lstnew(ft_strdup("_=/usr/bin/env")));
 	return (data);
 }
 
@@ -58,6 +58,8 @@ void	env_build(t_list *data, char *cmd)
 		return ;
 	}
 	if (!ft_strncmp(data->env, "PATH=", 5))
+		data = data->next;
+	if (!ft_strncmp(data->env, "SECURITYSESSIONID", 17))
 		data = data->next;
 	while (data)
 	{
@@ -102,5 +104,5 @@ void	ft_pwd(t_list	*data, t_minishell *m)
 	if (tmp)
 		tmp->env = ft_strjoin("OLDPWD=", m->last_dir);
 	if (!var_finder("PWD", &data))
-		tmp->env = "OLDPWD=\"\"";
+		tmp->env = ft_strdup("OLDPWD=\"\"");
 }
