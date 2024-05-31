@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   classification.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 09:36:44 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/26 21:22:14 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/31 16:14:11 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	operator(t_parse_state *state, t_parser *current)
 	{
 		(1) && (handle_redirection(current, REDIN), *state = IN_FILE);
 		if (current->class == HERDOC && current->next)
-			(1) && (current->class = LIM, *state = IN_HEREDOC);
+			(1) && (current->next->class = LIM, *state = IN_HEREDOC);
 	}
 	else if (*current->string == '>')
 		(1) && (handle_redirection(current, REDOUT), *state = IN_FILE);

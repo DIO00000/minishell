@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_to_execute_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:34:46 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/30 12:31:50 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/31 16:16:11 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int	open_files(t_minishell *mini, int i)
 	{
 		if (curr->class == HERDOC)
 		{
+			//HAMZA	
 			her_fd = HR;
 			if (mini->exit_status == 7)
 				return (ft_close_fds(mini), 0);
