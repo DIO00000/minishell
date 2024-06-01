@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/01 17:05:46 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/01 20:12:01 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,28 +39,24 @@ int	build_check(t_minishell *mini, t_list **data, t_pex *pex)
 {
 	int		q;
 	char	**flags;
-	int		i;
 
 	q = 0;
-	i = 0;
 	flags = mini->final_cmd[pex->i].cmd;
-	while (!flags[i])
-		i++;
-	if (!flags || !flags[i])
+	if (!flags || !flags[0])
 		return (0);
-	if (!ft_strncmp(flags[i], "cd", 3))
+	if (!ft_strncmp(flags[0], "cd", 3))
 		(cd_build(flags, mini), ft_pwd(*data, mini), q = 1);
-	else if (!ft_strncmp(flags[i], "pwd", 4))
+	else if (!ft_strncmp(flags[0], "pwd", 4))
 		(pwd_build(mini), q = 1);
-	else if (!ft_strncmp(flags[i], "echo", 5))
+	else if (!ft_strncmp(flags[0], "echo", 5))
 		(echo_build(flags, mini), q = 1);
-	else if (!ft_strncmp(flags[i], "env", 4))
+	else if (!ft_strncmp(flags[0], "env", 4))
 		(env_build(*data, flags[1]), q = 1);
-	else if (!ft_strncmp(flags[i], "export", 7))
+	else if (!ft_strncmp(flags[0], "export", 7))
 		(export_build(flags, data), q = 1);
-	else if (!ft_strncmp(flags[i], "unset", 6))
+	else if (!ft_strncmp(flags[0], "unset", 6))
 		(unset_build(flags, data), q = 1);
-	else if (!ft_strncmp(flags[i], "exit", 5))
+	else if (!ft_strncmp(flags[0], "exit", 5))
 		(exit_build(mini, flags), q = 1);
 	return (q);
 }
