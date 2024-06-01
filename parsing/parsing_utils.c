@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 23:54:13 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/26 19:13:47 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/01 19:17:14 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,47 @@ void	handle_redirection(t_parser *current, int class)
 	}
 }
 
+t_parser	*lstadd_middle(t_parser *lst, t_parser *new, char *str)
+{
+	t_parser	*prev;
+	t_parser	*curr;
+	t_parser	*last_of_new;
+
+	if (!lst || !new)
+		return (lst);
+	if (lst->string == str && !lst->next)
+		return (new);
+	prev = NULL;
+	curr = lst;
+	last_of_new = new;
+	while (curr && curr->next && curr->string != str)
+	{
+		prev = curr;
+		curr = curr->next;
+	}
+	last_of_new = lstlast(new);
+	last_of_new->next = curr->next;
+	if (prev)
+		prev->next = new;
+	else
+		lst = new;
+	return (lst);
+}
+
+void	lstadd_front(t_parser **lst, t_parser *new, char *str)
+{
+	t_parser	*last_of_new;
+
+	if (!(*lst) || !new)
+		return ;
+	last_of_new = new;
+	if ((*lst)->string == str && (*lst)->next)
+	{
+		last_of_new = lstlast(new);
+		last_of_new->next = (*lst)->next;
+	}
+	*lst = new;
+}
 
 // void	ft_lstadd_back(t_list_parse **lst, char *str)
 // {

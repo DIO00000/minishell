@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/01 16:06:58 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/01 19:19:46 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,8 @@ int			systax_error(t_parser *lst);
 void		ft_exit(t_minishell *mini, char *cmd, char *str, int ext);
 void		free_strings(char **strings);
 void		print_error(char *var, char *msg);
+t_parser	*lstadd_middle(t_parser *lst, t_parser *new, char *str);
+void		lstadd_front(t_parser **lst, t_parser *new, char *str);
 
 // STCURT_TO_EXECUTE
 

@@ -3,14 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:33:53 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/01 12:13:51 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/01 19:18:31 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	classing(t_parser **expand)
+{
+	t_parser	*tmp;
+
+	(*expand)->class = COMMAND;
+	tmp = *expand;
+	while (tmp)
+	{
+		if (!tmp->class)
+			tmp->class = ARGUMENT;
+		tmp = tmp->next;
+	}
+	expand = &tmp;
+}
+
+int	is_space(char *str)
+{
+	while (*str)
+	{
+		if (ft_iswhitespace(*str))
+			return (1);
+		str++;
+	}
+	return (0);
+}
 
 int	expansion_error(char c)
 {
@@ -63,11 +89,30 @@ void	ex_set(t_minishell *mini, char **str, t_exp_helper *help, t_list *data)
 void	parameter_expansion(t_minishell *mini, t_parser *current, t_list *data)
 {
 	t_exp_helper	help;
+	char			**spl;
+	t_parser		*expand;
+	// t_parser		*new;
+	int				i;
 
+	expand = NULL;
+	i = -1;
 	help.exp_counter = expansion_counter(current->string);
 	while (help.exp_counter--)
 	{
 		if (current->class != LIM)
 			ex_set(mini, &current->string, &help, data);
+		if (is_space(current->string))
+		{
+			spl = ft_split(current->string, SPACES);
+			if (!spl)
+				return ;
+			while (spl[++i])
+				lstadd_back(&expand, lstnew(spl[i]));
+			classing(&expand);
+			if (mini->lst->string != current->string)
+				current = lstadd_middle(mini->lst , expand, current->string);
+			else
+				lstadd_front(&mini->lst, expand, current->string);
+		}
 	}
 }
