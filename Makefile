@@ -6,7 +6,7 @@
 #    By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:05:04 by oelharbi          #+#    #+#              #
-#    Updated: 2024/05/30 17:13:15 by hbettal          ###   ########.fr        #
+#    Updated: 2024/06/01 16:07:38 by hbettal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,9 +46,8 @@ OBJ = 	minishell.o							signals.o\
 		builtins/build_check.o				builtins/cd.o\
 		builtins/env.o						utilities/list.o\
 		utilities/ft_strtrim.o				builtins/export.o\
-		builtins/unset.o					get_next_line/get_next_line.o\
-		utilities/ft_split_k.o				builtins/exit.o\
-		excution/run_cmd.o
+		builtins/unset.o					utilities/ft_split_k.o\
+		builtins/exit.o						excution/run_cmd.o
 
 all: $(NAME)
 	@echo "\033[1;32mCompilation Completed Successfully! ✅\033[0;m"

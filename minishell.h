@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/01 10:09:41 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/01 16:06:58 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ typedef struct s_minishell
 //  #define malloc(x) NULL
 // SIGNALS
 
-void		signals(struct termios *term);
+void		signals(t_minishell *mini);
 void		sig_init(int signum);
 void		remove_c(struct termios *term);
 void		sig_quit(int signum);
@@ -296,7 +296,6 @@ char		*ft_strchr(char *s, char c);
 char		*print_the_line(char *line);
 char		*rest_line(char *line);
 char		*get_the_line(char	*str, int fd);
-char		*get_next_line(int fd);
 char		*ft_join(char *s1, char *buff);
 
 #endif

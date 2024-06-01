@@ -3,20 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:15:24 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/23 20:21:40 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/01 16:04:06 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	signals(struct termios *term)
+int	exit_s = 0;
+
+void	signals(t_minishell *mini)
 {
-	remove_c(term);
+	remove_c(&mini->term);
 	signal(SIGINT, sig_init);
 	signal(SIGQUIT, SIG_IGN);
+	if (exit_s == 1 || exit_s == 131)
+		mini->exit_status = exit_s;
+	exit_s = 0;
 }
 
 void	remove_c(struct termios *term)
@@ -33,6 +38,7 @@ void	sig_init(int signum)
 {
 	if (signum == SIGINT)
 	{
+		exit_s = 1;
 		write(1, "\n", 2);
 		rl_on_new_line();
 		rl_replace_line("", 0);
@@ -42,6 +48,7 @@ void	sig_init(int signum)
 
 void	sig_quit(int signum)
 {
+	exit_s = 131;
 	ft_putstr_fd("Quit: ", 2);
 	ft_putnbr_fd(signum, 2);
 	ft_putchar_fd('\n', 2);

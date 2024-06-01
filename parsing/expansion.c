@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:33:53 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/29 08:14:57 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/01 12:13:51 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ex_set(t_minishell *mini, char **str, t_exp_helper *help, t_list *data)
 	tmp = var_finder(help->exp_name, &data);
 	if (!tmp)
 	{
-		(*str) = "\0";
+		(*str) = NULL;
 		return ;
 	}
 	help->exp_env = tmp->env;

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:49:11 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/30 12:13:21 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/01 12:14:16 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	open_infd(t_parser *curr, t_parser *redirecyion_in)
 {
 	int	fd;
 
-	if (!curr->next->string[0])
+	if (!curr->next->string)
 	{
 		print_error(NULL, "ambiguous redirect");
 		return (-1);

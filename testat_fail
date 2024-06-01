@@ -1,3 +1,10 @@
 #export salam="ls -la" && $salam 
 
 cat < o Makefile
+
+
+ export a="  a      b "  => echo $a && echo "$a"
+
+ ./minishell < /dev/urandom
+
+ ./a.out && Segmentation fault: 11 not showing

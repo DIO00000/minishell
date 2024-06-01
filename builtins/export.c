@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:45:00 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/01 11:23:03 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/01 12:33:35 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,12 @@ void	creat_var(char **var, t_list **data, int i)
 
 	while (var[i] && var[i][0])
 	{
+		if (var[i][0] == '=')
+		{
+			print_error(var[i], "not a valid identifier");
+			i++;
+			continue;
+		}
 		sps = ft_split(var[i], "=");
 		if (!export_parse(sps[0]))
 		{

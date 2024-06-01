@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 17:06:12 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/01 11:01:28 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/01 13:01:10 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	echo_build(char	**cmd, t_minishell *mini)
 
 	i = 1;
 	n = false;
-	while (cmd[i] && !ft_strncmp(cmd[1], "-n", 2))
+	while (cmd[i] && !ft_strncmp(cmd[i], "-n", 2))
 	{
 		j = 1;
 		while (cmd[i][j] && cmd[i][j] == 'n')
