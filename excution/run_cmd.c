@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 08:07:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/01 18:47:46 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/01 19:39:25 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	middle_commands(t_pex *pex, t_list **data, t_minishell *mini)
 	char	**commands;
 	int		i;
 
-	i = pex->i;
+	i = 0;
 	commands = mini->final_cmd[pex->i + 1].cmd;
 	while (!commands)
 		i++;
@@ -49,7 +49,7 @@ pid_t	last_cmd(t_pex *pex, t_list **data, t_minishell *mini)
 	pid_t	id;
 	int		i;
 
-	(1) && (commands = mini->final_cmd[pex->i].cmd, id = fork(), i = pex->i);
+	(1) && (commands = mini->final_cmd[pex->i].cmd, id = fork(), i = 0);
 	while (!commands[i])
 		i++;
 	if (id == 0)
@@ -78,7 +78,7 @@ void	first_cmd(t_list **data, t_pex *pex, t_minishell *mini)
 	int		i;
 
 	commands = mini->final_cmd[0].cmd;
-	i = pex->i;
+	i = 0;
 	while (!commands[i])
 		i++;
 	if (fork() == 0)
