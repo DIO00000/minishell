@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:33:53 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/01 19:18:31 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/01 20:13:09 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	classing(t_parser **expand)
 
 int	is_space(char *str)
 {
-	while (*str)
+	while (str && *str)
 	{
 		if (ft_iswhitespace(*str))
 			return (1);
