@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/01 10:04:42 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/01 10:06:53 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,12 +203,12 @@ void		print_error(char *var, char *msg);
 // STCURT_TO_EXECUTE
 
 int			lstsize(t_parser *lst);
-int			struct_cmd(t_minishell *mini);
+int			struct_cmd(t_minishell *mini, t_pex *pex);
 int			set_cmd_line(t_minishell *mini, int i);
 int			get_cmd_size(t_minishell *mini, int i);
 t_parser	*get_pipe(t_parser *lst, int i);
 void		ft_close_fds(t_minishell *mini);
-int			open_files(t_minishell *mini, int i);
+int			open_files(t_minishell *mini, int i, t_pex *pex);
 void		manage_fds(t_minishell *mini);
 void		open_fds(t_minishell *mini, int i);
 void		close_fds(t_minishell *mini);
@@ -269,7 +269,7 @@ pid_t		last_cmd(t_pex *pex, t_list **data, t_minishell *mini);
 void		first_cmd(t_list **data, t_pex *pex, t_minishell *mini);
 char		*path_check(char *command, t_list *data, int end[]);
 void		fds_closer(int end[]);
-void		ft_here_doc(t_minishell *mini, t_pex *pex, char *lim);
+void		ft_here_doc(t_minishell *mini, t_pex *pex);
 char		*where_path(t_list *data);
 void		free_handler(char **str);
 void		more_commands(t_pex *pex, t_list **data, t_minishell *mini);
