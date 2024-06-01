@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/01 10:06:53 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/01 10:09:41 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,7 +269,7 @@ pid_t		last_cmd(t_pex *pex, t_list **data, t_minishell *mini);
 void		first_cmd(t_list **data, t_pex *pex, t_minishell *mini);
 char		*path_check(char *command, t_list *data, int end[]);
 void		fds_closer(int end[]);
-void		ft_here_doc(t_minishell *mini, t_pex *pex);
+void		ft_here_doc(t_minishell *mini, t_pex *pex, char *lim);
 char		*where_path(t_list *data);
 void		free_handler(char **str);
 void		more_commands(t_pex *pex, t_list **data, t_minishell *mini);

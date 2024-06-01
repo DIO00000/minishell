@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 02:08:56 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/01 10:06:18 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/01 10:10:02 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ft_here_doc(t_minishell *mini, t_pex *pex, char *lim)
 {
 	char	*str;
 	char	*s;
+	(void)mini;
 
 	str = NULL;
 	s = ft_strjoin(lim, "\n");
