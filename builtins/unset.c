@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:37:44 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/31 05:34:20 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/31 19:33:28 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	unset_build(char **var, t_list **data)
 	i = 0;
 	while (var[++i])
 	{
+		export_parse(var[i]);
 		tmp = var_finder(var[i], data);
 		ft_lstdel_mid(data, tmp);
 	}

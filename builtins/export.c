@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:45:00 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/31 05:36:35 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/31 18:53:34 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,28 +54,29 @@ t_list	*var_finder(char *var, t_list **data)
 void	add_variable(char *var, t_list **data, char **sps, int i)
 {
 	t_list	*tmp;
+	char	*t;
 
 	tmp = *data;
-	if (!sps[1])
-		if (!var_finder(sps[0], data))
-			(ft_lstadd_back(data, ft_lstnew(var)));
+	if (!sps[1] && !var_finder(sps[0], data))
+		(ft_lstadd_back(data, ft_lstnew(var)));
 	if (sps[0][i - 1] != '+' && sps[1])
 	{
 		if (!var_finder(sps[0], data))
 			(ft_lstadd_back(data, ft_lstnew(var)));
 		else
-		{
-			tmp = var_finder(sps[0], data);
-			tmp->env = var;
-		}
+			(1) && (tmp = var_finder(sps[0], data), tmp->env = var);
 	}
 	else if (sps[0][i - 1] == '+' && sps[1])
 	{
-		tmp = var_finder(*ft_split(sps[0], "+"), data);
+		(t = ft_substr(sps[0], 0, i - 1), tmp = var_finder(t, data), free(t));
+		if (!tmp)
+			return ;
+		t = tmp->env;
 		if (ft_strchr(tmp->env, '='))
-			tmp->env = ft_strjoin(tmp->env, sps[1]);
+			tmp->env = ft_strjoin(t, sps[1]);
 		else
-			tmp->env = ft_strjoin_three(tmp->env, "=", sps[1]);
+			tmp->env = ft_strjoin_three(t, "=", sps[1]);
+		free(t);
 	}
 }
 
@@ -89,6 +90,7 @@ void	creat_var(char **var, t_list **data, int i)
 		if (!export_parse(sps[0]))
 		{
 			i++;
+			free_handler(sps);
 			continue ;
 		}
 		(add_variable(var[i], data, sps, ft_strlen(sps[0])), indexer(data));

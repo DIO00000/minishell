@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 10:41:37 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/30 15:16:03 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/05/31 17:01:08 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	check_fd(t_minishell *mini, t_pex *pex)
 {
-	// if (mini->final_cmd[pex->i].in_fd == HR)
-	// 	ft_here_doc(mini, pex);
 	if (mini->final_cmd[pex->i].in_fd == TUBE)
 	{
 		if (dup2(pex->end[0], 0) == -1)
