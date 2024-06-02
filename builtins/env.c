@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 10:47:15 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/31 05:45:40 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/01 23:11:20 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	env_build(t_list *data, char *cmd)
 		return ;
 	}
 	if (!ft_strncmp(data->env, "PATH=", 5))
-		data = data->next;
-	if (!ft_strncmp(data->env, "SECURITYSESSIONID", 17))
 		data = data->next;
 	while (data)
 	{

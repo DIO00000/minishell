@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_to_execute_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:34:46 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/31 16:47:31 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/02 10:16:24 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,14 @@ int	open_files(t_minishell *mini, int i, t_pex *pex)
 {
 	t_parser	*curr;
 	int			her_fd;
-	(void)pex;
+
 	her_fd = 0;
 	curr = get_pipe(mini->lst, i);
 	while (curr && curr->class != PIPE)
 	{
 		if (curr->class == HERDOC)
 		{
-			ft_here_doc(mini, pex, curr->next->string);
+			ft_here_doc(pex, curr->next->string);
 			her_fd = HR;
 			if (mini->exit_status == 7)
 				return (ft_close_fds(mini), 0);

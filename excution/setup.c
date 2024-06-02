@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/01 19:45:34 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/02 10:20:46 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*path_check(char *command, t_list *data, int end[])
 	char	*path;
 	char	**paths;
 
-	if (!command || !command[0])
+	if (command && !command[0])
 		(write(2, "minishell:  : command not found\n", 32), exit(127));
 	if (access(command, X_OK) != -1)
 		return (command);

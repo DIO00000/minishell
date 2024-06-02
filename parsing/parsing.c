@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 23:49:43 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/31 16:44:56 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/01 21:47:13 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	parsing(t_minishell *mini, t_list *data)
+int	parsing(t_minishell *mini, t_list **data)
 {
 	int		i;
 	t_pex	pex;
@@ -22,7 +22,7 @@ int	parsing(t_minishell *mini, t_list *data)
 		return (1);
 	while (mini->cmd[++i])
 		lstadd_back(&mini->lst, lstnew(mini->cmd[i]));
-	(classification(mini, data), systax_error(mini->lst));
+	(classification(mini, *data), systax_error(mini->lst));
 	if (!mini->lst)
 		return (1);
 	if (!struct_cmd(mini, &pex))
@@ -32,6 +32,6 @@ int	parsing(t_minishell *mini, t_list *data)
 	if (mini->exit_status == 7)
 		return (mini->exit_status = 1, 1);
 	signal(SIGQUIT, sig_quit);
-	single_command(mini, &data);
+	single_command(mini, data);
 	return (0);
 }

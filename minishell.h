@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/01 19:19:46 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/02 10:13:07 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ char		*ft_join(char *s1, char *buff);
 
 // PARSING
 
-int			parsing(t_minishell *mini, t_list *data);
+int			parsing(t_minishell *mini, t_list **data);
 void		classification(t_minishell *mini, t_list *data);
 void		parameter_expansion(t_minishell *mini, \
 t_parser *current, t_list *data);
@@ -271,7 +271,7 @@ pid_t		last_cmd(t_pex *pex, t_list **data, t_minishell *mini);
 void		first_cmd(t_list **data, t_pex *pex, t_minishell *mini);
 char		*path_check(char *command, t_list *data, int end[]);
 void		fds_closer(int end[]);
-void		ft_here_doc(t_minishell *mini, t_pex *pex, char *lim);
+int			ft_here_doc(t_pex *pex, char *lim);
 char		*where_path(t_list *data);
 void		free_handler(char **str);
 void		more_commands(t_pex *pex, t_list **data, t_minishell *mini);

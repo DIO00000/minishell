@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:02:41 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/01 17:07:11 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/01 21:46:57 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	main(int ac, char **av, char **env)
 		prompt_custom(&mini);
 		read_line(&mini);
 		lexer(&mini);
-		parsing(&mini, data);
+		parsing(&mini, &data);
 		ft_exit(&mini, NULL, NULL, 0);
 	}
 }
