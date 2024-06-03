@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_to_execute_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:34:46 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/02 10:16:24 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/03 12:02:35 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_parser	*get_pipe(t_parser *lst, int i)
 	return (curr);
 }
 
-int	open_files(t_minishell *mini, int i, t_pex *pex)
+int	open_files(t_minishell *mini, int i)
 {
 	t_parser	*curr;
 	int			her_fd;
@@ -101,16 +101,18 @@ int	open_files(t_minishell *mini, int i, t_pex *pex)
 	{
 		if (curr->class == HERDOC)
 		{
-			ft_here_doc(pex, curr->next->string);
-			her_fd = HR;
+			her_fd = ft_here_doc(curr->next->string); //Hamza
 			if (mini->exit_status == 7)
-				return (ft_close_fds(mini), 0);
+				return (close(her_fd), ft_close_fds(mini), 0);
 			if (curr == mini->final_cmd[i].redirection_in)
 				mini->final_cmd[i].in_fd = her_fd;
+			else
+				close (her_fd);
 		}
 		if (curr->class == ERROR)
 		{
-			(1) && (mini->exit_status = 258 ,mini->syntax = 1);
+			mini->exit_status = 258;
+			mini->syntax = 1;
 			return (ft_close_fds(mini), 0);
 		}
 		curr = curr->next;

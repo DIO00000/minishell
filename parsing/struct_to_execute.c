@@ -6,13 +6,13 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:30:47 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/31 16:44:51 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:48:24 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	struct_cmd(t_minishell *mini, t_pex *pex)
+int	struct_cmd(t_minishell *mini)
 {
 	int	i;
 
@@ -30,7 +30,7 @@ int	struct_cmd(t_minishell *mini, t_pex *pex)
 		mini->final_cmd[i].redirection_out = NULL;
 		if (!set_cmd_line(mini, i))
 			return (0);
-		if (!open_files(mini, i, pex))
+		if (!open_files(mini, i))
 			return (1);
 		i++;
 	}

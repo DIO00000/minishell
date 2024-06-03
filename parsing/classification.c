@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 09:36:44 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/31 16:14:11 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/03 12:08:35 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	operator(t_parse_state *state, t_parser *current)
 
 void	some_thing_else(t_parse_state *state, t_parser *current)
 {
-	if (*state == START)
+	if (*state == START || *state == IN_HEREDOC)
 		(1) && (current->class = COMMAND, *state = IN_COMMAND);
 	else if (*state == IN_COMMAND)
 		(1) && (current->class = ARGUMENT, *state = IN_COMMAND);
