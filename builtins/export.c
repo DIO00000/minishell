@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:45:00 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/01 21:32:49 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/03 10:28:37 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,38 +51,38 @@ t_list	*var_finder(char *var, t_list **data)
 	return (NULL);
 }
 
-void	add_variable(char *var, t_list **data, char **sps, int i)
+void	add_variable(char *var, t_list **data, char **sps, char *vr, int i)
 {
 	t_list	*tmp;
 	char	*t;
 
 	tmp = *data;
-	if (!sps[1] && !var_finder(sps[0], data))
+	if (!vr && !var_finder(sps[0], data))
 		(ft_lstadd_back(data, ft_lstnew(var)));
-	if (sps[0][i - 1] != '+' && sps[1])
+	if (sps[0][i - 1] != '+' && vr)
 	{
 		if (!var_finder(sps[0], data))
 			(ft_lstadd_back(data, ft_lstnew(var)));
 		else
 			(1) && (tmp = var_finder(sps[0], data), tmp->env = var);
 	}
-	else if (sps[0][i - 1] == '+' && sps[1])
+	else if (sps[0][i - 1] == '+' && vr)
 	{
 		(t = ft_substr(sps[0], 0, i - 1), tmp = var_finder(t, data), free(t));
 		if (!tmp)
 			return ;
 		t = tmp->env;
 		if (ft_strchr(tmp->env, '='))
-			tmp->env = ft_strjoin(t, sps[1]);
+			tmp->env = ft_strjoin(t, vr);
 		else
-			tmp->env = ft_strjoin_three(t, "=", sps[1]);
-		free(t);
+			tmp->env = ft_strjoin_three(t, "=", vr);
 	}
 }
 
 void	creat_var(char **var, t_list **data, int i)
 {
 	char	**sps;
+	char	*vr;
 
 	while (var[i] && var[i][0])
 	{
@@ -99,8 +99,9 @@ void	creat_var(char **var, t_list **data, int i)
 			free_handler(sps);
 			continue ;
 		}
+		vr = ft_strchr(var[i], '=');
 		if (sps[0])
-			add_variable(var[i], data, sps, ft_strlen(sps[0]));
+			add_variable(var[i], data, sps, vr, ft_strlen(sps[0]));
 		indexer(data);
 		free_handler(sps);
 		i++;
