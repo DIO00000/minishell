@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 10:47:15 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/01 23:11:20 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/04 12:57:43 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_shlvl(t_list *data, t_minishell *m)
 			free(ctmp);
 		(1) && (ctmp = str, tmp = tmp->next, level++);
 	}
-	m->new_env = ft_split(ctmp, " ");
+	m->new_env = ft_split(str, " ");
 	(free_handler(var), free(ctmp));
 }
 

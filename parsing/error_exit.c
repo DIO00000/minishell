@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:46:01 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/29 08:13:24 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/04 01:03:10 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,13 @@ void	print_error(char *var, char *msg)
 void	cleanup(t_minishell *mini, int exit_status)
 {
 	if (mini->final_cmd)
-	{
-		free_table(mini);
-		mini->final_cmd = NULL;
-	}
+		(free_table(mini), mini->final_cmd = NULL);
 	if (mini->lst)
 		lstclear(&mini->lst);
 	if (mini->cmd)
-	{
-		free(mini->cmd);
-		mini->cmd = NULL;
-	}
+		(free(mini->cmd), mini->cmd = NULL);
 	if (mini->pids)
-	{
-		free(mini->pids);
-		mini->pids = NULL;
-	}
+		(free(mini->pids), mini->pids = NULL);
 	if (exit_status != EXIT_SUCCESS && mini->new_env)
 		free_strings(mini->new_env);
 	return ;

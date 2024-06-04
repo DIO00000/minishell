@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 23:49:43 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/03 12:14:33 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:48:02 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	parsing(t_minishell *mini, t_list **data)
 	(classification(mini, *data), systax_error(mini->lst));
 	if (!mini->lst)
 		return (1);
-	if (!struct_cmd(mini))
+	if (!struct_cmd(mini, *data))
 		ft_exit(mini, NULL, NULL, 12);
 	if (mini->syntax)
 		return (mini->syntax = 0, ft_exit(mini, NULL, NULL, 0), 1);

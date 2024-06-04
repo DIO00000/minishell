@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   struct_to_execute.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:30:47 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/03 11:48:24 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:26:15 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	struct_cmd(t_minishell *mini)
+int	struct_cmd(t_minishell *mini, t_list *data)
 {
 	int	i;
 
@@ -30,7 +30,7 @@ int	struct_cmd(t_minishell *mini)
 		mini->final_cmd[i].redirection_out = NULL;
 		if (!set_cmd_line(mini, i))
 			return (0);
-		if (!open_files(mini, i))
+		if (!open_files(mini, i, data))
 			return (1);
 		i++;
 	}

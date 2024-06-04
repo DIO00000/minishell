@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:02:41 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/01 21:46:57 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/04 11:59:49 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	read_line(t_minishell *mini)
 	if ((mini->input) && *(mini->input) && ft_strncmp(mini->input, "\n", 2))
 		add_history(mini->input);
 	if (!mini->input)
-		(printf("exit\n"), exit(mini->exit_status));
+		(printf("exit\n"), cleanup(mini, 1), exit(mini->exit_status));
 	if (isatty(0))
 	{
 		if (!mini->input)

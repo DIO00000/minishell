@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/03 11:48:34 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/04 01:01:24 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,10 @@ int			parsing(t_minishell *mini, t_list **data);
 void		classification(t_minishell *mini, t_list *data);
 void		parameter_expansion(t_minishell *mini, \
 t_parser *current, t_list *data);
+void		ex_set(t_minishell *mini, char **str, \
+t_exp_helper *help, t_list *data);
 int			export_parse(char *flags);
+char		*var_value(char	*var);
 
 // PARSING_UTILS
 
@@ -205,12 +208,12 @@ void		lstadd_front(t_parser **lst, t_parser *new, char *str);
 // STCURT_TO_EXECUTE
 
 int			lstsize(t_parser *lst);
-int			struct_cmd(t_minishell *mini);
+int			struct_cmd(t_minishell *mini, t_list *data);
 int			set_cmd_line(t_minishell *mini, int i);
 int			get_cmd_size(t_minishell *mini, int i);
 t_parser	*get_pipe(t_parser *lst, int i);
 void		ft_close_fds(t_minishell *mini);
-int			open_files(t_minishell *mini, int i);
+int			open_files(t_minishell *mini, int i, t_list *data);
 void		manage_fds(t_minishell *mini);
 void		open_fds(t_minishell *mini, int i);
 void		close_fds(t_minishell *mini);
@@ -244,6 +247,7 @@ char		*get_dir(t_minishell *minishell);
 // GARBAGE_COLLECTOR
 
 void		*zyalloc(size_t size, int flag, bool is_free);
+void		cleanup(t_minishell *mini, int exit_status);
 
 /******************** ===> EXCUTION	<=== ********************/
 
@@ -252,7 +256,7 @@ void		*zyalloc(size_t size, int flag, bool is_free);
 int			build_check(t_minishell *mini, t_list **data, t_pex *pex);
 void		cd_build(char **cmd, t_minishell *mini);
 void		pwd_build(t_minishell *mini);
-void		echo_build(char	**cmd, t_minishell *mini);
+void		echo_build(char	**word, t_minishell *mini);
 void		exit_build(t_minishell *mini, char **status);
 t_list		*fill_env(char **origin_env, t_list *data, t_minishell *mini);
 void		env_build(t_list *data, char *cmd);
@@ -271,7 +275,7 @@ pid_t		last_cmd(t_pex *pex, t_list **data, t_minishell *mini);
 void		first_cmd(t_list **data, t_pex *pex, t_minishell *mini);
 char		*path_check(char *command, t_list *data, int end[]);
 void		fds_closer(int end[]);
-int			ft_here_doc(char *lim);
+int			ft_here_doc(t_minishell *mini, char *lim, t_list *data);
 char		*where_path(t_list *data);
 void		free_handler(char **str);
 void		more_commands(t_pex *pex, t_list **data, t_minishell *mini);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_to_execute_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:34:46 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/03 12:02:35 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:26:05 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_parser	*get_pipe(t_parser *lst, int i)
 	return (curr);
 }
 
-int	open_files(t_minishell *mini, int i)
+int	open_files(t_minishell *mini, int i, t_list *data)
 {
 	t_parser	*curr;
 	int			her_fd;
@@ -101,7 +101,7 @@ int	open_files(t_minishell *mini, int i)
 	{
 		if (curr->class == HERDOC)
 		{
-			her_fd = ft_here_doc(curr->next->string); //Hamza
+			her_fd = ft_here_doc(mini, curr->next->string, data); //Hamza
 			if (mini->exit_status == 7)
 				return (close(her_fd), ft_close_fds(mini), 0);
 			if (curr == mini->final_cmd[i].redirection_in)
