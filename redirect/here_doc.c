@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 02:08:56 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/04 12:01:59 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/04 17:55:50 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,36 @@ void	exp_set(t_minishell *mini, char **str, t_list *data)
 		ft_exit(mini, NULL, NULL, 12);
 }
 
+char	*file_name(char *file)
+{
+	int		i;
+	char	*unique;
+	char	*tmp;
+
+	i = 0;
+	tmp = file;
+	while (1)
+	{
+		unique = ft_itoa(i);
+		file = ft_strjoin_three(tmp, "_", unique);
+		if (access(file, F_OK) == -1)
+			return (free(unique), file);
+		free(unique);
+		if (i)
+			free(file);
+		i++;
+	}
+	return (NULL);
+}
+
 int	ft_here_doc(t_minishell *mini, char *lim, t_list *data)
 {
 	char	*str;
 	int		fd;
-
-	unlink("/tmp/secret_f");
-	fd = open("/tmp/ana_machi_heredoc", O_CREAT | O_RDWR | O_TRUNC, 0777);
+	char	*file;
+	
+	file = file_name("/tmp/secret_file");
+	fd = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (fd < 0)
 		return (free(lim), 0);
 	while (1)
@@ -69,7 +92,7 @@ int	ft_here_doc(t_minishell *mini, char *lim, t_list *data)
 		if (!str || !ft_strncmp(str, lim, INT_MAX))
 		{
 			close(fd);
-			fd = open("/tmp/ana_machi_heredoc", O_RDWR);
+			fd = open(file, O_RDWR);
 			return (free(lim), free(str), fd);
 		}
 		exp_set(mini, &str, data);

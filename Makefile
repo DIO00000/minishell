@@ -6,13 +6,13 @@
 #    By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:05:04 by oelharbi          #+#    #+#              #
-#    Updated: 2024/06/04 11:48:50 by hbettal          ###   ########.fr        #
+#    Updated: 2024/06/04 15:05:55 by hbettal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
 
 READLINE_INC = -I$(shell brew --prefix readline)/include
 
