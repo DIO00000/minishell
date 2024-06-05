@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 23:54:13 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/05 00:42:41 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/05 02:11:18 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	count_quote(char *str)
 	char	current_quote;
 	int		count;
 
+	current_quote = '\0';
 	count = 0;
 	while (str && *str)
 	{

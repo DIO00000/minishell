@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:46:01 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/05 01:12:01 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/05 02:11:47 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,18 @@ void	cleanup(t_minishell *mini, int exit_status)
 
 void	ft_exit(t_minishell *mini, char *cmd, char *str, int ext)
 {
-	struct stat	file;
+	// struct stat	file;
 	(void)mini;
 
 	if (ext == 13)
 	{
 		ext = 126;
 	}
-	if (stat(cmd, &file) == 0 && S_ISDIR(file.st_mode))
-		print_error(cmd, "is a directory");
+	// if (cmd && *cmd)
+	// {
+	// 	if (stat(cmd, &file) == 0 && S_ISDIR(file.st_mode))
+	// 		print_error(cmd, "is a directory");
+	// }
 	else if (str || ext)
 		print_error(cmd, str);
 	if (mini->lst)
