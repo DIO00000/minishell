@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 08:07:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/02 09:55:26 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/05 15:05:12 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	middle_commands(t_pex *pex, t_list **data, t_minishell *mini)
 
 	if (fork() == 0)
 	{
-		check_fd(mini, pex);
+		check_fd(mini, pex, 1);
 		if (build_check(mini, data, pex))
 			exit(mini->exit_status);
 		else
@@ -49,7 +49,7 @@ pid_t	last_cmd(t_pex *pex, t_list **data, t_minishell *mini)
 	if (id == 0)
 	{
 		pex->i++;
-		check_fd(mini, pex);
+		check_fd(mini, pex, 1);
 		if (build_check(mini, data, pex))
 			exit(mini->exit_status);
 		else
@@ -73,7 +73,7 @@ void	first_cmd(t_list **data, t_pex *pex, t_minishell *mini)
 
 	if (fork() == 0)
 	{
-		check_fd(mini, pex);
+		check_fd(mini, pex, 1);
 		if (build_check(mini, data, pex))
 			exit(mini->exit_status);
 		else

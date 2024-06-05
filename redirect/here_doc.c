@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 02:08:56 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/05 10:24:55 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/05 15:16:05 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	ft_here_doc(t_minishell *mini, char *lim, t_list *data)
 	char	*str;
 	int		fd;
 	char	*file;
-	
+
 	file = file_name("/tmp/secret_file");
 	fd = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (fd < 0)

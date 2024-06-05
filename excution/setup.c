@@ -6,17 +6,17 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/05 11:07:14 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/05 15:03:19 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	print_no_cmd(char *cmd)
+void	print_no_cmd(char *cmd, char *msg)
 {
 	write(2, "minishell: ", 11);
 	write(2, cmd, ft_strlen(cmd));
-	write(2, ": command not found\n", 20);
+	write(2, msg, ft_strlen(msg));
 }
 
 char	*path_check(char *command, t_list *data, int end[])
@@ -26,14 +26,14 @@ char	*path_check(char *command, t_list *data, int end[])
 	char	*path;
 	char	**paths;
 
-	if (command && !command[0])
+	if (!command[0])
 		(write(2, "minishell:  : command not found\n", 32), exit(127));
-	if (access(command, X_OK) != -1)
-		return (command);
+	if (!access(command, F_OK) && access(command, X_OK) != -1)
+		(print_no_cmd(command, ": in a directory\n"), exit(126));
 	i = -1;
 	paths = ft_split(where_path(data), ":");
 	if (!paths)
-		(print_no_cmd(command), exit(127));
+		(print_no_cmd(command, ": command not found\n"), exit(127));
 	cmnd = ft_strjoin("/", command);
 	while (paths[++i])
 	{
@@ -43,7 +43,7 @@ char	*path_check(char *command, t_list *data, int end[])
 		free(path);
 	}
 	(fds_closer(end));
-	(print_no_cmd(command), exit(127));
+	(print_no_cmd(command, ": command not found\n"), exit(127));
 }
 
 void	more_commands(t_pex *pex, t_list **data, t_minishell *mini)
@@ -84,7 +84,7 @@ void	single_command(t_minishell *mini, t_list **data)
 	mini->exit_status = 0;
 	if (mini->list_size == 1)
 	{
-		check_fd(mini, &pex);
+		check_fd(mini, &pex, 0);
 		if (build_check(mini, data, &pex))
 		{
 			(dup2(sv_stdout, 1), close(sv_stdout));

@@ -6,14 +6,16 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 10:41:37 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/03 19:46:46 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/05 15:05:22 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	check_fd(t_minishell *mini, t_pex *pex)
+void	check_fd(t_minishell *mini, t_pex *pex, int type)
 {
+	if (mini->final_cmd[pex->i].in_fd == -1 && type)
+		exit(1);
 	if (mini->final_cmd[pex->i].in_fd == TUBE)
 	{
 		if (dup2(pex->end[0], 0) == -1)
