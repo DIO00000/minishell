@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:43:05 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/29 08:14:52 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/05 00:50:20 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,7 @@ char	*remove_str(char **str, char *env, int start, int len)
 	int		i;
 
 	(1) && (j = 0, i = 0);
-	result = malloc((ft_strlen(*str) - len - 1) + ft_strlen(env) + 1);
-	if (!result)
-		return (NULL);
+	result = zyalloc((ft_strlen(*str) - len - 1) + ft_strlen(env) + 1, 'a', true);
 	while ((*str)[i])
 	{
 		if (i == start - 1)

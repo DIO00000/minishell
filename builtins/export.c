@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:45:00 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/03 10:28:37 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/05 00:54:27 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	add_variable(char *var, t_list **data, char **sps, char *vr, int i)
 	}
 	else if (sps[0][i - 1] == '+' && vr)
 	{
-		(t = ft_substr(sps[0], 0, i - 1), tmp = var_finder(t, data), free(t));
+		(t = ft_substr(sps[0], 0, i - 1), tmp = var_finder(t, data));
 		if (!tmp)
 			return ;
 		t = tmp->env;

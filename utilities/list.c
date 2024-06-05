@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:12:49 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/01 21:42:09 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/05 00:43:25 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ t_list	*ft_lstnew(char *content)
 {
 	t_list	*new;
 
-	new = malloc(sizeof(t_list));
-	if (!new)
-		return (NULL);
+	new = zyalloc(sizeof(t_list), 'a', true);
 	new->env = content;
 	new->next = NULL;
 	return (new);

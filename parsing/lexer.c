@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:45:19 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/29 08:15:33 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/05 00:42:21 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ char	*allocator(char **str, int n)
 	char	*result;
 
 	n += ft_strlen(*str);
-	result = malloc(sizeof(char) * (n + 1));
-	if (!result)
-		return (NULL);
+	result = zyalloc(sizeof(char) * (n + 1), 'a', true);
 	ft_strlcpy(result, *str, n + 1);
 	free(*str);
 	return (result);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:02:41 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/04 16:30:36 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/05 01:18:24 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_list	*mini_init(t_minishell *m, t_list *data, char **env)
 	m->defult_path = ft_strdup("PATH=/usr/gnu/bin:/usr/local/bin:/bin:\
 /usr/bin:.");
 	data = fill_env(env, data, m);
-	free(env);
 	ft_shlvl(data, m);
 	return (data);
 }
@@ -33,17 +32,12 @@ void	read_line(t_minishell *mini)
 	if ((mini->input) && *(mini->input) && ft_strncmp(mini->input, "\n", 2))
 		add_history(mini->input);
 	if (!mini->input)
-		(printf("exit\n"), cleanup(mini, 1), exit(mini->exit_status));
+		(printf("exit\n"), lstclear(&mini->lst), exit(mini->exit_status));
 	if (isatty(0))
 	{
 		if (!mini->input)
 			(printf("exit\n"), free(mini->input), exit(mini->exit_status));
 	}
-}
-
-void f()
-{
-	system("leaks minishell");
 }
 
 char	**copy_env(char **env)
@@ -54,7 +48,7 @@ char	**copy_env(char **env)
 	i = 0;
 	while (env[i])
 		i++;
-	new_env = malloc((i + 1) * sizeof(char *));
+	new_env = zyalloc((i + 1) * sizeof(char *), 'a', true);
 	i = -1;
 	while (env[++i])
 		new_env[i] = ft_strdup(env[i]);
@@ -67,7 +61,7 @@ int	main(int ac, char **av, char **env)
 	char		**my_env;
 	t_minishell	mini;
 	t_list		*data;
-	atexit(f);
+	// atexit(f);
 
 	data = NULL;
 	my_env = copy_env(env);

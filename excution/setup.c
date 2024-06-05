@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/04 14:35:15 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/05 00:55:14 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ char	*path_check(char *command, t_list *data, int end[])
 	{
 		path = ft_strjoin(paths[i], cmnd);
 		if (access(path, F_OK) != -1)
-			return (free_handler(paths), free(cmnd), path);
+			return (path);
 		free(path);
 	}
-	(free_handler(paths), free(cmnd), fds_closer(end));
+	(fds_closer(end));
 	(print_no_cmd(command), exit(127));
 }
 

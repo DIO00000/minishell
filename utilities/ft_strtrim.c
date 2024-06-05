@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:55:38 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/23 20:41:26 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/05 00:43:13 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*ft_strtrim(char *s1, char *set)
 	start = ft_start_t(s1, set);
 	if (start >= end)
 		return (ft_strdup(""));
-	string = malloc((end - start) + 1);
+	string = zyalloc((end - start) + 1, 'a', true);
 	if (string == NULL)
 		return (NULL);
 	ft_strlcpy(string, s1 + start, (end - start) + 1);

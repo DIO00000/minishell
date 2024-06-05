@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 10:12:29 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/22 15:26:30 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/05 00:44:06 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,6 @@ int	the_word(char *s, char *c)
 	return (len);
 }
 
-void	ft_free(char ***arr)
-{
-	int	i;
-
-	i = 0;
-	while ((*arr)[i])
-		free((*arr)[i++]);
-	free(*arr);
-}
-
 static char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
 	unsigned int	i;
@@ -111,16 +101,12 @@ char	**ft_split(char *s, char *c)
 	if (!s)
 		return (NULL);
 	counter = ft_words(s, c);
-	words = malloc((counter + 1) * sizeof(char *));
-	if (!words)
-		return (NULL);
+	words = zyalloc((counter + 1) * sizeof(char *), 'a', true);
 	while (i < counter)
 	{
 		while (*s && is_thechar(*s, c))
 			s++;
-		words[i] = malloc(the_word(s, c) + 1);
-		if (!words[i])
-			return (ft_free(&words), NULL);
+		words[i] = zyalloc(the_word(s, c) + 1, 'a', true);
 		ft_strncpy(words[i], s, the_word(s, c));
 		words[i++][the_word(s, c)] = '\0';
 		s = s + the_word(s, c);

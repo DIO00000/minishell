@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:35:43 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/22 15:26:51 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/05 00:50:45 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 		return (ft_strdup(""));
 	if (len > ft_strlen(s + start))
 		len = ft_strlen(s + start);
-	res = malloc(len + 1);
-	if (res == NULL)
-		return (NULL);
+	res = zyalloc(len + 1, 'a', true);
 	while (s[i] && i < len)
 	{
 		res[i] = s[start];

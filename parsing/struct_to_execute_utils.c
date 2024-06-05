@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_to_execute_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:34:46 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/03 16:26:05 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/05 00:42:52 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ int	set_cmd_line(t_minishell *mini, int i)
 
 	curr = get_pipe(mini->lst, i);
 	cmd_size = get_cmd_size(mini, i);
-	mini->final_cmd[i].cmd = malloc(sizeof(char *) * (cmd_size + 1));
-	if (!mini->final_cmd[i].cmd)
-		return (0);
+	mini->final_cmd[i].cmd = zyalloc(sizeof(char *) * (cmd_size + 1), 'a', true);
 	index = 0;
 	while (index < cmd_size)
 	{

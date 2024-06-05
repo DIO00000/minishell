@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_to_execute.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:30:47 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/03 16:26:15 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/05 00:43:04 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ int	struct_cmd(t_minishell *mini, t_list *data)
 
 	i = 0;
 	mini->list_size = lstsize(mini->lst);
-	mini->final_cmd = malloc(sizeof(t_final_st) * mini->list_size);
-	if (!mini->final_cmd)
-		return (0);
+	mini->final_cmd = zyalloc(sizeof(t_final_st) * mini->list_size, 'a', true);
 	while (i < mini->list_size)
 		mini->final_cmd[i++].cmd = NULL;
 	i = 0;

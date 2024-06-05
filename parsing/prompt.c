@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:37:21 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/22 15:41:57 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/05 01:22:04 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	prompt_custom(t_minishell *minishell)
 	dir = ft_strjoin(SPC, cur_dir);
 	n_arrow = ft_strjoin(username, dir);
 	final = ft_strjoin(n_arrow, X);
-	(free(username), free(dir), free(n_arrow), free(cur_dir));
+	free(username);
+	free(dir);
+	free(n_arrow);
+	free(cur_dir);
 	minishell->trm_prompt = final;
 }
 
@@ -39,6 +42,7 @@ char	*get_dir(t_minishell *minishell)
 	char	*dir;
 
 	(void)minishell;
+	words = NULL;
 	i = 0;
 	pwd = getcwd(NULL, 0);
 	if (pwd == NULL)
@@ -53,5 +57,6 @@ char	*get_dir(t_minishell *minishell)
 		dir = ft_strdup(words[--i]);
 		free_strings(words);
 	}
+	free(pwd);
 	return (dir);
 }

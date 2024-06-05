@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 07:45:28 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/22 15:38:20 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/05 00:44:24 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (ft_strdup(s1));
 	i = ft_strlen(s1);
 	j = ft_strlen(s1) + ft_strlen(s2) + 1;
-	string = malloc(j);
-	if (string == NULL)
-		return (NULL);
+	string = zyalloc(j, 'a', true);
 	ft_strlcpy(string, s1, i + 1);
 	ft_strlcat(string, s2, j);
 	return (string);

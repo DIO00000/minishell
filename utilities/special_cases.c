@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   special_cases.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 07:49:31 by hbettal           #+#    #+#             */
-/*   Updated: 2024/05/05 21:42:43 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/05 00:43:34 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,7 @@ char	*ft_strjoin_three(char *s1, char *buff, char *s2)
 		return (ft_strjoin(buff, s2));
 	if (!buff)
 		return (ft_strjoin(s1, buff));
-	all = (char *)malloc(ft_strlen(s1) + ft_strlen(buff) + ft_strlen(s2) + 1);
-	if (!all)
-		return (NULL);
+	all = zyalloc(ft_strlen(s1) + ft_strlen(buff) + ft_strlen(s2) + 1, 'a', true);
 	while (s1[i])
 		all[j++] = s1[i++];
 	i = 0;

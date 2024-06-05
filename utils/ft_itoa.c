@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 20:28:05 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/05/22 15:26:05 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/05 00:43:45 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ static char	*return_string(int n, int i)
 
 	num = (long)n;
 	count = str_length(num);
-	str = malloc((count + 1));
-	if (str == NULL)
-		return (NULL);
+	str = zyalloc((count + 1), 'a', true);
 	if (num < 0)
 	{
 		num *= -1;
