@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:28:33 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/01 21:25:19 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/05 11:39:19 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ char	*where_path(t_list *data)
 	path = var_finder("PATH", &data);
 	if (!path)
 		return (NULL);
-	return (path->env + 5);
+	if (path->env + 4 && path->env + 5)
+		return (path->env + 5);
+	return (NULL);
 }
-

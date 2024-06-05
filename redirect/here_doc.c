@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 02:08:56 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/04 17:55:50 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/05 10:24:55 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	ft_here_doc(t_minishell *mini, char *lim, t_list *data)
 		if (!str || !ft_strncmp(str, lim, INT_MAX))
 		{
 			close(fd);
-			fd = open(file, O_RDWR);
+			fd = open(file, O_RDONLY);
 			return (free(lim), free(str), fd);
 		}
 		exp_set(mini, &str, data);

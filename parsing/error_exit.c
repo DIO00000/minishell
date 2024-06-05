@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:46:01 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/05 02:11:47 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/05 11:07:21 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-
 
 void	free_strings(char **strings)
 {

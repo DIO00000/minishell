@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 17:06:12 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/05 01:19:59 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/05 11:03:17 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*parse_echo(char *word)
 	char	**split;
 	char	*tmp;
 	int		i;
-	
+
 	i = -1;
 	tmp = NULL;
 	split = ft_split(word, "\"");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/05 00:55:14 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/05 11:07:14 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	print_no_cmd(char *cmd)
 	write(2, cmd, ft_strlen(cmd));
 	write(2, ": command not found\n", 20);
 }
+
 char	*path_check(char *command, t_list *data, int end[])
 {
 	int		i;

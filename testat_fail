@@ -1,8 +1,0 @@
-#export salam="ls -la" && $salam 
-
-cat < o Makefile
-
-
- ./minishell < /dev/urandom
-
- ./a.out && Segmentation fault: 11 not showing

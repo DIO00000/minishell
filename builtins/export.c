@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:45:00 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/05 00:54:27 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/05 11:06:48 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,13 @@ t_list	*var_finder(char *var, t_list **data)
 	return (NULL);
 }
 
-void	add_variable(char *var, t_list **data, char **sps, char *vr, int i)
+void	add_variable(char *var, t_list **data, char **sps, char *vr)
 {
 	t_list	*tmp;
 	char	*t;
+	int		i;
 
-	tmp = *data;
+	(1) && (tmp = *data, i = ft_strlen(sps[0]));
 	if (!vr && !var_finder(sps[0], data))
 		(ft_lstadd_back(data, ft_lstnew(var)));
 	if (sps[0][i - 1] != '+' && vr)
@@ -68,7 +69,7 @@ void	add_variable(char *var, t_list **data, char **sps, char *vr, int i)
 	}
 	else if (sps[0][i - 1] == '+' && vr)
 	{
-		(t = ft_substr(sps[0], 0, i - 1), tmp = var_finder(t, data));
+		(1) && (t = ft_substr(sps[0], 0, i - 1), tmp = var_finder(t, data));
 		if (!tmp)
 			return ;
 		t = tmp->env;
@@ -90,7 +91,7 @@ void	creat_var(char **var, t_list **data, int i)
 		{
 			print_error(var[i], "not a valid identifier");
 			i++;
-			continue;
+			continue ;
 		}
 		sps = ft_split(var[i], "=");
 		if (!export_parse(sps[0]))
@@ -101,7 +102,7 @@ void	creat_var(char **var, t_list **data, int i)
 		}
 		vr = ft_strchr(var[i], '=');
 		if (sps[0])
-			add_variable(var[i], data, sps, vr, ft_strlen(sps[0]));
+			add_variable(var[i], data, sps, vr);
 		indexer(data);
 		free_handler(sps);
 		i++;

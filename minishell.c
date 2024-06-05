@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:02:41 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/05 01:18:24 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/05 11:01:09 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	main(int ac, char **av, char **env)
 	char		**my_env;
 	t_minishell	mini;
 	t_list		*data;
-	// atexit(f);
 
 	data = NULL;
 	my_env = copy_env(env);

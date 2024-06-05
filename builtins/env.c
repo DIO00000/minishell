@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 10:47:15 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/05 01:20:29 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/05 11:48:03 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ t_list	*fill_env(char **origin_env, t_list *data, t_minishell *mini)
 
 void	env_build(t_list *data, char *cmd)
 {
+	if (!data)
+		return ;
 	if (cmd)
 	{
 		printf("env: %s: No such file or directory\n", cmd);
@@ -93,7 +95,8 @@ void	ft_shlvl(t_list *data, t_minishell *m)
 void	ft_pwd(t_list	*data, t_minishell *m)
 {
 	t_list	*tmp;
-
+	if (!data)
+		return ;
 	tmp = var_finder("PWD", &data);
 	if (tmp)
 		tmp->env = ft_strjoin("PWD=", m->curr_dir);
