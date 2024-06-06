@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 02:08:56 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/06 12:43:14 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/06 15:47:49 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,29 +76,52 @@ char	*file_name(char *file)
 	return (NULL);
 }
 
+char	*limiter_parse(char *lim)
+{
+	char	**split;
+	char	*tmp;
+	int		i;
+
+	i = -1;
+	tmp = NULL;
+	split = NULL;
+	if (ft_strchr(lim, '\"'))
+		split = ft_split(lim, "\"");
+	else if (!ft_strchr(lim, '\"'))
+		split = ft_split(lim, "\'");
+	while (split[++i])
+	{
+		lim = ft_strjoin(tmp, split[i]);
+		free(tmp);
+		tmp = lim;
+	}
+	free_handler(split);
+	return (lim);
+}
+
 int	ft_here_doc(t_minishell *mini, char *lim, t_list *data)
 {
 	char	*str;
 	int		fd;
 	char	*file;
+	bool	exp;
 
+	exp = true;
 	file = file_name("/tmp/secret_file");
 	fd = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (fd < 0)
 		return (free(lim), 0);
+	if (ft_strchr(lim, '\'') || ft_strchr(lim, '\"'))
+		exp = false;
+	lim = limiter_parse(lim);
 	while (1)
 	{
 		str = readline("heredoc> ");
 		if (!str || !ft_strncmp(str, lim, INT_MAX))
-		{
-			close(fd);
-			fd = open(file, O_RDONLY);
-			return (free(lim), free(str), fd);
-		}
-		exp_set(mini, &str, data);
-		write(fd, str, ft_strlen(str));
-		write(fd, "\n", 1);
-		free(str);
+			return (free(lim), free(str), close(fd), fd = open(file, O_RDONLY));
+		if (exp == true)
+			exp_set(mini, &str, data);
+		(write(fd, str, ft_strlen(str)), write(fd, "\n", 1), free(str));
 	}
 	return (0);
 }

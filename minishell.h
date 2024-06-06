@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/05 15:04:46 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/06 15:29:00 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <readline/readline.h>
-# include <readline/history.h>
 # include <fcntl.h>
 # include <signal.h>
 # include <errno.h>
@@ -32,6 +30,8 @@
 # include <stdarg.h>
 # include <stdbool.h>
 # include <fcntl.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 // CLASSES
 
