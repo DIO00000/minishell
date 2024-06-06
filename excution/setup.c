@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/06 18:38:54 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/06 18:44:22 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ char	*path_check(char *command, t_list *data, int end[])
 			return (path);
 		free(path);
 	}
-	(fds_closer(end), print_no_cmd(command, ": command not found\n"), exit(127));
+	fds_closer(end);
+	(print_no_cmd(command, ": command not found\n"), exit(127));
 }
 
 void	more_commands(t_pex *pex, t_list **data, t_minishell *mini)

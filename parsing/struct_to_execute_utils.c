@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:34:46 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/06 16:35:57 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/06 20:02:28 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,11 @@ int	open_files(t_minishell *mini, int i, t_list *data)
 	curr = get_pipe(mini->lst, i);
 	while (curr && curr->class != PIPE)
 	{
-		if (curr->class == HERDOC)
+		if (curr->class == HERDOC && curr->next->class != ERROR)
 		{
 			her_fd = ft_here_doc(mini, curr->next->string, data);
 			if (her_fd == -1)
-			{
-				signal(SIGINT, sig_init);
-				return(0);
-			}
+				return (signal(SIGINT, sig_init), 0);
 			if (curr == mini->final_cmd[i].redirection_in)
 				mini->final_cmd[i].in_fd = her_fd;
 			else
@@ -119,19 +116,4 @@ int	open_files(t_minishell *mini, int i, t_list *data)
 		curr = curr->next;
 	}
 	return (1);
-}
-
-void	ft_close_fds(t_minishell *mini)
-{
-	int	i;
-
-	i = 0;
-	while (i < mini->list_size)
-	{
-		if (mini->final_cmd[i].in_fd > 2)
-			close(mini->final_cmd[i].in_fd);
-		if (mini->final_cmd[i].out_fd > 2)
-			close(mini->final_cmd[i].out_fd);
-		i++;
-	}
 }

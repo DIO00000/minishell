@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/06 15:29:00 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/06 19:01:41 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ void		read_line(t_minishell *mini);
 
 // LEXER
 
+char		*allocator(char **str, int n);
 int			ft_count_spaces(char *str);
 void		lexer(t_minishell *minishell);
 char		*put_spaces(char **str, int space_counter);
@@ -173,6 +174,15 @@ char		*ft_join(char *s1, char *buff);
 
 // PARSING
 
+char		*var_value(char	*var);
+int			expansion_error(char c);
+void		classing(t_parser **expand);
+int			is_space(char *str);
+void		ft_close_fds(t_minishell *mini);
+void		lstadd_front(t_parser **lst, t_parser *new, char *str);
+t_parser	*lstadd_middle(t_parser *lst, t_parser *new, char *str);
+void		handle_redirection(t_parser *current, int class);
+char		*remove_quotes(char **str, int count_quotes);
 int			parsing(t_minishell *mini, t_list **data);
 void		classification(t_minishell *mini, t_list *data);
 void		parameter_expansion(t_minishell *mini, \
@@ -181,6 +191,9 @@ void		ex_set(t_minishell *mini, char **str, \
 t_exp_helper *help, t_list *data);
 int			export_parse(char *flags);
 char		*var_value(char	*var);
+void		check_spaces(t_parser *current, t_minishell *mini);
+void		parameter_expansion(t_minishell *mini, \
+t_parser *current, t_list *data);
 
 // PARSING_UTILS
 
@@ -295,13 +308,11 @@ int			ft_atoi(const char *str);
 void		free_handler(char **str);
 void		fds_closer(int end[]);
 void		check_fd(t_minishell *mini, t_pex *pex, int type);
+char		*limiter_parse(char *lim);
 
 //GET_NEXT_LINE
 
 char		*ft_strchr(char *s, char c);
-char		*print_the_line(char *line);
-char		*rest_line(char *line);
-char		*get_the_line(char	*str, int fd);
 char		*ft_join(char *s1, char *buff);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:49:11 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/01 12:14:16 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/06 18:52:34 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,21 @@ void	close_fds(t_minishell *mini)
 		if (mini->final_cmd[i].in_fd > 2)
 			if (close(mini->final_cmd[i].in_fd) == -1)
 				perror("close");
+		i++;
+	}
+}
+
+void	ft_close_fds(t_minishell *mini)
+{
+	int	i;
+
+	i = 0;
+	while (i < mini->list_size)
+	{
+		if (mini->final_cmd[i].in_fd > 2)
+			close(mini->final_cmd[i].in_fd);
+		if (mini->final_cmd[i].out_fd > 2)
+			close(mini->final_cmd[i].out_fd);
 		i++;
 	}
 }

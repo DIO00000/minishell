@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:12:49 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/05 00:43:25 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/06 18:56:05 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,31 +74,4 @@ int	ft_lstsize(t_list *lst)
 		i++;
 	}
 	return (i);
-}
-
-void	ft_lstdel_mid(t_list **data, t_list *rm)
-{
-	t_list	*first;
-
-	first = *data;
-	if (rm == first)
-	{
-		*data = rm->next;
-		ft_lstdelone(rm);
-		return ;
-	}
-	if (rm)
-	{
-		while (first->next)
-		{
-			if (first->next == rm)
-				break ;
-			first = first->next;
-		}
-		if (rm->next)
-			first->next = rm->next;
-		else
-			first->next = NULL;
-	}
-	ft_lstdelone(rm);
 }

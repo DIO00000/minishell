@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 10:47:15 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/05 11:48:03 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/06 18:45:06 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	ft_shlvl(t_list *data, t_minishell *m)
 void	ft_pwd(t_list	*data, t_minishell *m)
 {
 	t_list	*tmp;
+
 	if (!data)
 		return ;
 	tmp = var_finder("PWD", &data);

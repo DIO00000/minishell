@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 17:06:12 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/06 11:40:51 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/06 18:44:47 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	single_quotes(char *str)
 	while (str[i])
 	{
 		if (str[i] == '\'')
-			return(1);
+			return (1);
 		i++;
 	}
 	return (0);
