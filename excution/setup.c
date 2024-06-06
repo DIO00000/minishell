@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/06 16:12:49 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/06 18:38:54 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,20 @@ void	print_no_cmd(char *cmd, char *msg)
 
 char	*path_check(char *command, t_list *data, int end[])
 {
-	int		i;
-	char	*cmnd;
-	char	*path;
-	char	**paths;
+	struct stat	file;
+	int			i;
+	char		*cmnd;
+	char		*path;
+	char		**paths;
 
 	if (!command[0])
 		(write(2, "minishell:  : command not found\n", 32), exit(127));
-	if (!access(command, F_OK) && access(command, X_OK))
-		(print_no_cmd(command, ": in a directory\n"), exit(126));
+	if (stat(command, &file) == 0 && S_ISDIR(file.st_mode))
+		(print_error(command, "is a directory"), exit(126));
 	if (!access(command, F_OK) && !access(command, X_OK))
 		return (command);
 	i = -1;
 	paths = ft_split(where_path(data), ":");
-	if (!paths)
-		(print_no_cmd(command, ": command not found\n"), exit(127));
 	cmnd = ft_strjoin("/", command);
 	while (paths[++i])
 	{
@@ -44,8 +43,7 @@ char	*path_check(char *command, t_list *data, int end[])
 			return (path);
 		free(path);
 	}
-	(fds_closer(end));
-	(print_no_cmd(command, ": command not found\n"), exit(127));
+	(fds_closer(end), print_no_cmd(command, ": command not found\n"), exit(127));
 }
 
 void	more_commands(t_pex *pex, t_list **data, t_minishell *mini)
