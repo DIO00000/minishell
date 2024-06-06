@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 17:06:12 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/05 11:03:17 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/06 11:40:51 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	single_quotes(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\'')
+			return(1);
+		i++;
+	}
+	return (0);
+}
 
 char	*parse_echo(char *word)
 {
@@ -20,8 +34,11 @@ char	*parse_echo(char *word)
 
 	i = -1;
 	tmp = NULL;
-	split = ft_split(word, "\"");
-	tmp = NULL;
+	split = NULL;
+	if (ft_strchr(word, '\"'))
+		split = ft_split(word, "\"");
+	else if (!ft_strchr(word, '\"'))
+		split = ft_split(word, "\'");
 	while (split[++i])
 	{
 		word = ft_strjoin(tmp, split[i]);

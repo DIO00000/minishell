@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:33:53 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/01 20:13:09 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/06 12:03:25 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,18 +91,29 @@ void	parameter_expansion(t_minishell *mini, t_parser *current, t_list *data)
 	t_exp_helper	help;
 	char			**spl;
 	t_parser		*expand;
-	// t_parser		*new;
 	int				i;
+	int				count;
 
 	expand = NULL;
 	i = -1;
 	help.exp_counter = expansion_counter(current->string);
+	if (help.exp_counter)
+	{
+		count = count_quote(current->string);
+		if (count > 0)
+			current->string = remove_quotes(&current->string, count);
+	}
 	while (help.exp_counter--)
 	{
 		if (current->class != LIM)
 			ex_set(mini, &current->string, &help, data);
 		if (is_space(current->string))
 		{
+			count = 0;
+			count = count_quote(current->string);
+			if (count > 0)
+				current->string = remove_quotes(&current->string, count);
+			printf("==> %s\n", current->string);
 			spl = ft_split(current->string, SPACES);
 			if (!spl)
 				return ;
