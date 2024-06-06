@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:33:53 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/06 12:45:16 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/06 17:10:22 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,9 @@ int	expansion_error(char c)
 
 char	*var_value(char	*var)
 {
-	char	*value;
-	char	**tmp;
-
-	tmp = ft_split(var, "=");
-	value = tmp[1];
-	free(tmp[0]);
-	free(tmp);
-	return (value);
+	if (ft_strchr(var, '='))
+		return(ft_strchr(var, '=') + 1);
+	return (NULL);
 }
 
 void	ex_set(t_minishell *mini, char **str, t_exp_helper *help, t_list *data)
@@ -82,20 +77,41 @@ void	ex_set(t_minishell *mini, char **str, t_exp_helper *help, t_list *data)
 	free(help->exp_name);
 	(*str) = remove_str(str, var_value(help->exp_env), help->start, \
 	help->end - help->start);
-	if (!(*str))
-		ft_exit(mini, NULL, NULL, 12);
+}
+
+void	check_spaces(t_parser *current, t_minishell *mini)
+{
+	int 			count;
+	t_parser		*expand;
+	char			**spl;
+	int				i;
+
+	expand = NULL;
+	i = -1;
+	count = 0;
+	count = count_quote(current->string);
+	if (count > 0)
+		current->string = remove_quotes(&current->string, count);
+	spl = ft_split(current->string, SPACES);
+	if (!spl)
+		return ;
+	while (spl[++i])
+		lstadd_back(&expand, lstnew(spl[i]));
+	classing(&expand);
+	if (mini->lst->string != current->string)
+		current = lstadd_middle(mini->lst, expand, current->string);
+	else
+		lstadd_front(&mini->lst, expand, current->string);
 }
 
 void	parameter_expansion(t_minishell *mini, t_parser *current, t_list *data)
 {
 	t_exp_helper	help;
-	char			**spl;
-	t_parser		*expand;
 	int				i;
 	int				count;
 
-	expand = NULL;
 	i = -1;
+	count = 0;
 	help.exp_counter = expansion_counter(current->string);
 	if (help.exp_counter)
 	{
@@ -107,22 +123,8 @@ void	parameter_expansion(t_minishell *mini, t_parser *current, t_list *data)
 	{
 		if (current->class != LIM)
 			ex_set(mini, &current->string, &help, data);
+		
 		if (is_space(current->string))
-		{
-			count = 0;
-			count = count_quote(current->string);
-			if (count > 0)
-				current->string = remove_quotes(&current->string, count);
-			spl = ft_split(current->string, SPACES);
-			if (!spl)
-				return ;
-			while (spl[++i])
-				lstadd_back(&expand, lstnew(spl[i]));
-			classing(&expand);
-			if (mini->lst->string != current->string)
-				current = lstadd_middle(mini->lst, expand, current->string);
-			else
-				lstadd_front(&mini->lst, expand, current->string);
-		}
+			check_spaces(current, mini);
 	}
 }

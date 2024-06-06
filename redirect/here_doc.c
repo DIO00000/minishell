@@ -6,11 +6,13 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 02:08:56 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/06 15:47:49 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/06 16:35:28 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	g_sig = 0;
 
 int	h_start(char *str)
 {
@@ -99,6 +101,14 @@ char	*limiter_parse(char *lim)
 	return (lim);
 }
 
+void	sig_handler(int sig_num)
+{
+	(void)sig_num;
+	g_sig = 1;
+	close(0);
+}
+
+
 int	ft_here_doc(t_minishell *mini, char *lim, t_list *data)
 {
 	char	*str;
@@ -114,14 +124,22 @@ int	ft_here_doc(t_minishell *mini, char *lim, t_list *data)
 	if (ft_strchr(lim, '\'') || ft_strchr(lim, '\"'))
 		exp = false;
 	lim = limiter_parse(lim);
+	signal(SIGINT, sig_handler);
 	while (1)
 	{
 		str = readline("heredoc> ");
+		if (g_sig == 1)
+		{
+			free(str);
+			close(fd);
+			g_sig = 0;
+			return(-1);
+		}
 		if (!str || !ft_strncmp(str, lim, INT_MAX))
 			return (free(lim), free(str), close(fd), fd = open(file, O_RDONLY));
 		if (exp == true)
 			exp_set(mini, &str, data);
 		(write(fd, str, ft_strlen(str)), write(fd, "\n", 1), free(str));
 	}
-	return (0);
+	return (-1);
 }
