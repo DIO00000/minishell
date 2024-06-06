@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 23:54:13 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/06 12:21:25 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/06 18:27:33 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ char	*remove_quotes(char **str, int count_quotes)
 	* sizeof(char), 'a', true);
 	while ((*str)[j])
 	{
-		if ((*str)[j] != '\'' && (*str)[j] != '\"')
+		if ((*str)[j] != '\"')
 			new_str[i++] = (*str)[j];
 		j++;
 	}
