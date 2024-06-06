@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:33:53 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/06 12:20:03 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/06 12:45:16 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ void	parameter_expansion(t_minishell *mini, t_parser *current, t_list *data)
 			count = count_quote(current->string);
 			if (count > 0)
 				current->string = remove_quotes(&current->string, count);
-			printf("==> %s\n", current->string);
 			spl = ft_split(current->string, SPACES);
 			if (!spl)
 				return ;
