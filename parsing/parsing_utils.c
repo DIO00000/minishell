@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 23:54:13 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/06 11:46:12 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:21:25 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	lstclear(t_parser **lst)
 	while (current)
 	{
 		next = current->next;
-		// (free(current->string), free(current));
 		current = next;
 	}
 	*lst = NULL;
@@ -95,7 +94,8 @@ char	*remove_quotes(char **str, int count_quotes)
 
 	i = 0;
 	j = 0;
-	new_str = zyalloc(((ft_strlen(*str) - count_quotes) + 1) * sizeof(char), 'a', true);
+	new_str = zyalloc(((ft_strlen(*str) - count_quotes) + 1) \
+	* sizeof(char), 'a', true);
 	while ((*str)[j])
 	{
 		if ((*str)[j] != '\'' && (*str)[j] != '\"')

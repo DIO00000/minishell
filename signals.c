@@ -6,13 +6,14 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:15:24 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/05 11:02:09 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/06 12:39:52 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 int	g_exit_s = 0;
+
 
 void	signals(t_minishell *mini)
 {

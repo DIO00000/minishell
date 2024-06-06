@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:33:53 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/06 12:03:25 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:20:03 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void	parameter_expansion(t_minishell *mini, t_parser *current, t_list *data)
 				lstadd_back(&expand, lstnew(spl[i]));
 			classing(&expand);
 			if (mini->lst->string != current->string)
-				current = lstadd_middle(mini->lst , expand, current->string);
+				current = lstadd_middle(mini->lst, expand, current->string);
 			else
 				lstadd_front(&mini->lst, expand, current->string);
 		}
