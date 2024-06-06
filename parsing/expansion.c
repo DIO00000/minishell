@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:33:53 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/06 17:10:22 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/06 17:16:04 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,3 +128,4 @@ void	parameter_expansion(t_minishell *mini, t_parser *current, t_list *data)
 			check_spaces(current, mini);
 	}
 }
+//export +=

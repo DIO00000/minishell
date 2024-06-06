@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:45:00 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/05 11:06:48 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/06 17:23:53 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	creat_var(char **var, t_list **data, int i)
 
 	while (var[i] && var[i][0])
 	{
-		if (var[i][0] == '=')
+		if (var[i][0] == '=' || var[i][0] == '+')
 		{
 			print_error(var[i], "not a valid identifier");
 			i++;
@@ -100,7 +100,7 @@ void	creat_var(char **var, t_list **data, int i)
 			free_handler(sps);
 			continue ;
 		}
-		vr = ft_strchr(var[i], '=');
+		vr = ft_strchr(var[i], '=') + 1;
 		if (sps[0])
 			add_variable(var[i], data, sps, vr);
 		indexer(data);
