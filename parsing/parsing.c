@@ -6,7 +6,7 @@
 /*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 23:49:43 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/07 11:52:36 by oelharbi         ###   ########.fr       */
+/*   Updated: 2024/06/07 12:00:32 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@ int	parsing(t_minishell *mini, t_list **data)
 	while (mini->cmd[++i])
 		lstadd_back(&mini->lst, lstnew(mini->cmd[i]));
 	(classification(mini, *data), systax_error(mini->lst));
-	t_parser *a = mini->lst;
-	while (a)
-	{
-		printf("=>> %s\n", a->string);
-		a = a->next;
-	}
 	if (!mini->lst)
 		return (1);
 	if (!struct_cmd(mini, *data))
