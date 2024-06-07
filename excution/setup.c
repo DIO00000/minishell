@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:13:01 by hbettal           #+#    #+#             */
-/*   Updated: 2024/06/06 18:44:22 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/06 20:37:10 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	single_command(t_minishell *mini, t_list **data)
 		{
 			(dup2(sv_stdout, 1), close(sv_stdout));
 			(dup2(sv_stdin, 0), close(sv_stdin));
-			return ;
+			return (close_fds(mini));
 		}
 	}
 	(dup2(sv_stdout, 1), close(sv_stdout), dup2(sv_stdin, 0), close(sv_stdin));
