@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+         #
+#    By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:05:04 by oelharbi          #+#    #+#              #
-#    Updated: 2024/06/06 18:58:30 by hbettal          ###   ########.fr        #
+#    Updated: 2024/06/07 11:57:17 by oelharbi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address 
+CFLAGS = -Wall -Wextra -Werror
 
 READLINE_INC = -I$(shell brew --prefix readline)/include
 
@@ -54,16 +54,6 @@ all: $(NAME)
 
 $(NAME) : $(OBJ) $(HEADER)
 	@$(CC) $(CFLAGS) $(OBJ)  $(READLINE_LIB)  -o $(NAME)
-
-# $(LIBFT) :
-# 	@echo "\033[1;33mBuilding LIBFT...\033[0m"
-# 	@make -C ./libft
-# 	@echo "\033[1;33mBuilding Minishell...\033[0m"
-
-# ./mandatory/%.o : ./mandatory/%.c $(HEADER)
-# 	@echo "\033[0;34mCompiling $< .\033[0;m"
-# 	@sleep 0.2
-# 	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 %.o : %.c $(HEADER)
 	@echo "\033[0;34mCompiling $< .\033[0;m"

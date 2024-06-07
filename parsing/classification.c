@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   classification.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oelharbi <oelharbi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 09:36:44 by oelharbi          #+#    #+#             */
-/*   Updated: 2024/06/06 20:16:33 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/06/07 11:53:29 by oelharbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	classification(t_minishell *mini, t_list *data)
 	{
 		(operator(&state, current), parameter_expansion(mini, current, data));
 		count_quotes = count_quote(current->string);
-		if (count_quotes > 0)
+		if (count_quotes > 0 && current->class != LIM)
 		{
 			current->string = remove_quotes(&current->string, count_quotes);
 			if (!current->string)
